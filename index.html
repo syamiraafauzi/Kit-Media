@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room 3D Ungu: Misi Menyelamat Diri (SP 7.1 Jarak)</title>
+    <title>Escape Room : Misi Menyelamatkan Diri — Bab 7 - Koordinat (Tingkatan 2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
 
@@ -19,7 +20,9 @@
             --red-neon: #ef4444;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
@@ -33,64 +36,135 @@
             flex-direction: column;
         }
 
+        /* Halaman Welcome Kreatif & Menarik */
         .welcome-screen {
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 50% 30%, #27104d 0%, #070410 100%);
+            background: radial-gradient(circle at 20% 20%, #331366 0%, #120726 52%, #06030e 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 200;
-            padding: 20px;
+            padding: 18px;
+            overflow-y: auto;
         }
 
         .welcome-card {
-            max-width: 540px;
+            max-width: 860px;
             width: 100%;
-            background: rgba(22, 11, 44, 0.96);
+            background: rgba(20, 10, 40, 0.96);
             border: 2px solid var(--purple-neon);
-            border-radius: 18px;
-            padding: 32px;
-            box-shadow: 0 0 42px rgba(168, 85, 247, 0.32);
-            text-align: center;
+            border-radius: 20px;
+            padding: 26px;
+            box-shadow: 0 0 48px rgba(168, 85, 247, 0.34), inset 0 0 24px rgba(192, 132, 252, 0.08);
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
+            }
+            .welcome-card {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 18px;
+            }
+            .game-stage {
+                height: calc(100vh - 96px) !important;
+            }
+            .holo-terminal {
+                width: calc(100% - 24px) !important;
+                right: 12px !important;
+                top: 12px !important;
+                max-height: 56vh;
+                overflow-y: auto;
+            }
         }
 
         .welcome-badge {
             display: inline-block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             padding: 4px 12px;
             border-radius: 999px;
-            background: rgba(168, 85, 247, 0.18);
+            background: rgba(168, 85, 247, 0.2);
             border: 1px solid var(--purple-neon);
             color: var(--violet-glow);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            letter-spacing: 0.6px;
         }
 
-        .welcome-card h1 {
+        .welcome-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: #fff;
-            margin: 6px 0 10px;
-            text-shadow: 0 0 16px rgba(192, 132, 252, 0.55);
+            font-size: 1.48rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 4px 0 8px;
+            text-shadow: 0 0 16px rgba(192, 132, 252, 0.6);
+            line-height: 1.25;
+        }
+
+        .welcome-topic {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: #f0abfc;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .welcome-desc {
             color: #e9d5ff;
-            font-size: 1.02rem;
-            line-height: 1.5;
-            margin-bottom: 22px;
+            font-size: 0.98rem;
+            line-height: 1.48;
+            margin-bottom: 14px;
+        }
+
+        .hazard-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 14px;
+        }
+
+        .hazard-chip {
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: rgba(88, 28, 135, 0.45);
+            border: 1px solid rgba(216, 180, 254, 0.35);
+            color: #fae8ff;
+        }
+
+        .art-showcase {
+            background: linear-gradient(160deg, rgba(59, 7, 100, 0.55), rgba(15, 7, 32, 0.9));
+            border: 1.5px solid rgba(192, 132, 252, 0.45);
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: inset 0 0 22px rgba(168, 85, 247, 0.18);
+        }
+
+        .form-panel {
+            background: rgba(15, 7, 32, 0.72);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 14px;
+            padding: 18px;
         }
 
         .form-group {
             text-align: left;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .form-group label {
             display: block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: var(--purple-neon);
             margin-bottom: 6px;
             letter-spacing: 0.8px;
@@ -98,13 +172,13 @@
 
         .form-group input {
             width: 100%;
-            padding: 12px 14px;
+            padding: 11px 14px;
             border-radius: 10px;
             border: 1.5px solid #581c87;
             background: #0b0617;
             color: #faf5ff;
             font-family: 'Rajdhani', sans-serif;
-            font-size: 1.08rem;
+            font-size: 1.06rem;
             font-weight: 600;
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
@@ -117,21 +191,24 @@
 
         .btn-start {
             width: 100%;
-            margin-top: 8px;
+            margin-top: 6px;
             padding: 13px 20px;
             border-radius: 10px;
             border: 1px solid #e9d5ff;
             background: linear-gradient(135deg, #9333ea, #6b21a8);
             color: #fff;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(168, 85, 247, 0.45);
-            transition: transform 0.15s;
+            transition: transform 0.15s, box-shadow 0.2s;
         }
 
-        .btn-start:hover { transform: translateY(-2px); }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 26px rgba(192, 132, 252, 0.65);
+        }
 
         .welcome-err {
             color: #fecaca;
@@ -139,27 +216,28 @@
             border: 1px solid #ef4444;
             padding: 8px 12px;
             border-radius: 8px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             margin-bottom: 12px;
             display: none;
         }
 
+        /* Top HUD Bar */
         .hud-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: rgba(14, 7, 28, 0.95);
-            border-bottom: 1px solid rgba(192, 132, 252, 0.3);
+            border-bottom: 1px solid rgba(192, 132, 252, 0.32);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
             z-index: 10;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .hud-left, .hud-right {
             display: flex;
-            gap: 8px;
+            gap: 7px;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -168,13 +246,13 @@
             background: rgba(34, 16, 68, 0.95);
             border: 1.5px solid var(--purple-neon);
             border-radius: 10px;
-            padding: 5px 12px;
+            padding: 4px 11px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 0 12px rgba(168, 85, 247, 0.22);
+            gap: 5px;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.74rem;
         }
 
         .hud-pill.timer {
@@ -185,24 +263,36 @@
         .hud-pill.player {
             border-color: #e879f9;
             font-family: 'Rajdhani', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 700;
+        }
+
+        .hud-title-wrap {
+            text-align: center;
         }
 
         .hud-title {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            letter-spacing: 1.2px;
+            letter-spacing: 0.8px;
             color: var(--purple-neon);
             text-shadow: 0 0 12px rgba(192, 132, 252, 0.6);
-            font-size: 0.96rem;
+            font-size: 0.92rem;
+            line-height: 1.15;
+        }
+
+        .hud-sub {
+            font-size: 0.76rem;
+            color: #e9d5ff;
+            font-weight: 700;
+            letter-spacing: 0.4px;
         }
 
         .btn-hud {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            padding: 8px 12px;
+            padding: 7px 11px;
             border-radius: 8px;
             border: none;
             cursor: pointer;
@@ -235,7 +325,7 @@
             flex: 1;
             display: flex;
             width: 100%;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 62px);
         }
 
         canvas {
@@ -246,49 +336,49 @@
 
         .cam-badge {
             position: absolute;
-            bottom: 18px;
-            left: 22px;
-            background: rgba(24, 11, 48, 0.9);
-            border: 1px solid rgba(192, 132, 252, 0.45);
+            bottom: 16px;
+            left: 20px;
+            background: rgba(24, 11, 48, 0.92);
+            border: 1px solid rgba(192, 132, 252, 0.5);
             color: #f3e8ff;
             padding: 6px 14px;
             border-radius: 8px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             pointer-events: none;
             z-index: 5;
         }
 
         .holo-terminal {
             position: absolute;
-            top: 18px;
-            right: 22px;
-            width: 395px;
-            max-width: calc(100vw - 44px);
+            top: 16px;
+            right: 20px;
+            width: 400px;
+            max-width: calc(100vw - 40px);
             background: var(--bg-panel);
             backdrop-filter: blur(10px);
             border: 1.5px solid var(--purple-neon);
             border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.26), inset 0 0 18px rgba(192, 132, 252, 0.08);
+            padding: 15px;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.28), inset 0 0 18px rgba(192, 132, 252, 0.08);
             z-index: 5;
         }
 
         .level-tag {
             display: inline-block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.66rem;
+            font-size: 0.64rem;
             padding: 3px 10px;
             border-radius: 20px;
-            background: rgba(168, 85, 247, 0.18);
+            background: rgba(168, 85, 247, 0.2);
             border: 1px solid var(--purple-neon);
             color: var(--violet-glow);
             margin-bottom: 8px;
         }
 
         .q-box {
-            font-size: 1.05rem;
-            line-height: 1.4;
+            font-size: 1.03rem;
+            line-height: 1.38;
             font-weight: 600;
             color: #faf5ff;
             margin-bottom: 10px;
@@ -301,7 +391,7 @@
             border: 1px solid #581c87;
             padding: 6px 12px;
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             margin-bottom: 10px;
             color: #d8b4fe;
         }
@@ -314,7 +404,7 @@
         .hint-drawer, .fb-drawer {
             padding: 8px 12px;
             border-radius: 8px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             margin-bottom: 10px;
             display: none;
         }
@@ -326,7 +416,7 @@
         }
 
         .fb-drawer.err {
-            background: rgba(239, 68, 68, 0.22);
+            background: rgba(239, 68, 68, 0.24);
             border-left: 3px solid #ef4444;
             color: #fecaca;
         }
@@ -415,7 +505,7 @@
             font-family: 'Orbitron', sans-serif;
             color: var(--purple-neon);
             margin-top: 0;
-            font-size: 1.3rem;
+            font-size: 1.28rem;
         }
 
         .explain-box {
@@ -448,26 +538,138 @@
 </head>
 <body>
 
+    <!-- Halaman Welcome Kreatif -->
     <div class="welcome-screen" id="welcome-screen">
         <div class="welcome-card">
-            <div class="welcome-badge">MATEMATIK TINGKATAN 2 • SP 7.1 JARAK</div>
-            <h1>ESCAPE ROOM 3D UNGU: MISI MENYELAMAT DIRI</h1>
-            <p class="welcome-desc">
-                Isi nama dan kelas anda untuk memulakan misi mengira <strong>jarak mengufuk</strong>, <strong>jarak mencancang</strong>, dan <strong>jarak antara dua titik</strong>. Satah akan membesar dari skala <strong>7</strong> → <strong>14</strong> → <strong>20</strong> mengikut aras!
-            </p>
-            <div class="welcome-err" id="welcome-err">Sila masukkan Nama dan Kelas anda sebelum memulakan misi.</div>
-            <div class="form-group">
-                <label for="input-nama">NAMA PESERTA</label>
-                <input type="text" id="input-nama" placeholder="Contoh: Aisyah Humaira">
+            <div>
+                <div class="welcome-badge">SP 7.1 • JARAK DALAM SISTEM KOORDINAT CARTES</div>
+                <h1 class="welcome-title">Escape Room : Misi Menyelamatkan Diri</h1>
+                <div class="welcome-topic">Bab 7 - Koordinat (Tingkatan 2)</div>
+                <p class="welcome-desc">
+                    Anda terkandas di kawasan pedalaman yang penuh cabaran. Untuk menuju ke <strong>Pondok Selamat (18,18)</strong>, anda mesti menyelesaikan masalah jarak pada satah Cartes bagi meredah sungai deras, hutan tebal, jalan raya berliku, dan mengelak kelompok anjing liar!
+                </p>
+                <div class="hazard-chips">
+                    <span class="hazard-chip">🌊 Redah Sungai</span>
+                    <span class="hazard-chip">🌲 Hutan Tebal</span>
+                    <span class="hazard-chip">🛣️ Jalan Raya</span>
+                    <span class="hazard-chip">🐕 Anjing Liar</span>
+                    <span class="hazard-chip">🏡 Pondok Selamat</span>
+                </div>
+                <div class="art-showcase">
+                    <!-- Ilustrasi SVG Misi Menyelamatkan Diri di Atas Peta & Satah Cartes -->
+                    <svg viewBox="0 0 420 190" class="w-full h-auto rounded-xl" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi peta misi menyelamatkan diri meredah hutan, sungai dan anjing liar">
+                        <defs>
+                            <linearGradient id="sky紫" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#3b0764"/>
+                                <stop offset="100%" stop-color="#140829"/>
+                            </linearGradient>
+                            <linearGradient id="riverGrad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#38bdf8"/>
+                                <stop offset="100%" stop-color="#0284c7"/>
+                            </linearGradient>
+                            <linearGradient id="roadGrad" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#475569"/>
+                                <stop offset="100%" stop-color="#334155"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Latar Peta -->
+                        <rect width="420" height="190" rx="12" fill="url(#sky紫)"/>
+
+                        <!-- Garisan Grid Cartes -->
+                        <g stroke="#c084fc" stroke-opacity="0.22" stroke-width="1">
+                            <line x1="35" y1="20" x2="35" y2="165"/>
+                            <line x1="85" y1="20" x2="85" y2="165"/>
+                            <line x1="135" y1="20" x2="135" y2="165"/>
+                            <line x1="185" y1="20" x2="185" y2="165"/>
+                            <line x1="235" y1="20" x2="235" y2="165"/>
+                            <line x1="285" y1="20" x2="285" y2="165"/>
+                            <line x1="335" y1="20" x2="335" y2="165"/>
+                            <line x1="385" y1="20" x2="385" y2="165"/>
+                            <line x1="20" y1="35" x2="400" y2="35"/>
+                            <line x1="20" y1="70" x2="400" y2="70"/>
+                            <line x1="20" y1="105" x2="400" y2="105"/>
+                            <line x1="20" y1="140" x2="400" y2="140"/>
+                        </g>
+
+                        <!-- Sungai Mengalir -->
+                        <path d="M165,15 C145,55 190,95 155,135 C135,155 150,175 160,185 L192,185 C180,168 168,150 186,128 C218,90 175,52 195,15 Z" fill="url(#riverGrad)" opacity="0.88"/>
+                        <path d="M172,30 Q162,55 174,78" stroke="#bae6fd" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+                        <path d="M166,112 Q154,135 168,158" stroke="#bae6fd" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+
+                        <!-- Jalan Raya -->
+                        <path d="M45,152 Q125,148 180,115 T355,45" stroke="url(#roadGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+                        <path d="M45,152 Q125,148 180,115 T355,45" stroke="#fde047" stroke-width="2" fill="none" stroke-dasharray="6 6"/>
+
+                        <!-- Kelompok Pokok Hutan -->
+                        <g transform="translate(65,58)">
+                            <rect x="-2.5" y="10" width="5" height="10" fill="#78350f"/>
+                            <polygon points="0,-14 -13,12 13,12" fill="#16a34a"/>
+                            <polygon points="0,-22 -10,0 10,0" fill="#22c55e"/>
+                        </g>
+                        <g transform="translate(105,46)">
+                            <rect x="-2.5" y="10" width="5" height="10" fill="#78350f"/>
+                            <polygon points="0,-14 -13,12 13,12" fill="#15803d"/>
+                            <polygon points="0,-22 -10,0 10,0" fill="#4ade80"/>
+                        </g>
+                        <g transform="translate(245,126)">
+                            <rect x="-2.5" y="10" width="5" height="10" fill="#78350f"/>
+                            <polygon points="0,-14 -13,12 13,12" fill="#16a34a"/>
+                            <polygon points="0,-22 -10,0 10,0" fill="#22c55e"/>
+                        </g>
+
+                        <!-- Kelompok Anjing Liar -->
+                        <g transform="translate(268,86)">
+                            <ellipse cx="0" cy="8" rx="18" ry="6" fill="#ef4444" fill-opacity="0.25"/>
+                            <ellipse cx="-6" cy="2" rx="7" ry="4" fill="#92400e"/>
+                            <circle cx="1" cy="-2" r="3.5" fill="#b45309"/>
+                            <line x1="-10" y1="5" x2="-11" y2="10" stroke="#78350f" stroke-width="2"/>
+                            <line x1="-2" y1="5" x2="-1" y2="10" stroke="#78350f" stroke-width="2"/>
+                            <ellipse cx="10" cy="4" rx="6" ry="3.5" fill="#78350f"/>
+                            <circle cx="16" cy="1" r="3" fill="#92400e"/>
+                            <text x="-14" y="-10" fill="#fca5a5" font-size="9" font-weight="bold" font-family="Orbitron">ANJING LIAR!</text>
+                        </g>
+
+                        <!-- Watak Pelarian di Titik Mula -->
+                        <g transform="translate(50,148)">
+                            <circle cx="0" cy="-16" r="5.5" fill="#fed7aa"/>
+                            <rect x="-5" y="-10" width="10" height="11" rx="2" fill="#a855f7"/>
+                            <line x1="-3" y1="1" x2="-5" y2="8" stroke="#e9d5ff" stroke-width="2.5"/>
+                            <line x1="3" y1="1" x2="5" y2="8" stroke="#e9d5ff" stroke-width="2.5"/>
+                            <text x="-16" y="19" fill="#f0abfc" font-size="9" font-weight="bold" font-family="Orbitron">MULA (0,0)</text>
+                        </g>
+
+                        <!-- Pondok Selamat / Destinasi -->
+                        <g transform="translate(356,42)">
+                            <rect x="-13" y="-6" width="26" height="16" rx="2" fill="#6b21a8" stroke="#e879f9" stroke-width="1.5"/>
+                            <polygon points="-17,-6 0,-20 17,-6" fill="#c084fc"/>
+                            <rect x="-3" y="2" width="6" height="8" fill="#fde047"/>
+                            <text x="-38" y="23" fill="#e9d5ff" font-size="8.5" font-weight="bold" font-family="Orbitron">SELAMAT (18,18)</text>
+                        </g>
+                    </svg>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="input-kelas">KELAS</label>
-                <input type="text" id="input-kelas" placeholder="Contoh: 2 Bestari">
+
+            <div class="form-panel">
+                <h2 class="font-bold text-lg text-purple-200 mb-1" style="font-family:'Orbitron',sans-serif;">DAFTAR IDENTITI PENJELAJAH</h2>
+                <p class="text-sm text-purple-300 mb-4">Masukkan maklumat anda sebelum memulakan pelarian.</p>
+
+                <div class="welcome-err" id="welcome-err">Sila masukkan Nama dan Kelas anda sebelum memulakan misi.</div>
+
+                <div class="form-group">
+                    <label for="input-nama">NAMA PESERTA</label>
+                    <input type="text" id="input-nama" placeholder="Contoh: Aisyah Humaira">
+                </div>
+                <div class="form-group">
+                    <label for="input-kelas">KELAS</label>
+                    <input type="text" id="input-kelas" placeholder="Contoh: 2 Bestari">
+                </div>
+                <button type="button" class="btn-start" id="btn-start-mission">MULA MISI →</button>
             </div>
-            <button type="button" class="btn-start" id="btn-start-mission">MULA MISI →</button>
         </div>
     </div>
 
+    <!-- HUD Atas -->
     <div class="hud-bar">
         <div class="hud-left">
             <div class="hud-pill player">👤 <span id="hud-player">Peserta</span> (<span id="hud-class">Kelas</span>)</div>
@@ -476,7 +678,12 @@
             <div class="hud-pill">🔑 SOALAN: <strong id="hud-progress" style="color:#d8b4fe;">1 / 5</strong></div>
             <div class="hud-pill timer">⏱️ MASA: <strong id="hud-timer" style="color:#fbbf24;">15:00</strong></div>
         </div>
-        <div class="hud-title">ESCAPEROOM 3D UNGU : SP 7.1 JARAK</div>
+
+        <div class="hud-title-wrap">
+            <div class="hud-title">Escape Room : Misi Menyelamatkan Diri</div>
+            <div class="hud-sub">Bab 7 - Koordinat (Tingkatan 2) • SP 7.1 Jarak</div>
+        </div>
+
         <div class="hud-right">
             <button type="button" class="btn-hud btn-audio" id="btn-toggle-audio" onclick="toggleAudio()">🔊 Audio: ON</button>
             <button type="button" class="btn-hud btn-formula" onclick="toggleFormula(true)">📘 Formula SP 7.1</button>
@@ -484,23 +691,24 @@
         </div>
     </div>
 
+    <!-- Pentas Utama 3D Isometrik -->
     <div class="game-stage">
         <canvas id="isoCanvas"></canvas>
-        <div class="cam-badge" id="cam-status">KAMERA: PANDANGAN PENUH SATAH (SKALA 7)</div>
+        <div class="cam-badge" id="cam-status">KAMERA: PANDANGAN PENUH PETA (SKALA 7)</div>
 
         <div class="holo-terminal" id="terminal-panel">
-            <div class="level-tag" id="q-level">ARAS 1 • SKALA 7 • JARAK MENGUFUK & MENCANCANG</div>
+            <div class="level-tag" id="q-level">ARAS 1 • SKALA 7 • LALUAN HUTAN & SUNGAI</div>
             <div class="coord-badge">
                 <span>Lokasi Semasa: <strong id="curr-coord">(0,0)</strong></span>
-                <span>Pintu Keluar: <strong style="color:#e879f9;">(18,18)</strong></span>
+                <span>Pondok Selamat: <strong style="color:#e879f9;">(18,18)</strong></span>
             </div>
-            <div class="q-box" id="q-text">Memuatkan misi jarak...</div>
+            <div class="q-box" id="q-text">Memuatkan misi menyelamatkan diri...</div>
 
             <div class="hint-drawer" id="hint-box"></div>
             <div class="fb-drawer err" id="fb-box"></div>
 
             <div class="pin-screen">
-                <input type="text" id="pin-input" placeholder="Masukkan jawapan..." onkeypress="if(event.key==='Enter') checkAnswer()">
+                <input type="text" id="pin-input" placeholder="Masukkan jarak (cth: 3 atau 7.2)..." onkeypress="if(event.key==='Enter') checkAnswer()">
                 <button type="button" onclick="checkAnswer()">SAHKAN</button>
             </div>
 
@@ -525,17 +733,19 @@
         </div>
     </div>
 
+    <!-- Modal Pop-up Tahniah & Penerangan Ringkas -->
     <div class="modal-overlay" id="congrats-modal">
         <div class="modal-card" style="border-color:#d8b4fe;">
-            <h2 style="color:#e879f9;">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
-            <p style="margin:4px 0 0; color:#f3e8ff; font-weight:600;">Penerangan Ringkas (SP 7.1 Jarak):</p>
+            <h2 style="color:#e879f9;">🎉 TAHNIAH! ANDA BERJAYA MELANGKAH</h2>
+            <p style="margin:4px 0 0; color:#f3e8ff; font-weight:600;">Penerangan Ringkas • Bab 7 - Koordinat (SP 7.1 Jarak):</p>
             <div class="explain-box" id="explain-text"></div>
             <button type="button" class="btn-hud btn-formula" style="width:100%; padding:11px;" onclick="continueAfterCongrats()">
-                TERUSKAN →
+                TERUSKAN PELARIAN →
             </button>
         </div>
     </div>
 
+    <!-- Modal Pintu Aras -->
     <div class="modal-overlay" id="door-modal">
         <div class="modal-card" style="border-color:#c084fc;">
             <div class="door-visual">🚪✨</div>
@@ -547,6 +757,7 @@
         </div>
     </div>
 
+    <!-- Modal Formula SP 7.1 -->
     <div class="modal-overlay" id="formula-modal">
         <div class="modal-card">
             <h2>📘 FORMULA SP 7.1: JARAK</h2>
@@ -566,15 +777,16 @@
         </div>
     </div>
 
+    <!-- Modal Tamat Misi -->
     <div class="modal-overlay" id="win-modal">
         <div class="modal-card" style="border-color:#e879f9;">
-            <h2 style="color:#e879f9;">🏆 MISI BERJAYA DISELESAIKAN!</h2>
-            <p style="font-size:1.08rem;">
-                Tahniah <strong id="win-name">Peserta</strong> (<strong id="win-class">Kelas</strong>)! Anda telah tiba di Pintu Keluar <strong>(18,18)</strong> pada satah skala <strong>20×20</strong> dan menamatkan semua 15 soalan SP 7.1.
+            <h2 style="color:#e879f9;">🏆 ANDA TIBA DI PONDOK SELAMAT!</h2>
+            <p style="font-size:1.06rem;">
+                Tahniah <strong id="win-name">Peserta</strong> (<strong id="win-class">Kelas</strong>)! Anda berjaya meredah sungai, hutan, jalan raya, dan mengelak anjing liar hingga ke <strong>(18,18)</strong>.
             </p>
             <div class="formula-item" style="text-align:center; border-color:#c084fc;">
                 <strong>REKOD MASA TAMAT: <span id="win-time">00:00</span></strong><br>
-                Menguasai penentuan jarak mengufuk, mencancang dan jarak antara dua titik pada satah Cartes.
+                Bab 7 - Koordinat (Tingkatan 2) • SP 7.1 Jarak Dalam Sistem Koordinat Cartes
             </div>
             <button type="button" class="btn-hud btn-formula" style="width:100%; padding:11px;" onclick="location.reload()">MAIN SEMULA MISI</button>
         </div>
@@ -600,7 +812,6 @@
 
             startBackground() {
                 if (this.bgTimer || !this.enabled) return;
-                // Kord arpeggio lembut bertema ungu/angkasa
                 const notes = [146.83, 196.00, 220.00, 293.66, 220.00, 196.00];
                 let step = 0;
 
@@ -645,7 +856,6 @@
                 }
             },
 
-            // Bunyi klik tetikus / kekunci
             playClick(pitch = 640) {
                 if (!this.enabled || !this.ctx) return;
                 const now = this.ctx.currentTime;
@@ -666,7 +876,6 @@
                 osc.stop(now + 0.055);
             },
 
-            // Bunyi "tingg" jawapan betul
             playCorrect() {
                 if (!this.enabled || !this.ctx) return;
                 const now = this.ctx.currentTime;
@@ -692,7 +901,6 @@
                 });
             },
 
-            // Bunyi "tet" jawapan salah
             playWrong() {
                 if (!this.enabled || !this.ctx) return;
                 const now = this.ctx.currentTime;
@@ -713,7 +921,6 @@
                 osc.stop(now + 0.28);
             },
 
-            // Bunyi pintu aras terbuka
             playDoorOpen() {
                 if (!this.enabled || !this.ctx) return;
                 const now = this.ctx.currentTime;
@@ -738,63 +945,68 @@
             SoundEngine.toggle();
         }
 
-        // ================= MERCU TANDA 3D =================
+        // ================= PETA REALISTIK, MERCU TANDA & DUGAAN =================
+        // Mercu tanda sepanjang laluan pelarian (Hutan -> Sungai -> Jalan Raya -> Zon Anjing Liar -> Pondok Selamat)
         const landmarks = [
-            { x: 0, y: 0, label: "Pusat", type: "hub" },
-            { x: 3, y: 4, label: "Stesen Bas", type: "bus_stop" },
-            { x: 7, y: 4, label: "Kedai Runcit", type: "shop" },
-            { x: 11, y: 8, label: "Rumah Ali", type: "house" },
-            { x: 6, y: 12, label: "Taman", type: "park" },
-            { x: 16, y: 11, label: "Sekolah", type: "school" },
-            { x: 18, y: 18, label: "Pintu Keluar", type: "exit" }
+            { x: 0, y: 0, label: "Kem Mula", type: "hub" },
+            { x: 3, y: 2, label: "Pinggir Hutan", type: "forest" },
+            { x: 3, y: 6, label: "Tebing Sungai", type: "river_bank" },
+            { x: 8, y: 5, label: "Jalan Raya", type: "road_post" },
+            { x: 13, y: 9, label: "Zon Anjing Liar", type: "dog_zone" },
+            { x: 18, y: 18, label: "Pondok Selamat", type: "exit" }
         ];
 
-        // 5 soalan setiap aras (Jumlah 15 soalan SP 7.1 dengan jawapan pelbagai & unik)
-        // Skala grid: Aras 1 = 7, Aras 2 = 14, Aras 3 = 20
+        // Kelompok anjing liar yang bergerak meronda di laluan Aras 2 & Aras 3
+        let dogPack = [
+            { x: 11, y: 8, tx: 14, ty: 10, dir: 1 },
+            { x: 12.2, y: 8.8, tx: 15.2, ty: 10.8, dir: 1 }
+        ];
+
+        // 5 soalan setiap aras (15 soalan SP 7.1; aras tinggi menggunakan ayat tidak langsung & situasi survival)
         const levels = [
             {
                 id: 1,
                 name: "ARAS 1",
                 gridSize: 7,
-                tag: "ARAS 1 • SKALA 7×7 • JARAK MENGUFUK & MENCANCANG",
+                tag: "ARAS 1 • SKALA 7×7 • REDAH HUTAN & TEBING SUNGAI",
                 doorTitle: "🚪 PINTU ARAS 1 TERBUKA!",
-                doorDesc: "Satah Aras 1 (7×7) selesai! Pintu terbuka ke Aras 2 — perhatikan satah grid akan membesar ke skala 14×14.",
+                doorDesc: "Anda berjaya melepasi hutan awal dan sampai ke tebing sungai! Pintu terbuka ke Aras 2 — peta akan membesar ke skala 14×14.",
                 btnText: "BUKA PINTU KE ARAS 2 (SKALA 14) →",
                 questions: [
                     {
-                        text: "Dari Pusat (0,0), watak bergerak ke (3,2). Berapakah jarak mengufuk yang dilalui?",
+                        text: "Dari Kem Mula (0,0), anda menyusuri pinggir hutan ke koordinat (3,2). Berapakah jarak mengufuk yang telah anda tempuh?",
                         ans: ["3", "3unit"],
-                        clue: "Jarak mengufuk ialah perubahan nilai x: |3 - 0|.",
-                        err: "Kira beza nilai x: |3 - 0|.",
-                        explain: "Jarak mengufuk = |3 - 0| = <strong>3 unit</strong>.",
+                        clue: "Jarak mengufuk ialah perubahan pada paksi-x: |3 - 0|.",
+                        err: "Tolakkan nilai x: |3 - 0|.",
+                        explain: "Jarak mengufuk = |3 - 0| = <strong>3 unit</strong> ke arah paksi-x.",
                         pos: [3, 2]
                     },
                     {
-                        text: "Dari (3,2), watak bergerak mencancang ke (3,6). Berapakah jarak mencancang perjalanan itu?",
+                        text: "Air sungai mula naik di hadapan! Dari (3,2), anda memanjat tebing tinggi ke (3,6). Berapakah jarak mencancang pendakian anda?",
                         ans: ["4", "4unit"],
-                        clue: "Jarak mencancang ialah perubahan nilai y: |6 - 2|.",
-                        err: "Tolakkan nilai y: |6 - 2|.",
+                        clue: "Kedua-dua titik mempunyai x = 3. Kira perbezaan y: |6 - 2|.",
+                        err: "Kira beza nilai y: |6 - 2|.",
                         explain: "Oleh sebab x = 3 adalah sama, jarak mencancang = |6 - 2| = <strong>4 unit</strong>.",
                         pos: [3, 6]
                     },
                     {
-                        text: "Dari (3,6), watak bergerak mengufuk ke Stesen Bas di (1,6) pada grid awal. Berapakah jarak mengufuknya?",
+                        text: "Arus deras menyekat laluan terus. Dari (3,6), anda bergerak mengufuk ke (1,6) untuk mencari batu pijakan. Berapakah jarak mengufuknya?",
                         ans: ["2", "2unit"],
-                        clue: "Kira |1 - 3|.",
-                        err: "Jarak sentiasa positif: |1 - 3| = 2.",
+                        clue: "Kira nilai mutlak perbezaan x: |1 - 3|.",
+                        err: "Jarak tidak boleh negatif: |1 - 3| = 2.",
                         explain: "Jarak mengufuk = |1 - 3| = |-2| = <strong>2 unit</strong>.",
                         pos: [1, 6]
                     },
                     {
-                        text: "Dari (1,6), watak bergerak mencancang ke (1,1). Berapakah jarak mencancang yang dilalui?",
+                        text: "Dari (1,6), anda menuruni tebing berbatu ke (1,1) bagi mengelak dahan tumbang. Berapakah jarak mencancang penurunan itu?",
                         ans: ["5", "5unit"],
-                        clue: "Kira |1 - 6|.",
-                        err: "Tolakkan koordinat y: |1 - 6| = 5.",
+                        clue: "Kira |1 - 6| pada paksi mencancang.",
+                        err: "Tolakkan nilai y: |1 - 6| = 5.",
                         explain: "Jarak mencancang = |1 - 6| = |-5| = <strong>5 unit</strong>.",
                         pos: [1, 1]
                     },
                     {
-                        text: "Dari (1,1), watak bergerak mengufuk ke (7,1). Berapakah jarak mengufuk terakhir Aras 1?",
+                        text: "Untuk keluar dari kawasan semak pada peta skala 7, anda menyusur ke (7,1). Berapakah jarak mengufuk yang dilalui?",
                         ans: ["6", "6unit"],
                         clue: "Kira |7 - 1|.",
                         err: "Tolakkan koordinat x: |7 - 1|.",
@@ -807,48 +1019,48 @@
                 id: 2,
                 name: "ARAS 2",
                 gridSize: 14,
-                tag: "ARAS 2 • SKALA 14×14 • JARAK ANTARA DUA TITIK",
+                tag: "ARAS 2 • SKALA 14×14 • MERENTASI SUNGAI & JALAN RAYA",
                 doorTitle: "🚪 PINTU ARAS 2 TERBUKA!",
-                doorDesc: "Hebat! Satah 14×14 telah ditempuhi. Teruskan ke Aras 3 untuk meluaskan satah ke skala penuh 20×20.",
+                doorDesc: "Anda berjaya melepasi kawasan jalan raya! Bersedia untuk Aras 3 — satah membesar ke skala 20×20 dengan laluan anjing liar.",
                 btnText: "BUKA PINTU KE ARAS 3 (SKALA 20) →",
                 questions: [
                     {
-                        text: "Hitung jarak lurus antara titik (2,1) dan (8,5) (bundarkan kepada 1 tempat perpuluhan).",
+                        text: "Untuk melintas seberang sungai dengan pantas dari (2,1) ke (8,5), berapakah jarak lurus yang perlu anda redah? (1 tempat perpuluhan)",
                         ans: ["7.2", "7.2unit"],
-                        clue: "Beza x = 6, beza y = 4. Kira √(6² + 4²) = √52.",
-                        err: "Kira √[(8-2)² + (5-1)²] = √(36 + 16) = √52 ≈ 7.2.",
+                        clue: "Beza x = 6, beza y = 4. Gunakan d = √[(8-2)² + (5-1)²] = √52.",
+                        err: "Kira √(6² + 4²) = √52 ≈ 7.2.",
                         explain: "d = √[(8 - 2)² + (5 - 1)²] = √(36 + 16) = √52 ≈ <strong>7.2 unit</strong>.",
                         pos: [8, 5]
                     },
                     {
-                        text: "Hitung jarak lurus dari (8,5) ke (13,2) (bundarkan kepada 1 tempat perpuluhan).",
+                        text: "Bunyi salakan kedengaran dari selatan. Anda berlari lurus dari (8,5) ke (13,2). Hitung jarak lurus laluan tersebut. (1 tempat perpuluhan)",
                         ans: ["5.8", "5.8unit"],
-                        clue: "Beza x = 5, beza y = 3. Kira √(5² + 3²) = √34.",
-                        err: "Kira √[(13-8)² + (2-5)²] = √(25 + 9) = √34 ≈ 5.8.",
+                        clue: "Beza x = 5 dan beza y = 3. Kira √(5² + 3²) = √34.",
+                        err: "Kira √[(13-8)² + (2-5)²] = √34 ≈ 5.8.",
                         explain: "d = √[(13 - 8)² + (2 - 5)²] = √(25 + 9) = √34 ≈ <strong>5.8 unit</strong>.",
                         pos: [13, 2]
                     },
                     {
-                        text: "Hitung jarak lurus dari (13,2) ke (9,9) (bundarkan kepada 1 tempat perpuluhan).",
+                        text: "Di tepi jalan raya, anda memintas laluan semak dari (13,2) ke (9,9). Berapakah jarak lurus pemintasan itu? (1 tempat perpuluhan)",
                         ans: ["8.1", "8.1unit"],
                         clue: "Beza x = 4, beza y = 7. Kira √(4² + 7²) = √65.",
-                        err: "Kira √[(9-13)² + (9-2)²] = √(16 + 49) = √65 ≈ 8.1.",
+                        err: "Kira √[(9-13)² + (9-2)²] = √65 ≈ 8.1.",
                         explain: "d = √[(9 - 13)² + (9 - 2)²] = √(16 + 49) = √65 ≈ <strong>8.1 unit</strong>.",
                         pos: [9, 9]
                     },
                     {
-                        text: "Hitung jarak lurus dari (9,9) ke (4,12) (bundarkan kepada 1 tempat perpuluhan).",
+                        text: "Kawasan paya menyukarkan pergerakan. Anda menyusur lurus dari (9,9) ke (4,12). Berapakah jarak lurusnya? (1 tempat perpuluhan)",
                         ans: ["5.8", "5.8unit"],
                         clue: "Beza x = 5, beza y = 3. Kira √(5² + 3²) = √34.",
-                        err: "Kira √[(4-9)² + (12-9)²] = √(25 + 9) = √34 ≈ 5.8.",
+                        err: "Kira √[(4-9)² + (12-9)²] = √34 ≈ 5.8.",
                         explain: "d = √[(4 - 9)² + (12 - 9)²] = √(25 + 9) = √34 ≈ <strong>5.8 unit</strong>.",
                         pos: [4, 12]
                     },
                     {
-                        text: "Hitung jarak lurus dari (4,12) ke (13,6) (bundarkan kepada 1 tempat perpuluhan).",
+                        text: "Menuju ke hujung jalan raya pada grid 14, anda bergerak lurus dari (4,12) ke (13,6). Hitung jarak lurusnya. (1 tempat perpuluhan)",
                         ans: ["10.8", "10.8unit"],
                         clue: "Beza x = 9, beza y = 6. Kira √(9² + 6²) = √117.",
-                        err: "Kira √[(13-4)² + (6-12)²] = √(81 + 36) = √117 ≈ 10.8.",
+                        err: "Kira √[(13-4)² + (6-12)²] = √117 ≈ 10.8.",
                         explain: "d = √[(13 - 4)² + (6 - 12)²] = √(81 + 36) = √117 ≈ <strong>10.8 unit</strong>.",
                         pos: [13, 6]
                     }
@@ -858,49 +1070,49 @@
                 id: 3,
                 name: "ARAS 3",
                 gridSize: 20,
-                tag: "ARAS 3 • SKALA 20×20 • PENYELESAIAN MASALAH JARAK",
-                doorTitle: "🏆 PINTU KELUAR UTAMA TERBUKA!",
-                doorDesc: "Tahniah! Anda berjaya menakluk satah skala penuh 20×20 dan menamatkan semua misi SP 7.1.",
+                tag: "ARAS 3 • SKALA 20×20 • LARI DARI ANJING LIAR & MENUJU PONDOK",
+                doorTitle: "🏆 PONDOK SELAMAT TERBUKA!",
+                doorDesc: "Luar biasa! Anda berjaya mengelak kelompok anjing liar di peta skala penuh 20×20 dan tiba di Pondok Selamat!",
                 btnText: "LIHAT LAPORAN TAMAT →",
                 questions: [
                     {
-                        text: "Dari (13,6), watak bergerak mengufuk ke (20,6) kemudian mencancang ke (20,10). Berapakah jumlah jarak perjalanan?",
+                        text: "Kelompok anjing liar mengejar di belakang! Anda memecut ke timur dari (13,6) ke (20,6), kemudian membelok ke utara ke (20,10). Berapakah jumlah jarak larian anda?",
                         ans: ["11", "11unit"],
-                        clue: "Jarak mengufuk = 7 unit, jarak mencancang = 4 unit. Jumlahkan kedua-duanya.",
-                        err: "Tambahkan |20 - 13| + |10 - 6|.",
-                        explain: "Jarak mengufuk = 7 unit; jarak mencancang = 4 unit. Jumlah = 7 + 4 = <strong>11 unit</strong>.",
+                        clue: "Bahagikan kepada dua langkah: larian ke timur (|20-13|) dan larian ke utara (|10-6|), kemudian jumlahkan.",
+                        err: "Jumlahkan jarak mengufuk (7) dan jarak mencancang (4).",
+                        explain: "Larian mengufuk = |20 - 13| = 7 unit; larian mencancang = |10 - 6| = 4 unit. Jumlah = 7 + 4 = <strong>11 unit</strong>.",
                         pos: [20, 10]
                     },
                     {
-                        text: "Hitung jarak lurus dari (8,2) ke (16,8) pada satah skala 20.",
+                        text: "Bagi melepasi kelompok anjing liar di tengah laluan, jalan pintas lurus dari (8,2) ke (16,8) paling selamat. Berapakah jarak jalan pintas itu?",
                         ans: ["10", "10unit"],
-                        clue: "Beza x = 8, beza y = 6. Kira √(8² + 6²) = √100.",
-                        err: "Kira √[(16-8)² + (8-2)²] = √(64 + 36).",
+                        clue: "Gunakan segi tiga bersudut tegak: beza x = 8 dan beza y = 6.",
+                        err: "Kira √(8² + 6²) = √(64 + 36) = √100.",
                         explain: "d = √[(16 - 8)² + (8 - 2)²] = √(64 + 36) = √100 = <strong>10 unit</strong>.",
                         pos: [16, 8]
                     },
                     {
-                        text: "Hitung jarak lurus dari (16,8) ke (10,16).",
+                        text: "Anjing liar berpecah ke arah timur. Anda mengambil laluan lurus dari (16,8) ke (10,16) di tebing atas. Hitung jaraknya.",
                         ans: ["10", "10unit"],
-                        clue: "Beza x = 6, beza y = 8. Kira √(6² + 8²) = √100.",
-                        err: "Kira √[(10-16)² + (16-8)²] = √(36 + 64).",
+                        clue: "Cari perubahan x (10 - 16) dan perubahan y (16 - 8), lalu gunakan rumus jarak.",
+                        err: "Kira √((-6)² + 8²) = √(36 + 64).",
                         explain: "d = √[(10 - 16)² + (16 - 8)²] = √(36 + 64) = √100 = <strong>10 unit</strong>.",
                         pos: [10, 16]
                     },
                     {
-                        text: "Hitung jarak lurus dari (10,16) ke (18,16).",
+                        text: "Cahaya lampu Pondok Selamat kelihatan selari di (18,16) dari kedudukan semasa (10,16). Berapakah jarak anda menghampiri cahaya itu?",
                         ans: ["8", "8unit"],
-                        clue: "Kedua-dua titik berada pada garis y = 16. Kira |18 - 10|.",
-                        err: "Tolakkan nilai x: |18 - 10|.",
+                        clue: "Kedudukan berada pada paras y = 16 yang sama. Cari beza pada paksi-x.",
+                        err: "Tolakkan koordinat x: |18 - 10|.",
                         explain: "Oleh sebab y = 16 adalah sama, jarak mengufuk = |18 - 10| = <strong>8 unit</strong>.",
                         pos: [18, 16]
                     },
                     {
-                        text: "Misi terakhir ke Pintu Keluar di (18,18) dari (18,16). Berapakah jarak mencancang yang perlu dilalui?",
+                        text: "Langkah terakhir! Dari (18,16), anda menaiki tanjakan lurus ke Pondok Selamat di (18,18). Berapakah jarak terakhir yang memisahkan anda dengan keselamatan?",
                         ans: ["2", "2unit"],
-                        clue: "Kedua-dua titik berada pada garis x = 18. Kira |18 - 16|.",
-                        err: "Tolakkan nilai y: |18 - 16|.",
-                        explain: "Oleh sebab x = 18 adalah sama, jarak mencancang = |18 - 16| = <strong>2 unit</strong> ke Pintu Keluar (18,18).",
+                        clue: "Kedua-dua titik berada pada garis x = 18. Kira perbezaan nilai y.",
+                        err: "Tolakkan koordinat y: |18 - 16|.",
+                        explain: "Oleh sebab x = 18 adalah sama, jarak mencancang = |18 - 16| = <strong>2 unit</strong> ke Pondok Selamat (18,18).",
                         pos: [18, 18]
                     }
                 ]
@@ -920,7 +1132,6 @@
         let isWalking = false;
         let walkCycle = 0;
 
-        // Saiz grid semasa yang bertransisi lancar dari 7 -> 14 -> 20
         let animatedGridSize = 7;
 
         let camera = {
@@ -1026,6 +1237,16 @@
             camera.zoom += (camera.targetZoom - camera.zoom) * 0.06;
             camera.panX += (camera.targetPanX - camera.panX) * 0.06;
             camera.panY += (camera.targetPanY - camera.panY) * 0.06;
+
+            // Gerakkan kelompok anjing liar secara berulang-alik
+            dogPack.forEach((dog, idx) => {
+                const offset = idx * 0.6;
+                const baseX = 11 + offset;
+                const baseY = 8 + offset * 0.8;
+                const t = Math.sin(Date.now() / 1100 + idx) * 1.8;
+                dog.x = baseX + t;
+                dog.y = baseY + t * 0.65;
+            });
         }
 
         function focusCameraOnGrid(gx, gy) {
@@ -1046,9 +1267,10 @@
             camera.targetZoom = 1;
             camera.targetPanX = 0;
             camera.targetPanY = 0;
-            document.getElementById('cam-status').innerText = `KAMERA: PANDANGAN PENUH SATAH (SKALA ${gSize}×${gSize})`;
+            document.getElementById('cam-status').innerText = `KAMERA: PANDANGAN PENUH PETA (SKALA ${gSize}×${gSize})`;
         }
 
+        // Melukis peta nyata 3D: hutan, sungai mengalir, jalan raya & grid Cartes
         function drawIsoFloor() {
             const gridSteps = Math.max(2, Math.round(animatedGridSize));
             const slabDepth = 16 * camera.zoom;
@@ -1058,7 +1280,7 @@
             const pTop = toIso(animatedGridSize, animatedGridSize);
             const pLeft = toIso(0, animatedGridSize);
 
-            // Sisi tebal 3D papan satah
+            // Sisi tebal 3D papan peta
             ctx.beginPath();
             ctx.moveTo(pLeft.x, pLeft.y);
             ctx.lineTo(pOrigin.x, pOrigin.y);
@@ -1077,6 +1299,7 @@
             ctx.fillStyle = "#3b0764";
             ctx.fill();
 
+            // Jubin peta: hutan (hijau gelap), jalan raya (kelabu), sungai (biru air), kawasan lapang (ungu lembut)
             for (let gx = 0; gx < gridSteps; gx++) {
                 for (let gy = 0; gy < gridSteps; gy++) {
                     const p1 = toIso(gx, gy);
@@ -1091,22 +1314,48 @@
                     ctx.lineTo(p4.x, p4.y);
                     ctx.closePath();
 
-                    if (currentLevelIdx === 0) {
-                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(168, 85, 247, 0.24)" : "rgba(126, 34, 206, 0.16)";
-                    } else if (currentLevelIdx === 1) {
-                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(192, 132, 252, 0.24)" : "rgba(107, 33, 168, 0.17)";
+                    const isRiver = (gx === 4 || gx === 5) && gy >= 1 && gy <= Math.min(gridSteps - 1, 11);
+                    const isRoad = (gy === 5 && gx >= 6 && gx <= Math.min(gridSteps - 1, 14)) ||
+                                   (gx === 14 && gy >= 5 && gy <= Math.min(gridSteps - 1, 10));
+                    const isForest = (gx < 4 && gy < 6) || (gx >= 6 && gx <= 9 && gy >= 8 && gy <= 12);
+
+                    if (isRiver) {
+                        const wave = Math.sin(Date.now() / 350 + gx + gy) * 0.08;
+                        ctx.fillStyle = `rgba(14, 165, 233, ${0.46 + wave})`;
+                    } else if (isRoad) {
+                        ctx.fillStyle = "rgba(71, 85, 105, 0.58)";
+                    } else if (isForest) {
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(21, 128, 61, 0.34)" : "rgba(22, 101, 52, 0.28)";
                     } else {
-                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(217, 70, 239, 0.24)" : "rgba(88, 28, 135, 0.18)";
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(168, 85, 247, 0.20)" : "rgba(126, 34, 206, 0.14)";
                     }
                     ctx.fill();
 
-                    ctx.strokeStyle = "rgba(216, 180, 254, 0.28)";
+                    ctx.strokeStyle = "rgba(216, 180, 254, 0.24)";
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }
             }
 
-            // Bingkai luar papan satah ungu
+            // Garis tengah jalan raya putus-putus
+            if (gridSteps >= 8) {
+                const rStart = toIso(6.5, 5.5);
+                const rMid = toIso(14.5, 5.5);
+                ctx.beginPath();
+                ctx.moveTo(rStart.x, rStart.y);
+                ctx.lineTo(rMid.x, rMid.y);
+                if (gridSteps >= 10) {
+                    const rEnd = toIso(14.5, Math.min(gridSteps - 0.5, 10.5));
+                    ctx.lineTo(rEnd.x, rEnd.y);
+                }
+                ctx.strokeStyle = "rgba(253, 224, 71, 0.65)";
+                ctx.lineWidth = 1.6 * camera.zoom;
+                ctx.setLineDash([5 * camera.zoom, 5 * camera.zoom]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // Bingkai luar peta
             ctx.beginPath();
             ctx.moveTo(pOrigin.x, pOrigin.y);
             ctx.lineTo(pRight.x, pRight.y);
@@ -1150,8 +1399,60 @@
             }
         }
 
+        // Lukis kelompok anjing liar yang bergerak di peta
+        function drawWildDogs() {
+            const maxVisible = levels[currentLevelIdx].gridSize;
+            dogPack.forEach((dog, idx) => {
+                if (dog.x > maxVisible || dog.y > maxVisible) return;
+                const p = toIso(dog.x, dog.y);
+                const s = camera.zoom * 1.15;
+                const trot = Math.sin(Date.now() / 110 + idx * 2) * 3 * s;
+
+                // Bayang & amaran merah/ungu
+                ctx.beginPath();
+                ctx.ellipse(p.x, p.y, 11 * s, 5.5 * s, 0, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(239, 68, 68, 0.25)";
+                ctx.fill();
+
+                // Badan anjing liar
+                ctx.fillStyle = "#92400e";
+                ctx.beginPath();
+                ctx.roundRect(p.x - 7 * s, p.y - 12 * s - trot * 0.3, 14 * s, 7 * s, 3 * s);
+                ctx.fill();
+
+                // Kepala & telinga tajam
+                ctx.fillStyle = "#b45309";
+                ctx.beginPath();
+                ctx.arc(p.x + 7 * s, p.y - 14 * s - trot * 0.3, 4.5 * s, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#78350f";
+                ctx.beginPath();
+                ctx.moveTo(p.x + 5 * s, p.y - 17 * s - trot * 0.3);
+                ctx.lineTo(p.x + 7 * s, p.y - 21 * s - trot * 0.3);
+                ctx.lineTo(p.x + 9 * s, p.y - 17 * s - trot * 0.3);
+                ctx.closePath();
+                ctx.fill();
+
+                // Kaki bergerak
+                ctx.strokeStyle = "#451a03";
+                ctx.lineWidth = 2.4 * s;
+                ctx.beginPath();
+                ctx.moveTo(p.x - 4 * s, p.y - 5 * s);
+                ctx.lineTo(p.x - 4 * s + trot, p.y);
+                ctx.moveTo(p.x + 4 * s, p.y - 5 * s);
+                ctx.lineTo(p.x + 4 * s - trot, p.y);
+                ctx.stroke();
+
+                if (idx === 0) {
+                    ctx.font = `bold ${Math.round(9.5 * s)}px Orbitron`;
+                    ctx.fillStyle = "#fca5a5";
+                    ctx.fillText("🐕 ANJING LIAR", p.x - 28 * s, p.y - 25 * s);
+                }
+            });
+        }
+
         function draw3DLandmarkModel(lm) {
-            // Papar mercu tanda yang berada dalam lingkungan skala semasa
             const maxVisible = levels[currentLevelIdx].gridSize;
             if (lm.x > maxVisible || lm.y > maxVisible) return;
 
@@ -1172,85 +1473,78 @@
             ctx.lineWidth = 1.6 * s;
             ctx.stroke();
 
-            if (lm.type === "bus_stop") {
-                ctx.fillStyle = "#3b0764";
-                ctx.fillRect(p.x - 12 * s, p.y - 24 * s, 3.5 * s, 24 * s);
-                ctx.fillRect(p.x + 8.5 * s, p.y - 24 * s, 3.5 * s, 24 * s);
-                ctx.fillStyle = "#9333ea";
-                ctx.fillRect(p.x - 8 * s, p.y - 8 * s, 16 * s, 4 * s);
-                ctx.fillStyle = "#c084fc";
+            if (lm.type === "forest") {
+                // Pokok hutan 3D berlapis
+                ctx.fillStyle = "#78350f";
+                ctx.fillRect(p.x - 2.5 * s, p.y - 14 * s, 5 * s, 14 * s);
+                ctx.fillStyle = "#15803d";
                 ctx.beginPath();
-                ctx.moveTo(p.x - 16 * s, p.y - 23 * s);
-                ctx.lineTo(p.x + 16 * s, p.y - 23 * s);
-                ctx.lineTo(p.x + 12 * s, p.y - 31 * s);
-                ctx.lineTo(p.x - 12 * s, p.y - 31 * s);
+                ctx.moveTo(p.x, p.y - 32 * s);
+                ctx.lineTo(p.x - 13 * s, p.y - 11 * s);
+                ctx.lineTo(p.x + 13 * s, p.y - 11 * s);
                 ctx.closePath();
                 ctx.fill();
-            } else if (lm.type === "shop") {
-                ctx.fillStyle = "#4c1d95";
-                ctx.fillRect(p.x - 14 * s, p.y - 22 * s, 14 * s, 22 * s);
-                ctx.fillStyle = "#6d28d9";
-                ctx.fillRect(p.x, p.y - 22 * s, 14 * s, 22 * s);
-                ctx.fillStyle = "#d8b4fe";
+                ctx.fillStyle = "#22c55e";
                 ctx.beginPath();
-                ctx.moveTo(p.x - 16 * s, p.y - 22 * s);
-                ctx.lineTo(p.x, p.y - 29 * s);
-                ctx.lineTo(p.x + 16 * s, p.y - 22 * s);
-                ctx.lineTo(p.x, p.y - 16 * s);
+                ctx.moveTo(p.x, p.y - 38 * s);
+                ctx.lineTo(p.x - 10 * s, p.y - 21 * s);
+                ctx.lineTo(p.x + 10 * s, p.y - 21 * s);
                 ctx.closePath();
                 ctx.fill();
-                ctx.fillStyle = "#fde047";
-                ctx.fillRect(p.x - 10 * s, p.y - 12 * s, 6.5 * s, 7 * s);
-                ctx.fillRect(p.x + 3.5 * s, p.y - 12 * s, 6.5 * s, 7 * s);
-            } else if (lm.type === "house") {
-                ctx.fillStyle = "#581c87";
-                ctx.fillRect(p.x - 12 * s, p.y - 19 * s, 12 * s, 19 * s);
-                ctx.fillStyle = "#7e22ce";
-                ctx.fillRect(p.x, p.y - 19 * s, 12 * s, 19 * s);
-                ctx.fillStyle = "#c084fc";
+            } else if (lm.type === "river_bank") {
+                // Tiang penanda sungai & pelampung
+                ctx.fillStyle = "#0284c7";
                 ctx.beginPath();
-                ctx.moveTo(p.x - 16 * s, p.y - 19 * s);
-                ctx.lineTo(p.x, p.y - 32 * s);
-                ctx.lineTo(p.x + 16 * s, p.y - 19 * s);
-                ctx.closePath();
+                ctx.arc(p.x, p.y - 6 * s, 9 * s, 0, Math.PI * 2);
                 ctx.fill();
-            } else if (lm.type === "park") {
-                ctx.fillStyle = "#451a03";
-                ctx.fillRect(p.x - 2.5 * s, p.y - 15 * s, 5 * s, 15 * s);
-                ctx.fillStyle = "#7e22ce";
-                ctx.beginPath();
-                ctx.arc(p.x - 3 * s, p.y - 21 * s, 9.5 * s, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = "#c084fc";
-                ctx.beginPath();
-                ctx.arc(p.x + 3 * s, p.y - 24 * s, 8.5 * s, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (lm.type === "school") {
-                ctx.fillStyle = "#3b0764";
-                ctx.fillRect(p.x - 16 * s, p.y - 26 * s, 16 * s, 26 * s);
-                ctx.fillStyle = "#6b21a8";
-                ctx.fillRect(p.x, p.y - 26 * s, 16 * s, 26 * s);
-                ctx.fillStyle = "#e879f9";
-                ctx.fillRect(p.x - 17 * s, p.y - 30 * s, 34 * s, 5 * s);
-            } else if (lm.type === "exit") {
-                const w = 28 * s, h = 46 * s;
-                ctx.fillStyle = "#2e1065";
-                ctx.strokeStyle = "#e879f9";
-                ctx.lineWidth = 2.4 * s;
-                ctx.fillRect(p.x - w / 2, p.y - h, w, h);
-                ctx.strokeRect(p.x - w / 2, p.y - h, w, h);
-
-                const grad = ctx.createLinearGradient(0, p.y - h, 0, p.y);
-                grad.addColorStop(0, "rgba(232, 121, 249, 0.88)");
-                grad.addColorStop(1, "rgba(126, 34, 206, 0.45)");
-                ctx.fillStyle = grad;
-                ctx.fillRect(p.x - w / 2 + 4 * s, p.y - h + 4 * s, w - 8 * s, h - 4 * s);
-            } else {
-                ctx.fillStyle = "#7e22ce";
+                ctx.strokeStyle = "#bae6fd";
+                ctx.lineWidth = 2 * s;
+                ctx.stroke();
+            } else if (lm.type === "road_post") {
+                // Papan tanda jalan raya 3D
+                ctx.fillStyle = "#64748b";
+                ctx.fillRect(p.x - 2 * s, p.y - 24 * s, 4 * s, 24 * s);
+                ctx.fillStyle = "#f59e0b";
+                ctx.fillRect(p.x - 12 * s, p.y - 28 * s, 24 * s, 8 * s);
+            } else if (lm.type === "dog_zone") {
+                // Menara amaran zon anjing liar
+                ctx.strokeStyle = "#f0abfc";
+                ctx.lineWidth = 2.2 * s;
                 ctx.beginPath();
                 ctx.moveTo(p.x - 9 * s, p.y);
-                ctx.lineTo(p.x, p.y - 18 * s);
+                ctx.lineTo(p.x, p.y - 28 * s);
                 ctx.lineTo(p.x + 9 * s, p.y);
+                ctx.stroke();
+                ctx.fillStyle = "#ef4444";
+                ctx.beginPath();
+                ctx.arc(p.x, p.y - 30 * s, 5 * s, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (lm.type === "exit") {
+                // Pondok Selamat 3D
+                const w = 30 * s, h = 42 * s;
+                ctx.fillStyle = "#4c1d95";
+                ctx.strokeStyle = "#e879f9";
+                ctx.lineWidth = 2.2 * s;
+                ctx.fillRect(p.x - w / 2, p.y - h + 12 * s, w, h - 12 * s);
+                ctx.strokeRect(p.x - w / 2, p.y - h + 12 * s, w, h - 12 * s);
+
+                ctx.fillStyle = "#c084fc";
+                ctx.beginPath();
+                ctx.moveTo(p.x - w / 2 - 4 * s, p.y - h + 12 * s);
+                ctx.lineTo(p.x, p.y - h - 4 * s);
+                ctx.lineTo(p.x + w / 2 + 4 * s, p.y - h + 12 * s);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = "#fde047";
+                ctx.fillRect(p.x - 4 * s, p.y - 11 * s, 8 * s, 11 * s);
+            } else {
+                // Kem Mula (0,0)
+                ctx.fillStyle = "#7e22ce";
+                ctx.beginPath();
+                ctx.moveTo(p.x - 11 * s, p.y);
+                ctx.lineTo(p.x, p.y - 20 * s);
+                ctx.lineTo(p.x + 11 * s, p.y);
                 ctx.closePath();
                 ctx.fill();
             }
@@ -1258,7 +1552,7 @@
             ctx.font = `bold ${Math.round(10.5 * s)}px Rajdhani`;
             ctx.fillStyle = "#fae8ff";
             const labelOffsetY = lm.type === "exit" ? -50 * s : -36 * s;
-            ctx.fillText(`${lm.label} (${lm.x},${lm.y})`, p.x - 26 * s, p.y + labelOffsetY);
+            ctx.fillText(`${lm.label} (${lm.x},${lm.y})`, p.x - 28 * s, p.y + labelOffsetY);
         }
 
         function drawLandmarksAndPath() {
@@ -1280,6 +1574,7 @@
             }
 
             landmarks.forEach(lm => draw3DLandmarkModel(lm));
+            drawWildDogs();
         }
 
         function drawCharacter(gx, gy) {
@@ -1508,7 +1803,9 @@
             document.getElementById('formula-modal').style.display = show ? 'flex' : 'none';
         }
 
-        animate();
+        window.onload = function () {
+            animate();
+        };
     </script>
 </body>
 </html>
