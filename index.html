@@ -1,172 +1,141 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Misi Saya</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room: Misi Menyelamat Diri (Isometrik 3D)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+        :root {
+            --bg-deep: #0b0e1c;
+            --bg-panel: rgba(16, 24, 46, 0.9);
+            --cyan-neon: #00f0ff;
+            --blue-glow: #2563eb;
+            --purple-neon: #a855f7;
+            --green-neon: #10b981;
+            --amber-neon: #f59e0b;
+            --red-neon: #ef4444;
+        }
 
-    .mission-card {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 440px;
-      background-color: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-    }
+        * { box-sizing: border-box; }
 
-    .badge {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 600;
-      color: #38bdf8;
-      background-color: rgba(56, 189, 248, 0.12);
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at 50% 30%, #1a2142 0%, #090c18 100%);
+            color: #e2e8f0;
+            font-family: 'Rajdhani', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: 24px;
-    }
+        .hud-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(10, 14, 28, 0.92);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            gap: 12px;
+        }
 
-    p {
-      margin: 0 0 20px;
-      color: #cbd5e1;
-      line-height: 1.5;
-    }
+        .hud-left, .hud-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
 
-    .mission-btn {
-      position: relative;
-      z-index: 5;
-      pointer-events: auto;
-      width: 100%;
-      padding: 14px 18px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #0f172a;
-      background-color: #38bdf8;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-    }
+        .hud-pill {
+            background: rgba(18, 28, 54, 0.95);
+            border: 1.5px solid var(--cyan-neon);
+            border-radius: 10px;
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
 
-    .mission-btn:hover:not(:disabled) {
-      background-color: #7dd3fc;
-    }
+        .hud-pill.timer {
+            border-color: var(--amber-neon);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+        }
 
-    .mission-btn:active:not(:disabled) {
-      transform: scale(0.99);
-    }
+        .hud-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--cyan-neon);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+            font-size: 1.05rem;
+            text-align: center;
+        }
 
-    .mission-btn:disabled {
-      background-color: #475569;
-      color: #94a3b8;
-      cursor: not-allowed;
-    }
+        .btn-hud {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 9px 14px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            text-transform: uppercase;
+            transition: transform 0.15s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+        .btn-hud:hover { transform: translateY(-2px); }
+        .btn-formula {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            border: 1px solid #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+        .btn-hint {
+            background: linear-gradient(135deg, #9333ea, #6b21a8);
+            border: 1px solid #c084fc;
+            box-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
+        }
 
-    .status-box {
-      margin-top: 18px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background-color: #0f172a;
-      border: 1px solid #334155;
-      font-size: 14px;
-      color: #e2e8f0;
-    }
+        .game-stage {
+            position: relative;
+            flex: 1;
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 64px);
+        }
 
-    .reset-link {
-      margin-top: 12px;
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 13px;
-      text-decoration: underline;
-      cursor: pointer;
-      padding: 0;
-    }
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
 
-    .reset-link:hover {
-      color: #f8fafc;
-    }
-  </style>
-</head>
-<body>
-  <main class="mission-card">
-    <span class="badge">MISI HARIAN</span>
-    <h1>Operasi Pagi</h1>
-    <p>Tekan butang di bawah untuk memulakan misi dan mengaktifkan pemasa.</p>
+        .holo-terminal {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 390px;
+            max-width: calc(100vw - 48px);
+            background: var(--bg-panel);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid var(--cyan-neon);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 0 28px rgba(0, 240, 255, 0.22), inset 0 0 18px rgba(0, 240, 255, 0.08);
+            z-index: 5;
+        }
 
-    <button id="mulakanMisiBtn" class="mission-btn" type="button">
-      Mulakan Misi
-    </button>
-
-    <div id="statusBox" class="status-box" role="status" aria-live="polite">
-      Status: Menunggu misi dimulakan.
-    </div>
-
-    <button id="resetMisiBtn" class="reset-link" type="button" hidden>
-      Set semula misi
-    </button>
-  </main>
-
-  <script>
-    const mulakanMisiBtn = document.getElementById("mulakanMisiBtn");
-    const resetMisiBtn = document.getElementById("resetMisiBtn");
-    const statusBox = document.getElementById("statusBox");
-
-    let secondsElapsed = 0;
-    let timerId = null;
-
-    // Pastikan butang tidak disabled semasa mula
-    mulakanMisiBtn.disabled = false;
-
-    mulakanMisiBtn.addEventListener("click", () => {
-      if (timerId !== null) return;
-
-      mulakanMisiBtn.disabled = true;
-      mulakanMisiBtn.textContent = "Misi Sedang Berjalan...";
-      resetMisiBtn.hidden = false;
-
-      secondsElapsed = 0;
-      statusBox.textContent = "Status: Misi sedang berjalan — 0 saat";
-
-      timerId = setInterval(() => {
-        secondsElapsed += 1;
-        statusBox.textContent = `Status: Misi sedang berjalan — ${secondsElapsed} saat`;
-      }, 1000);
-    });
-
-    resetMisiBtn.addEventListener("click", () => {
-      clearInterval(timerId);
-      timerId = null;
-      secondsElapsed = 0;
-
-      mulakanMisiBtn.disabled = false;
-      mulakanMisiBtn.textContent = "Mulakan Misi";
-      resetMisiBtn.hidden = true;
-      statusBox.textContent = "Status: Menunggu misi dimulakan.";
-    });
-  </script>
-</body>
-</html>
+        .level-tag {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-
