@@ -32,7 +32,6 @@
             flex-direction: column;
         }
 
-        /* Halaman Welcome */
         .welcome-screen {
             position: fixed;
             inset: 0;
@@ -40,18 +39,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 100;
+            z-index: 200;
             padding: 20px;
         }
 
         .welcome-card {
             max-width: 540px;
             width: 100%;
-            background: rgba(13, 20, 40, 0.94);
+            background: rgba(13, 20, 40, 0.96);
             border: 2px solid var(--cyan-neon);
             border-radius: 18px;
             padding: 32px;
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.25);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.28);
             text-align: center;
         }
 
@@ -144,7 +143,6 @@
             display: none;
         }
 
-        /* Top HUD Bar */
         .hud-bar {
             display: flex;
             justify-content: space-between;
@@ -385,7 +383,6 @@
             border-color: #f87171;
         }
 
-        /* Modal Umum (Tahniah, Pintu Aras, Formula, Tamat) */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -445,13 +442,12 @@
 </head>
 <body>
 
-    <!-- Halaman Welcome -->
     <div class="welcome-screen" id="welcome-screen">
         <div class="welcome-card">
             <div class="welcome-badge">MATEMATIK TINGKATAN 2 • SP 7.1 JARAK</div>
             <h1>ESCAPE ROOM 3D: MISI MENYELAMAT DIRI</h1>
             <p class="welcome-desc">
-                Bantu Pegawai Navigasi menghitung <strong>jarak mengufuk</strong>, <strong>jarak mencancang</strong>, dan <strong>jarak antara dua titik</strong> pada Satah Cartes isometrik 3D untuk membuka pintu setiap aras!
+                Isi nama dan kelas anda untuk memulakan misi mengira <strong>jarak mengufuk</strong>, <strong>jarak mencancang</strong>, dan <strong>jarak antara dua titik</strong> pada Satah Cartes isometrik 3D.
             </p>
             <div class="welcome-err" id="welcome-err">Sila masukkan Nama dan Kelas anda sebelum memulakan misi.</div>
             <div class="form-group">
@@ -462,11 +458,746 @@
                 <label for="input-kelas">KELAS</label>
                 <input type="text" id="input-kelas" placeholder="Contoh: 2 Bestari">
             </div>
-            <button class="btn-start" onclick="startGame()">MULA MISI →</button>
+            <button type="button" class="btn-start" id="btn-start-mission">MULA MISI →</button>
         </div>
     </div>
 
-    <!-- HUD Atas -->
     <div class="hud-bar">
         <div class="hud-left">
-            <div class="hud-pill player">👤 <span id="hud-player">
+            <div class="hud-pill player">👤 <span id="hud-player">Peserta</span> (<span id="hud-class">Kelas</span>)</div>
+            <div class="hud-pill">🚪 <strong id="hud-stage" style="color:#34d399;">ARAS 1</strong></div>
+            <div class="hud-pill">🔑 SOALAN: <strong id="hud-progress" style="color:#00f0ff;">1 / 3</strong></div>
+            <div class="hud-pill timer">⏱️ MASA: <strong id="hud-timer" style="color:#fbbf24;">15:00</strong></div>
+        </div>
+        <div class="hud-title">ESCAPEROOM 3D : SP 7.1 JARAK</div>
+        <div class="hud-right">
+            <button type="button" class="btn-hud btn-formula" onclick="toggleFormula(true)">📘 Formula SP 7.1</button>
+            <button type="button" class="btn-hud btn-hint" onclick="showClue()">💡 Hints</button>
+        </div>
+    </div>
+
+    <div class="game-stage">
+        <canvas id="isoCanvas"></canvas>
+        <div class="cam-badge" id="cam-status">KAMERA: PANDANGAN PENUH SATAH</div>
+
+        <div class="holo-terminal" id="terminal-panel">
+            <div class="level-tag" id="q-level">ARAS 1 • JARAK MENGUFUK & MENCANCANG</div>
+            <div class="coord-badge">
+                <span>Lokasi Semasa: <strong id="curr-coord">(0,0)</strong></span>
+                <span>Pintu Keluar: <strong style="color:#10b981;">(12,12)</strong></span>
+            </div>
+            <div class="q-box" id="q-text">Memuatkan misi jarak...</div>
+
+            <div class="hint-drawer" id="hint-box"></div>
+            <div class="fb-drawer err" id="fb-box"></div>
+
+            <div class="pin-screen">
+                <input type="text" id="pin-input" placeholder="Masukkan jawapan..." onkeypress="if(event.key==='Enter') checkAnswer()">
+                <button type="button" onclick="checkAnswer()">SAHKAN</button>
+            </div>
+
+            <div class="keypad-grid">
+                <button type="button" class="key-btn" onclick="addKey('1')">1</button>
+                <button type="button" class="key-btn" onclick="addKey('2')">2</button>
+                <button type="button" class="key-btn" onclick="addKey('3')">3</button>
+                <button type="button" class="key-btn" onclick="addKey('(')">(</button>
+                <button type="button" class="key-btn" onclick="addKey('4')">4</button>
+                <button type="button" class="key-btn" onclick="addKey('5')">5</button>
+                <button type="button" class="key-btn" onclick="addKey('6')">6</button>
+                <button type="button" class="key-btn" onclick="addKey(')')">)</button>
+                <button type="button" class="key-btn" onclick="addKey('7')">7</button>
+                <button type="button" class="key-btn" onclick="addKey('8')">8</button>
+                <button type="button" class="key-btn" onclick="addKey('9')">9</button>
+                <button type="button" class="key-btn" onclick="addKey(',')">,</button>
+                <button type="button" class="key-btn" onclick="addKey('0')">0</button>
+                <button type="button" class="key-btn" onclick="addKey('.')">.</button>
+                <button type="button" class="key-btn del" onclick="backspaceKey()">⌫</button>
+                <button type="button" class="key-btn del" onclick="clearKey()">CLR</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="congrats-modal">
+        <div class="modal-card" style="border-color:#10b981;">
+            <h2 style="color:#34d399;">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
+            <p style="margin:4px 0 0; color:#a7f3d0; font-weight:600;">Penerangan Ringkas (SP 7.1 Jarak):</p>
+            <div class="explain-box" id="explain-text"></div>
+            <button type="button" class="btn-hud" style="background:linear-gradient(135deg,#10b981,#059669); border:1px solid #34d399; width:100%; padding:11px;" onclick="continueAfterCongrats()">
+                TERUSKAN →
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="door-modal">
+        <div class="modal-card" style="border-color:#00f0ff;">
+            <div class="door-visual">🚪✨</div>
+            <h2 id="door-title">PINTU ARAS 1 TERBUKA!</h2>
+            <p id="door-desc" style="font-size:1.05rem; color:#e2e8f0; line-height:1.5;"></p>
+            <button type="button" class="btn-hud btn-formula" style="width:100%; padding:12px; margin-top:10px;" id="door-next-btn" onclick="proceedNextLevel()">
+                MASUK KE ARAS SETERUSNYA →
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="formula-modal">
+        <div class="modal-card">
+            <h2>📘 FORMULA SP 7.1: JARAK</h2>
+            <div class="formula-item">
+                <strong style="color:#38bdf8;">1. Jarak Mengufuk (Selari Paksi-x):</strong><br>
+                Jarak = |x₂ - x₁| unit
+            </div>
+            <div class="formula-item">
+                <strong style="color:#38bdf8;">2. Jarak Mencancang (Selari Paksi-y):</strong><br>
+                Jarak = |y₂ - y₁| unit
+            </div>
+            <div class="formula-item">
+                <strong style="color:#34d399;">3. Jarak Antara Dua Titik (Teorem Pythagoras):</strong><br>
+                d = √[(x₂ - x₁)² + (y₂ - y₁)²] unit
+            </div>
+            <button type="button" class="btn-hud btn-formula" style="width:100%; margin-top:8px;" onclick="toggleFormula(false)">TUTUP FORMULA</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="win-modal">
+        <div class="modal-card" style="border-color:#10b981;">
+            <h2 style="color:#10b981;">🏆 MISI BERJAYA DISELESAIKAN!</h2>
+            <p style="font-size:1.08rem;">
+                Tahniah <strong id="win-name">Peserta</strong> (<strong id="win-class">Kelas</strong>)! Anda telah tiba di Pintu Keluar <strong>(12,12)</strong> dan menamatkan kesemua aras SP 7.1.
+            </p>
+            <div class="formula-item" style="text-align:center; border-color:#10b981;">
+                <strong>REKOD MASA TAMAT: <span id="win-time">00:00</span></strong><br>
+                Menguasai penentuan jarak mengufuk, mencancang dan jarak antara dua titik pada satah Cartes.
+            </div>
+            <button type="button" class="btn-hud" style="background:#10b981; width:100%; padding:11px;" onclick="location.reload()">MAIN SEMULA MISI</button>
+        </div>
+    </div>
+
+    <script>
+        const landmarks = [
+            { x: 0, y: 0, label: "Pusat", type: "hub" },
+            { x: 3, y: 4, label: "Stesen Bas", type: "bus_stop" },
+            { x: 8, y: 4, label: "Kedai Runcit", type: "shop" },
+            { x: 10, y: 5, label: "Rumah Ali", type: "house" },
+            { x: 6, y: 10, label: "Taman", type: "park" },
+            { x: 15, y: 9, label: "Sekolah", type: "school" },
+            { x: 12, y: 12, label: "Pintu Keluar", type: "exit" }
+        ];
+
+        const levels = [
+            {
+                id: 1,
+                name: "ARAS 1",
+                tag: "ARAS 1 • JARAK MENGUFUK & MENCANCANG (SP 7.1.1 & 7.1.3)",
+                doorTitle: "🚪 PINTU ARAS 1 TERBUKA!",
+                doorDesc: "Anda telah melepasi Aras 1 (Jarak Mengufuk & Mencancang). Teruskan ke Pintu Aras 2 untuk mengira jarak antara dua titik.",
+                btnText: "MASUK KE ARAS 2 →",
+                questions: [
+                    {
+                        text: "Dari Pusat (0,0), watak bergerak ke Stesen Bas di (3,4). Berapakah jarak mengufuk dari Pusat ke Stesen Bas?",
+                        ans: ["3", "3unit"],
+                        clue: "Jarak mengufuk merujuk kepada perubahan nilai x: |x₂ - x₁|.",
+                        err: "Semak perbezaan nilai x antara (3,4) dan (0,0).",
+                        explain: "Jarak mengufuk = |3 - 0| = <strong>3 unit</strong>.",
+                        pos: [3, 4]
+                    },
+                    {
+                        text: "Stesen Bas terletak di (3,4) dan Kedai Runcit di (8,4). Hitung jarak mengufuk antara Stesen Bas dengan Kedai Runcit.",
+                        ans: ["5", "5unit"],
+                        clue: "Kedua-dua titik mempunyai nilai y yang sama (y = 4). Kira |8 - 3|.",
+                        err: "Tolakkan koordinat x: |8 - 3|.",
+                        explain: "Oleh sebab y = 4 adalah sama, jarak mengufuk = |8 - 3| = <strong>5 unit</strong>.",
+                        pos: [8, 4]
+                    },
+                    {
+                        text: "Dari Kedai Runcit (8,4), watak bergerak ke (8,9). Berapakah jarak mencancang yang dilalui?",
+                        ans: ["5", "5unit"],
+                        clue: "Jarak mencancang merujuk kepada perubahan nilai y: |y₂ - y₁|.",
+                        err: "Kira perbezaan koordinat y: |9 - 4|.",
+                        explain: "Oleh sebab x = 8 adalah sama, jarak mencancang = |9 - 4| = <strong>5 unit</strong>.",
+                        pos: [8, 9]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: "ARAS 2",
+                tag: "ARAS 2 • JARAK ANTARA DUA TITIK (SP 7.1.2 & 7.1.3)",
+                doorTitle: "🚪 PINTU ARAS 2 TERBUKA!",
+                doorDesc: "Hebat! Anda menguasai rumus jarak dua titik. Buka Pintu Aras 3 untuk menyelesaikan masalah jarak.",
+                btnText: "MASUK KE ARAS 3 →",
+                questions: [
+                    {
+                        text: "Hitung jarak lurus antara titik A(1,2) dan titik B(4,6) pada satah Cartes. (d = √[(x₂-x₁)² + (y₂-y₁)²])",
+                        ans: ["5", "5unit"],
+                        clue: "Beza x ialah 3 dan beza y ialah 4. Kira √(3² + 4²).",
+                        err: "Gunakan rumus √[(4-1)² + (6-2)²] = √(9 + 16).",
+                        explain: "Jarak AB = √[(4 - 1)² + (6 - 2)²] = √(3² + 4²) = √25 = <strong>5 unit</strong>.",
+                        pos: [4, 6]
+                    },
+                    {
+                        text: "Taman terletak di (6,10). Jika titik permulaan ialah (2,7), berapakah jarak lurus ke Taman?",
+                        ans: ["5", "5unit"],
+                        clue: "Cari beza x (6 - 2 = 4) dan beza y (10 - 7 = 3), kemudian kira √(4² + 3²).",
+                        err: "Kira √[(6-2)² + (10-7)²].",
+                        explain: "Jarak = √[(6 - 2)² + (10 - 7)²] = √(4² + 3²) = √25 = <strong>5 unit</strong>.",
+                        pos: [6, 10]
+                    },
+                    {
+                        text: "Hitung jarak antara titik (0,0) dengan (6,8) pada satah Cartes.",
+                        ans: ["10", "10unit"],
+                        clue: "Gunakan √(6² + 8²) = √(36 + 64).",
+                        err: "Jumlahkan 6² + 8² sebelum punca kuasa dua.",
+                        explain: "Jarak = √[(6 - 0)² + (8 - 0)²] = √(36 + 64) = √100 = <strong>10 unit</strong>.",
+                        pos: [6, 8]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: "ARAS 3",
+                tag: "ARAS 3 • PENYELESAIAN MASALAH JARAK (SP 7.1.4)",
+                doorTitle: "🏆 PINTU KELUAR UTAMA TERBUKA!",
+                doorDesc: "Semua misi jarak telah berjaya diselesaikan!",
+                btnText: "LIHAT LAPORAN TAMAT →",
+                questions: [
+                    {
+                        text: "Rumah Ali di (10,5) dan Sekolah di (15,9). Hitung jarak lurus antara Rumah Ali dengan Sekolah (bundarkan kepada 1 tempat perpuluhan).",
+                        ans: ["6.4", "6.4unit"],
+                        clue: "Beza x = 5, beza y = 4. Kira √(5² + 4²) = √41.",
+                        err: "Kira √[(15-10)² + (9-5)²] = √41 ≈ 6.4.",
+                        explain: "Jarak = √[(15 - 10)² + (9 - 5)²] = √(25 + 16) = √41 ≈ <strong>6.4 unit</strong>.",
+                        pos: [15, 9]
+                    },
+                    {
+                        text: "Seorang murid berjalan dari (2,1) ke (2,6), kemudian dari (2,6) ke (10,6). Berapakah jumlah jarak perjalanan murid itu?",
+                        ans: ["13", "13unit"],
+                        clue: "Jarak mencancang = 5 unit. Jarak mengufuk = 8 unit. Jumlahkan kedua-duanya.",
+                        err: "Tambahkan jarak mencancang (5) dan jarak mengufuk (8).",
+                        explain: "Jarak mencancang = 5 unit; jarak mengufuk = 8 unit. Jumlah = 5 + 8 = <strong>13 unit</strong>.",
+                        pos: [10, 6]
+                    },
+                    {
+                        text: "Misi terakhir ke Pintu Keluar (12,12) dari (12,6). Berapakah jarak mencancang yang perlu dilalui?",
+                        ans: ["6", "6unit"],
+                        clue: "Kedua-dua titik berada pada garis x = 12. Kira |12 - 6|.",
+                        err: "Tolakkan nilai y: |12 - 6|.",
+                        explain: "Oleh sebab x = 12 adalah sama, jarak mencancang = |12 - 6| = <strong>6 unit</strong> ke Pintu Keluar (12,12).",
+                        pos: [12, 12]
+                    }
+                ]
+            }
+        ];
+
+        const canvas = document.getElementById('isoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let playerInfo = { nama: "Peserta", kelas: "Kelas" };
+        let currentLevelIdx = 0;
+        let currentQIdx = 0;
+        let pathHistory = [[0, 0]];
+
+        let playerPos = { x: 0, y: 0 };
+        let targetPos = { x: 0, y: 0 };
+        let isWalking = false;
+        let walkCycle = 0;
+
+        let camera = {
+            zoom: 1,
+            targetZoom: 1,
+            panX: 0,
+            panY: 0,
+            targetPanX: 0,
+            targetPanY: 0
+        };
+        let zoomHoldTimer = null;
+
+        let pendingExplain = null;
+        let levelCompletedPendingDoor = false;
+        let gameFinished = false;
+
+        let timeLeft = 15 * 60;
+        let timerStarted = false;
+        setInterval(() => {
+            if (timerStarted && timeLeft > 0 && !gameFinished) {
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const s = (timeLeft % 60).toString().padStart(2, '0');
+                document.getElementById('hud-timer').innerText = `${m}:${s}`;
+            }
+        }, 1000);
+
+        function startGame() {
+            const nama = document.getElementById('input-nama').value.trim();
+            const kelas = document.getElementById('input-kelas').value.trim();
+            const errEl = document.getElementById('welcome-err');
+
+            if (!nama || !kelas) {
+                errEl.style.display = 'block';
+                return;
+            }
+
+            errEl.style.display = 'none';
+            playerInfo = { nama, kelas };
+            document.getElementById('hud-player').innerText = nama;
+            document.getElementById('hud-class').innerText = kelas;
+            document.getElementById('welcome-screen').style.display = 'none';
+            timerStarted = true;
+            loadQuestion();
+        }
+
+        document.getElementById('btn-start-mission').addEventListener('click', startGame);
+        document.getElementById('input-nama').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') startGame();
+        });
+        document.getElementById('input-kelas').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') startGame();
+        });
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function getBaseIsoMetrics() {
+            const tileW = Math.min(canvas.width / 26, 36);
+            const tileH = tileW * 0.52;
+            const originX = canvas.width * 0.36;
+            const originY = canvas.height * 0.80;
+            return { tileW, tileH, originX, originY };
+        }
+
+        function toIso(gx, gy) {
+            const { tileW, tileH, originX, originY } = getBaseIsoMetrics();
+            const rawX = originX + (gx - gy) * tileW;
+            const rawY = originY - (gx + gy) * tileH;
+
+            const centerX = canvas.width * 0.42;
+            const centerY = canvas.height * 0.54;
+
+            const screenX = (rawX - centerX) * camera.zoom + centerX + camera.panX;
+            const screenY = (rawY - centerY) * camera.zoom + centerY + camera.panY;
+
+            return {
+                x: screenX,
+                y: screenY,
+                tileW: tileW * camera.zoom,
+                tileH: tileH * camera.zoom
+            };
+        }
+
+        function updateCamera() {
+            camera.zoom += (camera.targetZoom - camera.zoom) * 0.06;
+            camera.panX += (camera.targetPanX - camera.panX) * 0.06;
+            camera.panY += (camera.targetPanY - camera.panY) * 0.06;
+        }
+
+        function focusCameraOnGrid(gx, gy) {
+            const { tileW, tileH, originX, originY } = getBaseIsoMetrics();
+            const rawX = originX + (gx - gy) * tileW;
+            const rawY = originY - (gx + gy) * tileH;
+            const centerX = canvas.width * 0.42;
+            const centerY = canvas.height * 0.54;
+
+            camera.targetZoom = 1.55;
+            camera.targetPanX = (centerX - rawX) * 1.55;
+            camera.targetPanY = (centerY - rawY) * 1.55;
+            document.getElementById('cam-status').innerText = `KAMERA: ZOOM PERGERAKAN (${Math.round(gx)},${Math.round(gy)})`;
+        }
+
+        function resetCameraOverview() {
+            camera.targetZoom = 1;
+            camera.targetPanX = 0;
+            camera.targetPanY = 0;
+            document.getElementById('cam-status').innerText = "KAMERA: PANDANGAN PENUH SATAH";
+        }
+
+        function drawIsoFloor() {
+            const maxGrid = 15;
+            for (let gx = 0; gx < maxGrid; gx++) {
+                for (let gy = 0; gy < maxGrid; gy++) {
+                    const p1 = toIso(gx, gy);
+                    const p2 = toIso(gx + 1, gy);
+                    const p3 = toIso(gx + 1, gy + 1);
+                    const p4 = toIso(gx, gy + 1);
+
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.lineTo(p3.x, p3.y);
+                    ctx.lineTo(p4.x, p4.y);
+                    ctx.closePath();
+
+                    if (currentLevelIdx === 0) {
+                        ctx.fillStyle = "rgba(16, 185, 129, 0.14)";
+                    } else if (currentLevelIdx === 1) {
+                        ctx.fillStyle = "rgba(59, 130, 246, 0.15)";
+                    } else {
+                        ctx.fillStyle = "rgba(168, 85, 247, 0.15)";
+                    }
+                    ctx.fill();
+
+                    ctx.strokeStyle = "rgba(0, 240, 255, 0.25)";
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+
+            const origin = toIso(0, 0);
+            const xEnd = toIso(maxGrid + 0.6, 0);
+            const yEnd = toIso(0, maxGrid + 0.6);
+
+            ctx.lineWidth = 3 * camera.zoom;
+            ctx.strokeStyle = "#00f0ff";
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(xEnd.x, xEnd.y);
+            ctx.stroke();
+
+            ctx.strokeStyle = "#38bdf8";
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(yEnd.x, yEnd.y);
+            ctx.stroke();
+
+            ctx.font = `bold ${Math.round(14 * camera.zoom)}px Orbitron`;
+            ctx.fillStyle = "#00f0ff";
+            ctx.fillText("X", xEnd.x + 8, xEnd.y + 4);
+            ctx.fillText("Y", yEnd.x - 14, yEnd.y - 4);
+
+            ctx.font = `bold ${Math.round(10.5 * camera.zoom)}px Orbitron`;
+            ctx.fillStyle = "#94a3b8";
+            for (let i = 1; i <= maxGrid; i++) {
+                const px = toIso(i, 0);
+                ctx.fillText(i, px.x - 4, px.y + 14 * camera.zoom);
+                const py = toIso(0, i);
+                ctx.fillText(i, py.x - 16 * camera.zoom, py.y + 4);
+            }
+        }
+
+        function draw3DLandmarkModel(lm) {
+            const p = toIso(lm.x, lm.y);
+            const s = camera.zoom;
+            const pulse = Math.sin(Date.now() / 250) * 3 * s;
+
+            ctx.beginPath();
+            ctx.ellipse(p.x, p.y, (16 * s) + pulse, (8 * s) + pulse * 0.5, 0, 0, Math.PI * 2);
+            ctx.fillStyle = lm.type === "exit" ? "rgba(16,185,129,0.35)" : "rgba(0,240,255,0.18)";
+            ctx.fill();
+            ctx.strokeStyle = lm.type === "exit" ? "#10b981" : "#38bdf8";
+            ctx.lineWidth = 1.5 * s;
+            ctx.stroke();
+
+            if (lm.type === "bus_stop") {
+                ctx.fillStyle = "#1e293b";
+                ctx.fillRect(p.x - 11 * s, p.y - 24 * s, 3 * s, 24 * s);
+                ctx.fillRect(p.x + 8 * s, p.y - 24 * s, 3 * s, 24 * s);
+                ctx.fillStyle = "#f59e0b";
+                ctx.beginPath();
+                ctx.moveTo(p.x - 15 * s, p.y - 24 * s);
+                ctx.lineTo(p.x + 15 * s, p.y - 24 * s);
+                ctx.lineTo(p.x + 11 * s, p.y - 30 * s);
+                ctx.lineTo(p.x - 11 * s, p.y - 30 * s);
+                ctx.closePath();
+                ctx.fill();
+            } else if (lm.type === "shop") {
+                ctx.fillStyle = "#334155";
+                ctx.fillRect(p.x - 13 * s, p.y - 22 * s, 26 * s, 22 * s);
+                ctx.fillStyle = "#fb923c";
+                ctx.fillRect(p.x - 14 * s, p.y - 27 * s, 28 * s, 6 * s);
+                ctx.fillStyle = "#fde047";
+                ctx.fillRect(p.x - 8 * s, p.y - 12 * s, 7 * s, 8 * s);
+                ctx.fillRect(p.x + 2 * s, p.y - 12 * s, 7 * s, 8 * s);
+            } else if (lm.type === "house") {
+                ctx.fillStyle = "#475569";
+                ctx.fillRect(p.x - 11 * s, p.y - 19 * s, 22 * s, 19 * s);
+                ctx.fillStyle = "#a855f7";
+                ctx.beginPath();
+                ctx.moveTo(p.x - 15 * s, p.y - 19 * s);
+                ctx.lineTo(p.x, p.y - 31 * s);
+                ctx.lineTo(p.x + 15 * s, p.y - 19 * s);
+                ctx.closePath();
+                ctx.fill();
+            } else if (lm.type === "park") {
+                ctx.fillStyle = "#78350f";
+                ctx.fillRect(p.x - 2 * s, p.y - 14 * s, 4 * s, 14 * s);
+                ctx.fillStyle = "#22c55e";
+                ctx.beginPath();
+                ctx.arc(p.x, p.y - 21 * s, 10 * s, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (lm.type === "school") {
+                ctx.fillStyle = "#1e3a8a";
+                ctx.fillRect(p.x - 15 * s, p.y - 25 * s, 30 * s, 25 * s);
+                ctx.fillStyle = "#60a5fa";
+                ctx.fillRect(p.x - 11 * s, p.y - 20 * s, 6 * s, 6 * s);
+                ctx.fillRect(p.x - 2 * s, p.y - 20 * s, 6 * s, 6 * s);
+                ctx.fillRect(p.x + 7 * s, p.y - 20 * s, 6 * s, 6 * s);
+                ctx.strokeStyle = "#f8fafc";
+                ctx.lineWidth = 1.5 * s;
+                ctx.beginPath();
+                ctx.moveTo(p.x + 16 * s, p.y);
+                ctx.lineTo(p.x + 16 * s, p.y - 34 * s);
+                ctx.stroke();
+                ctx.fillStyle = "#ef4444";
+                ctx.fillRect(p.x + 16 * s, p.y - 34 * s, 8 * s, 5 * s);
+            } else if (lm.type === "exit") {
+                const w = 26 * s, h = 44 * s;
+                ctx.fillStyle = "#0f172a";
+                ctx.strokeStyle = "#00f0ff";
+                ctx.lineWidth = 2.2 * s;
+                ctx.fillRect(p.x - w / 2, p.y - h, w, h);
+                ctx.strokeRect(p.x - w / 2, p.y - h, w, h);
+
+                const grad = ctx.createLinearGradient(0, p.y - h, 0, p.y);
+                grad.addColorStop(0, "rgba(0, 240, 255, 0.85)");
+                grad.addColorStop(1, "rgba(16, 185, 129, 0.45)");
+                ctx.fillStyle = grad;
+                ctx.fillRect(p.x - w / 2 + 3 * s, p.y - h + 3 * s, w - 6 * s, h - 3 * s);
+            } else {
+                ctx.fillStyle = "#0284c7";
+                ctx.beginPath();
+                ctx.arc(p.x, p.y - 8 * s, 7 * s, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            ctx.font = `bold ${Math.round(10.5 * s)}px Rajdhani`;
+            ctx.fillStyle = lm.type === "exit" ? "#34d399" : "#f1f5f9";
+            const labelOffsetY = lm.type === "exit" ? -48 * s : -36 * s;
+            ctx.fillText(`${lm.label} (${lm.x},${lm.y})`, p.x - 26 * s, p.y + labelOffsetY);
+        }
+
+        function drawLandmarksAndPath() {
+            if (pathHistory.length > 1) {
+                ctx.beginPath();
+                pathHistory.forEach((pt, idx) => {
+                    const p = toIso(pt[0], pt[1]);
+                    if (idx === 0) ctx.moveTo(p.x, p.y);
+                    else ctx.lineTo(p.x, p.y);
+                });
+                const currP = toIso(playerPos.x, playerPos.y);
+                ctx.lineTo(currP.x, currP.y);
+
+                ctx.strokeStyle = "#f59e0b";
+                ctx.lineWidth = 3.5 * camera.zoom;
+                ctx.setLineDash([7 * camera.zoom, 4 * camera.zoom]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            landmarks.forEach(lm => draw3DLandmarkModel(lm));
+        }
+
+        function drawCharacter(gx, gy) {
+            const p = toIso(gx, gy);
+            const s = camera.zoom * 1.28;
+            const bounce = isWalking ? Math.abs(Math.sin(walkCycle)) * 7 * s : Math.sin(Date.now() / 280) * 2.5 * s;
+            const legSwing = isWalking ? Math.sin(walkCycle) * 6 * s : 0;
+
+            const cx = p.x;
+            const cy = p.y - bounce;
+
+            ctx.beginPath();
+            ctx.ellipse(p.x, p.y, 13 * s, 6.5 * s, 0, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
+            ctx.fill();
+
+            ctx.strokeStyle = "#0f172a";
+            ctx.lineWidth = 4.5 * s;
+            ctx.lineCap = "round";
+            ctx.beginPath();
+            ctx.moveTo(cx - 3.5 * s, cy - 13 * s);
+            ctx.lineTo(cx - 4.5 * s - legSwing, cy - 1 * s);
+            ctx.moveTo(cx + 3.5 * s, cy - 13 * s);
+            ctx.lineTo(cx + 4.5 * s + legSwing, cy - 1 * s);
+            ctx.stroke();
+
+            ctx.fillStyle = "#0284c7";
+            ctx.beginPath();
+            ctx.roundRect(cx - 8 * s, cy - 28 * s, 16 * s, 16 * s, 4 * s);
+            ctx.fill();
+            ctx.strokeStyle = "#38bdf8";
+            ctx.lineWidth = 1.4 * s;
+            ctx.stroke();
+
+            ctx.fillStyle = "#fed7aa";
+            ctx.beginPath();
+            ctx.arc(cx, cy - 36 * s, 7.2 * s, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "#1e1b4b";
+            ctx.beginPath();
+            ctx.arc(cx, cy - 38 * s, 7.2 * s, Math.PI, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "#00f0ff";
+            ctx.fillRect(cx - 5 * s, cy - 37 * s, 10 * s, 2.5 * s);
+
+            if (!isWalking) {
+                const bx = cx + 14 * s;
+                const by = cy - 52 * s;
+                ctx.fillStyle = "#ffffff";
+                ctx.beginPath();
+                ctx.roundRect(bx - 9 * s, by - 11 * s, 18 * s, 17 * s, 4 * s);
+                ctx.fill();
+
+                ctx.fillStyle = "#0f172a";
+                ctx.font = `bold ${Math.round(13 * s)}px Orbitron`;
+                ctx.fillText("?", bx - 4.5 * s, by + 2 * s);
+            }
+        }
+
+        function animate() {
+            updateCamera();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawIsoFloor();
+            drawLandmarksAndPath();
+
+            if (isWalking) {
+                const dx = targetPos.x - playerPos.x;
+                const dy = targetPos.y - playerPos.y;
+                const dist = Math.hypot(dx, dy);
+                const speed = 0.075;
+
+                if (dist > speed) {
+                    playerPos.x += (dx / dist) * speed;
+                    playerPos.y += (dy / dist) * speed;
+                    walkCycle += 0.35;
+                    focusCameraOnGrid(playerPos.x, playerPos.y);
+                } else {
+                    playerPos.x = targetPos.x;
+                    playerPos.y = targetPos.y;
+                    isWalking = false;
+                    walkCycle = 0;
+
+                    clearTimeout(zoomHoldTimer);
+                    zoomHoldTimer = setTimeout(() => {
+                        resetCameraOverview();
+                        if (pendingExplain) {
+                            const expText = pendingExplain;
+                            pendingExplain = null;
+                            showCongratsModal(expText);
+                        }
+                    }, 550);
+                }
+            }
+
+            drawCharacter(playerPos.x, playerPos.y);
+            requestAnimationFrame(animate);
+        }
+
+        function getCurrentLevel() {
+            return levels[currentLevelIdx];
+        }
+
+        function getCurrentQuestion() {
+            return getCurrentLevel().questions[currentQIdx];
+        }
+
+        function loadQuestion() {
+            const lvl = getCurrentLevel();
+            const q = getCurrentQuestion();
+            document.getElementById('hud-stage').innerText = lvl.name;
+            document.getElementById('hud-progress').innerText = `${currentQIdx + 1} / ${lvl.questions.length}`;
+            document.getElementById('q-level').innerText = lvl.tag;
+            document.getElementById('q-text').innerText = q.text;
+            document.getElementById('curr-coord').innerText = `(${Math.round(playerPos.x)},${Math.round(playerPos.y)})`;
+            document.getElementById('hint-box').style.display = 'none';
+            document.getElementById('fb-box').style.display = 'none';
+            document.getElementById('pin-input').value = '';
+            document.getElementById('pin-input').focus();
+        }
+
+        function showClue() {
+            const hb = document.getElementById('hint-box');
+            hb.innerText = "💡 PETUNJUK: " + getCurrentQuestion().clue;
+            hb.style.display = 'block';
+        }
+
+        function checkAnswer() {
+            if (isWalking || pendingExplain) return;
+
+            const raw = document.getElementById('pin-input').value.trim().replace(/\s+/g, '').toLowerCase();
+            const q = getCurrentQuestion();
+            const fb = document.getElementById('fb-box');
+
+            if (q.ans.includes(raw)) {
+                fb.style.display = 'none';
+                pathHistory.push(q.pos);
+                targetPos = { x: q.pos[0], y: q.pos[1] };
+                isWalking = true;
+                pendingExplain = q.explain;
+                focusCameraOnGrid(targetPos.x, targetPos.y);
+            } else {
+                fb.innerText = "⚠️ JAWAPAN BELUM TEPAT: " + q.err;
+                fb.style.display = 'block';
+            }
+        }
+
+        function showCongratsModal(explainHtml) {
+            document.getElementById('explain-text').innerHTML = explainHtml;
+            document.getElementById('congrats-modal').style.display = 'flex';
+        }
+
+        function continueAfterCongrats() {
+            document.getElementById('congrats-modal').style.display = 'none';
+            document.getElementById('curr-coord').innerText = `(${Math.round(playerPos.x)},${Math.round(playerPos.y)})`;
+
+            const lvl = getCurrentLevel();
+            if (currentQIdx + 1 < lvl.questions.length) {
+                currentQIdx++;
+                loadQuestion();
+            } else {
+                levelCompletedPendingDoor = true;
+                document.getElementById('door-title').innerText = lvl.doorTitle;
+                document.getElementById('door-desc').innerText = lvl.doorDesc;
+                document.getElementById('door-next-btn').innerText = lvl.btnText;
+                document.getElementById('door-modal').style.display = 'flex';
+            }
+        }
+
+        function proceedNextLevel() {
+            if (!levelCompletedPendingDoor) return;
+            levelCompletedPendingDoor = false;
+            document.getElementById('door-modal').style.display = 'none';
+
+            if (currentLevelIdx + 1 < levels.length) {
+                currentLevelIdx++;
+                currentQIdx = 0;
+                loadQuestion();
+            } else {
+                gameFinished = true;
+                document.getElementById('win-name').innerText = playerInfo.nama;
+                document.getElementById('win-class').innerText = playerInfo.kelas;
+                document.getElementById('win-time').innerText = document.getElementById('hud-timer').innerText;
+                document.getElementById('win-modal').style.display = 'flex';
+            }
+        }
+
+        function addKey(ch) {
+            const inp = document.getElementById('pin-input');
+            inp.value += ch;
+            inp.focus();
+        }
+
+        function backspaceKey() {
+            const inp = document.getElementById('pin-input');
+            inp.value = inp.value.slice(0, -1);
+            inp.focus();
+        }
+
+        function clearKey() {
+            const inp = document.getElementById('pin-input');
+            inp.value = '';
+            inp.focus();
+        }
+
+        function toggleFormula(show) {
+            document.getElementById('formula-modal').style.display = show ? 'flex' : 'none';
+        }
+
+        animate();
+    </script>
+</body>
+</html>
