@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room 3D: Misi Menyelamat Diri (SP 7.1 Jarak)</title>
+    <title>Escape Room 3D Ungu: Misi Menyelamat Diri (SP 7.1 Jarak)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
 
         :root {
-            --bg-deep: #070b17;
-            --bg-panel: rgba(14, 22, 44, 0.9);
-            --cyan-neon: #00f0ff;
-            --blue-glow: #2563eb;
-            --purple-neon: #a855f7;
+            --bg-deep: #0b0617;
+            --bg-panel: rgba(24, 13, 46, 0.92);
+            --purple-neon: #c084fc;
+            --purple-bright: #a855f7;
+            --purple-deep: #6b21a8;
+            --violet-glow: #d8b4fe;
             --green-neon: #10b981;
             --amber-neon: #f59e0b;
             --red-neon: #ef4444;
@@ -23,8 +24,8 @@
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle at 50% 25%, #1a254d 0%, #070a14 100%);
-            color: #e2e8f0;
+            background: radial-gradient(circle at 50% 25%, #2b1254 0%, #090514 100%);
+            color: #f3e8ff;
             font-family: 'Rajdhani', sans-serif;
             height: 100vh;
             overflow: hidden;
@@ -35,7 +36,7 @@
         .welcome-screen {
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 50% 30%, #172247 0%, #060913 100%);
+            background: radial-gradient(circle at 50% 30%, #27104d 0%, #070410 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -46,11 +47,11 @@
         .welcome-card {
             max-width: 540px;
             width: 100%;
-            background: rgba(13, 20, 40, 0.96);
-            border: 2px solid var(--cyan-neon);
+            background: rgba(22, 11, 44, 0.96);
+            border: 2px solid var(--purple-neon);
             border-radius: 18px;
             padding: 32px;
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.28);
+            box-shadow: 0 0 42px rgba(168, 85, 247, 0.32);
             text-align: center;
         }
 
@@ -60,9 +61,9 @@
             font-size: 0.75rem;
             padding: 4px 12px;
             border-radius: 999px;
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid var(--cyan-neon);
-            color: var(--cyan-neon);
+            background: rgba(168, 85, 247, 0.18);
+            border: 1px solid var(--purple-neon);
+            color: var(--violet-glow);
             margin-bottom: 12px;
         }
 
@@ -71,11 +72,11 @@
             font-size: 1.5rem;
             color: #fff;
             margin: 6px 0 10px;
-            text-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
+            text-shadow: 0 0 16px rgba(192, 132, 252, 0.55);
         }
 
         .welcome-desc {
-            color: #cbd5e1;
+            color: #e9d5ff;
             font-size: 1.02rem;
             line-height: 1.5;
             margin-bottom: 22px;
@@ -90,7 +91,7 @@
             display: block;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.78rem;
-            color: var(--cyan-neon);
+            color: var(--purple-neon);
             margin-bottom: 6px;
             letter-spacing: 0.8px;
         }
@@ -99,9 +100,9 @@
             width: 100%;
             padding: 12px 14px;
             border-radius: 10px;
-            border: 1.5px solid #334155;
-            background: #060b18;
-            color: #f8fafc;
+            border: 1.5px solid #581c87;
+            background: #0b0617;
+            color: #faf5ff;
             font-family: 'Rajdhani', sans-serif;
             font-size: 1.08rem;
             font-weight: 600;
@@ -110,8 +111,8 @@
         }
 
         .form-group input:focus {
-            border-color: var(--cyan-neon);
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+            border-color: var(--purple-neon);
+            box-shadow: 0 0 14px rgba(192, 132, 252, 0.3);
         }
 
         .btn-start {
@@ -119,22 +120,22 @@
             margin-top: 8px;
             padding: 13px 20px;
             border-radius: 10px;
-            border: 1px solid #34d399;
-            background: linear-gradient(135deg, #10b981, #059669);
+            border: 1px solid #e9d5ff;
+            background: linear-gradient(135deg, #9333ea, #6b21a8);
             color: #fff;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.45);
             transition: transform 0.15s;
         }
 
         .btn-start:hover { transform: translateY(-2px); }
 
         .welcome-err {
-            color: #fca5a5;
-            background: rgba(239, 68, 68, 0.18);
+            color: #fecaca;
+            background: rgba(239, 68, 68, 0.22);
             border: 1px solid #ef4444;
             padding: 8px 12px;
             border-radius: 8px;
@@ -148,9 +149,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background: rgba(9, 13, 26, 0.94);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.25);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(14, 7, 28, 0.95);
+            border-bottom: 1px solid rgba(192, 132, 252, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
             z-index: 10;
             gap: 10px;
             flex-wrap: wrap;
@@ -164,14 +165,14 @@
         }
 
         .hud-pill {
-            background: rgba(18, 28, 54, 0.95);
-            border: 1.5px solid var(--cyan-neon);
+            background: rgba(34, 16, 68, 0.95);
+            border: 1.5px solid var(--purple-neon);
             border-radius: 10px;
             padding: 5px 13px;
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.18);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.22);
             font-family: 'Orbitron', sans-serif;
             font-size: 0.8rem;
         }
@@ -182,7 +183,7 @@
         }
 
         .hud-pill.player {
-            border-color: #a78bfa;
+            border-color: #e879f9;
             font-family: 'Rajdhani', sans-serif;
             font-size: 0.95rem;
             font-weight: 700;
@@ -192,8 +193,8 @@
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
             letter-spacing: 1.2px;
-            color: var(--cyan-neon);
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.55);
+            color: var(--purple-neon);
+            text-shadow: 0 0 12px rgba(192, 132, 252, 0.6);
             font-size: 1rem;
         }
 
@@ -213,15 +214,15 @@
         .btn-hud:hover { transform: translateY(-2px); }
 
         .btn-formula {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            border: 1px solid #38bdf8;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+            background: linear-gradient(135deg, #7e22ce, #581c87);
+            border: 1px solid #d8b4fe;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
         }
 
         .btn-hint {
-            background: linear-gradient(135deg, #9333ea, #6b21a8);
-            border: 1px solid #c084fc;
-            box-shadow: 0 0 10px rgba(192, 132, 252, 0.35);
+            background: linear-gradient(135deg, #a21caf, #701a75);
+            border: 1px solid #f0abfc;
+            box-shadow: 0 0 12px rgba(217, 70, 239, 0.35);
         }
 
         .game-stage {
@@ -242,9 +243,9 @@
             position: absolute;
             bottom: 18px;
             left: 22px;
-            background: rgba(11, 18, 38, 0.85);
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            color: #bae6fd;
+            background: rgba(24, 11, 48, 0.9);
+            border: 1px solid rgba(192, 132, 252, 0.45);
+            color: #f3e8ff;
             padding: 6px 14px;
             border-radius: 8px;
             font-family: 'Orbitron', sans-serif;
@@ -257,14 +258,14 @@
             position: absolute;
             top: 18px;
             right: 22px;
-            width: 390px;
+            width: 395px;
             max-width: calc(100vw - 44px);
             background: var(--bg-panel);
             backdrop-filter: blur(10px);
-            border: 1.5px solid var(--cyan-neon);
+            border: 1.5px solid var(--purple-neon);
             border-radius: 14px;
             padding: 16px;
-            box-shadow: 0 0 28px rgba(0, 240, 255, 0.22), inset 0 0 18px rgba(0, 240, 255, 0.08);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.26), inset 0 0 18px rgba(192, 132, 252, 0.08);
             z-index: 5;
         }
 
@@ -274,9 +275,9 @@
             font-size: 0.68rem;
             padding: 3px 10px;
             border-radius: 20px;
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid var(--cyan-neon);
-            color: var(--cyan-neon);
+            background: rgba(168, 85, 247, 0.18);
+            border: 1px solid var(--purple-neon);
+            color: var(--violet-glow);
             margin-bottom: 8px;
         }
 
@@ -284,24 +285,24 @@
             font-size: 1.05rem;
             line-height: 1.4;
             font-weight: 600;
-            color: #f8fafc;
+            color: #faf5ff;
             margin-bottom: 10px;
         }
 
         .coord-badge {
             display: flex;
             justify-content: space-between;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid #334155;
+            background: rgba(24, 12, 48, 0.9);
+            border: 1px solid #581c87;
             padding: 6px 12px;
             border-radius: 8px;
             font-size: 0.9rem;
             margin-bottom: 10px;
-            color: #94a3b8;
+            color: #d8b4fe;
         }
 
         .coord-badge span strong {
-            color: var(--cyan-neon);
+            color: var(--purple-neon);
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -314,9 +315,9 @@
         }
 
         .hint-drawer {
-            background: rgba(147, 51, 234, 0.2);
-            border-left: 3px solid #c084fc;
-            color: #f3e8ff;
+            background: rgba(168, 85, 247, 0.22);
+            border-left: 3px solid #e879f9;
+            color: #fae8ff;
         }
 
         .fb-drawer.err {
@@ -333,26 +334,26 @@
 
         .pin-screen input {
             flex: 1;
-            background: #060a14;
-            border: 1.5px solid var(--cyan-neon);
+            background: #0c0618;
+            border: 1.5px solid var(--purple-neon);
             border-radius: 8px;
             padding: 9px 12px;
-            color: var(--cyan-neon);
+            color: var(--violet-glow);
             font-family: 'Orbitron', sans-serif;
             font-size: 0.95rem;
             outline: none;
         }
 
         .pin-screen button {
-            background: linear-gradient(135deg, #10b981, #059669);
-            border: 1px solid #34d399;
+            background: linear-gradient(135deg, #9333ea, #6b21a8);
+            border: 1px solid #d8b4fe;
             color: white;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             padding: 0 14px;
             border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
         }
 
         .keypad-grid {
@@ -362,9 +363,9 @@
         }
 
         .key-btn {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            color: #e2e8f0;
+            background: rgba(46, 20, 89, 0.85);
+            border: 1px solid rgba(192, 132, 252, 0.35);
+            color: #f3e8ff;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.82rem;
             padding: 7px 0;
@@ -374,8 +375,8 @@
         }
 
         .key-btn:hover {
-            background: rgba(0, 240, 255, 0.25);
-            border-color: var(--cyan-neon);
+            background: rgba(168, 85, 247, 0.32);
+            border-color: var(--purple-neon);
         }
 
         .key-btn.del {
@@ -386,7 +387,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(5, 8, 18, 0.84);
+            background: rgba(8, 4, 18, 0.86);
             display: none;
             justify-content: center;
             align-items: center;
@@ -395,33 +396,33 @@
         }
 
         .modal-card {
-            background: #111936;
-            border: 2px solid var(--cyan-neon);
+            background: #190d33;
+            border: 2px solid var(--purple-neon);
             border-radius: 16px;
             padding: 24px;
             max-width: 500px;
             width: 100%;
-            box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+            box-shadow: 0 0 38px rgba(168, 85, 247, 0.38);
             text-align: center;
         }
 
         .modal-card h2 {
             font-family: 'Orbitron', sans-serif;
-            color: var(--cyan-neon);
+            color: var(--purple-neon);
             margin-top: 0;
             font-size: 1.3rem;
         }
 
         .explain-box {
-            background: rgba(15, 23, 42, 0.95);
-            border: 1px solid rgba(16, 185, 129, 0.5);
+            background: rgba(24, 12, 48, 0.95);
+            border: 1px solid rgba(192, 132, 252, 0.55);
             border-radius: 10px;
             padding: 14px;
             margin: 14px 0 18px;
             text-align: left;
             line-height: 1.5;
             font-size: 1.02rem;
-            color: #e2e8f0;
+            color: #f3e8ff;
         }
 
         .door-visual {
@@ -430,8 +431,8 @@
         }
 
         .formula-item {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid #334155;
+            background: rgba(24, 12, 48, 0.95);
+            border: 1px solid #581c87;
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -445,9 +446,9 @@
     <div class="welcome-screen" id="welcome-screen">
         <div class="welcome-card">
             <div class="welcome-badge">MATEMATIK TINGKATAN 2 • SP 7.1 JARAK</div>
-            <h1>ESCAPE ROOM 3D: MISI MENYELAMAT DIRI</h1>
+            <h1>ESCAPE ROOM 3D UNGU: MISI MENYELAMAT DIRI</h1>
             <p class="welcome-desc">
-                Isi nama dan kelas anda untuk memulakan misi mengira <strong>jarak mengufuk</strong>, <strong>jarak mencancang</strong>, dan <strong>jarak antara dua titik</strong> pada Satah Cartes isometrik 3D.
+                Isi nama dan kelas anda untuk memulakan misi mengira <strong>jarak mengufuk</strong>, <strong>jarak mencancang</strong>, dan <strong>jarak antara dua titik</strong> pada Satah Cartes 3D.
             </p>
             <div class="welcome-err" id="welcome-err">Sila masukkan Nama dan Kelas anda sebelum memulakan misi.</div>
             <div class="form-group">
@@ -465,11 +466,11 @@
     <div class="hud-bar">
         <div class="hud-left">
             <div class="hud-pill player">👤 <span id="hud-player">Peserta</span> (<span id="hud-class">Kelas</span>)</div>
-            <div class="hud-pill">🚪 <strong id="hud-stage" style="color:#34d399;">ARAS 1</strong></div>
-            <div class="hud-pill">🔑 SOALAN: <strong id="hud-progress" style="color:#00f0ff;">1 / 3</strong></div>
+            <div class="hud-pill">🚪 <strong id="hud-stage" style="color:#e879f9;">ARAS 1</strong></div>
+            <div class="hud-pill">🔑 SOALAN: <strong id="hud-progress" style="color:#d8b4fe;">1 / 5</strong></div>
             <div class="hud-pill timer">⏱️ MASA: <strong id="hud-timer" style="color:#fbbf24;">15:00</strong></div>
         </div>
-        <div class="hud-title">ESCAPEROOM 3D : SP 7.1 JARAK</div>
+        <div class="hud-title">ESCAPEROOM 3D UNGU : SP 7.1 JARAK</div>
         <div class="hud-right">
             <button type="button" class="btn-hud btn-formula" onclick="toggleFormula(true)">📘 Formula SP 7.1</button>
             <button type="button" class="btn-hud btn-hint" onclick="showClue()">💡 Hints</button>
@@ -484,7 +485,7 @@
             <div class="level-tag" id="q-level">ARAS 1 • JARAK MENGUFUK & MENCANCANG</div>
             <div class="coord-badge">
                 <span>Lokasi Semasa: <strong id="curr-coord">(0,0)</strong></span>
-                <span>Pintu Keluar: <strong style="color:#10b981;">(12,12)</strong></span>
+                <span>Pintu Keluar: <strong style="color:#e879f9;">(12,12)</strong></span>
             </div>
             <div class="q-box" id="q-text">Memuatkan misi jarak...</div>
 
@@ -518,21 +519,21 @@
     </div>
 
     <div class="modal-overlay" id="congrats-modal">
-        <div class="modal-card" style="border-color:#10b981;">
-            <h2 style="color:#34d399;">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
-            <p style="margin:4px 0 0; color:#a7f3d0; font-weight:600;">Penerangan Ringkas (SP 7.1 Jarak):</p>
+        <div class="modal-card" style="border-color:#d8b4fe;">
+            <h2 style="color:#e879f9;">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
+            <p style="margin:4px 0 0; color:#f3e8ff; font-weight:600;">Penerangan Ringkas (SP 7.1 Jarak):</p>
             <div class="explain-box" id="explain-text"></div>
-            <button type="button" class="btn-hud" style="background:linear-gradient(135deg,#10b981,#059669); border:1px solid #34d399; width:100%; padding:11px;" onclick="continueAfterCongrats()">
+            <button type="button" class="btn-hud btn-formula" style="width:100%; padding:11px;" onclick="continueAfterCongrats()">
                 TERUSKAN →
             </button>
         </div>
     </div>
 
     <div class="modal-overlay" id="door-modal">
-        <div class="modal-card" style="border-color:#00f0ff;">
+        <div class="modal-card" style="border-color:#c084fc;">
             <div class="door-visual">🚪✨</div>
             <h2 id="door-title">PINTU ARAS 1 TERBUKA!</h2>
-            <p id="door-desc" style="font-size:1.05rem; color:#e2e8f0; line-height:1.5;"></p>
+            <p id="door-desc" style="font-size:1.05rem; color:#f3e8ff; line-height:1.5;"></p>
             <button type="button" class="btn-hud btn-formula" style="width:100%; padding:12px; margin-top:10px;" id="door-next-btn" onclick="proceedNextLevel()">
                 MASUK KE ARAS SETERUSNYA →
             </button>
@@ -543,15 +544,15 @@
         <div class="modal-card">
             <h2>📘 FORMULA SP 7.1: JARAK</h2>
             <div class="formula-item">
-                <strong style="color:#38bdf8;">1. Jarak Mengufuk (Selari Paksi-x):</strong><br>
+                <strong style="color:#d8b4fe;">1. Jarak Mengufuk (Selari Paksi-x):</strong><br>
                 Jarak = |x₂ - x₁| unit
             </div>
             <div class="formula-item">
-                <strong style="color:#38bdf8;">2. Jarak Mencancang (Selari Paksi-y):</strong><br>
+                <strong style="color:#d8b4fe;">2. Jarak Mencancang (Selari Paksi-y):</strong><br>
                 Jarak = |y₂ - y₁| unit
             </div>
             <div class="formula-item">
-                <strong style="color:#34d399;">3. Jarak Antara Dua Titik (Teorem Pythagoras):</strong><br>
+                <strong style="color:#e879f9;">3. Jarak Antara Dua Titik (Teorem Pythagoras):</strong><br>
                 d = √[(x₂ - x₁)² + (y₂ - y₁)²] unit
             </div>
             <button type="button" class="btn-hud btn-formula" style="width:100%; margin-top:8px;" onclick="toggleFormula(false)">TUTUP FORMULA</button>
@@ -559,16 +560,16 @@
     </div>
 
     <div class="modal-overlay" id="win-modal">
-        <div class="modal-card" style="border-color:#10b981;">
-            <h2 style="color:#10b981;">🏆 MISI BERJAYA DISELESAIKAN!</h2>
+        <div class="modal-card" style="border-color:#e879f9;">
+            <h2 style="color:#e879f9;">🏆 MISI BERJAYA DISELESAIKAN!</h2>
             <p style="font-size:1.08rem;">
-                Tahniah <strong id="win-name">Peserta</strong> (<strong id="win-class">Kelas</strong>)! Anda telah tiba di Pintu Keluar <strong>(12,12)</strong> dan menamatkan kesemua aras SP 7.1.
+                Tahniah <strong id="win-name">Peserta</strong> (<strong id="win-class">Kelas</strong>)! Anda telah tiba di Pintu Keluar <strong>(12,12)</strong> dan menamatkan kesemua 15 soalan SP 7.1.
             </p>
-            <div class="formula-item" style="text-align:center; border-color:#10b981;">
+            <div class="formula-item" style="text-align:center; border-color:#c084fc;">
                 <strong>REKOD MASA TAMAT: <span id="win-time">00:00</span></strong><br>
                 Menguasai penentuan jarak mengufuk, mencancang dan jarak antara dua titik pada satah Cartes.
             </div>
-            <button type="button" class="btn-hud" style="background:#10b981; width:100%; padding:11px;" onclick="location.reload()">MAIN SEMULA MISI</button>
+            <button type="button" class="btn-hud btn-formula" style="width:100%; padding:11px;" onclick="location.reload()">MAIN SEMULA MISI</button>
         </div>
     </div>
 
@@ -583,13 +584,14 @@
             { x: 12, y: 12, label: "Pintu Keluar", type: "exit" }
         ];
 
+        // 5 soalan setiap aras (Jumlah 15 soalan SP 7.1 Jarak)
         const levels = [
             {
                 id: 1,
                 name: "ARAS 1",
-                tag: "ARAS 1 • JARAK MENGUFUK & MENCANCANG (SP 7.1.1 & 7.1.3)",
+                tag: "ARAS 1 (5 SOALAN) • JARAK MENGUFUK & MENCANCANG (SP 7.1.1 & 7.1.3)",
                 doorTitle: "🚪 PINTU ARAS 1 TERBUKA!",
-                doorDesc: "Anda telah melepasi Aras 1 (Jarak Mengufuk & Mencancang). Teruskan ke Pintu Aras 2 untuk mengira jarak antara dua titik.",
+                doorDesc: "Anda telah menyelesaikan 5 soalan Aras 1 (Jarak Mengufuk & Mencancang). Teruskan ke Pintu Aras 2.",
                 btnText: "MASUK KE ARAS 2 →",
                 questions: [
                     {
@@ -601,9 +603,9 @@
                         pos: [3, 4]
                     },
                     {
-                        text: "Stesen Bas terletak di (3,4) dan Kedai Runcit di (8,4). Hitung jarak mengufuk antara Stesen Bas dengan Kedai Runcit.",
+                        text: "Stesen Bas terletak di (3,4) dan Kedai Runcit di (8,4). Hitung jarak mengufuk antara kedua-duanya.",
                         ans: ["5", "5unit"],
-                        clue: "Kedua-dua titik mempunyai nilai y yang sama (y = 4). Kira |8 - 3|.",
+                        clue: "Kedua-dua lokasi berada pada garis y = 4. Kira |8 - 3|.",
                         err: "Tolakkan koordinat x: |8 - 3|.",
                         explain: "Oleh sebab y = 4 adalah sama, jarak mengufuk = |8 - 3| = <strong>5 unit</strong>.",
                         pos: [8, 4]
@@ -615,21 +617,37 @@
                         err: "Kira perbezaan koordinat y: |9 - 4|.",
                         explain: "Oleh sebab x = 8 adalah sama, jarak mencancang = |9 - 4| = <strong>5 unit</strong>.",
                         pos: [8, 9]
+                    },
+                    {
+                        text: "Titik P berada di (2,7) dan titik Q berada di (10,7). Berapakah jarak mengufuk PQ?",
+                        ans: ["8", "8unit"],
+                        clue: "Kira beza nilai x: |10 - 2|.",
+                        err: "Tolakkan nilai x yang besar dengan nilai x yang kecil.",
+                        explain: "Jarak mengufuk PQ = |10 - 2| = <strong>8 unit</strong>.",
+                        pos: [10, 7]
+                    },
+                    {
+                        text: "Dari (10,7), watak bergerak mencancang ke (10,2). Berapakah jarak mencancang perjalanan tersebut?",
+                        ans: ["5", "5unit"],
+                        clue: "Jarak sentiasa bernilai positif. Kira |2 - 7|.",
+                        err: "Gunakan nilai mutlak |2 - 7| = 5.",
+                        explain: "Jarak mencancang = |2 - 7| = |-5| = <strong>5 unit</strong>.",
+                        pos: [10, 2]
                     }
                 ]
             },
             {
                 id: 2,
                 name: "ARAS 2",
-                tag: "ARAS 2 • JARAK ANTARA DUA TITIK (SP 7.1.2 & 7.1.3)",
+                tag: "ARAS 2 (5 SOALAN) • JARAK ANTARA DUA TITIK (SP 7.1.2 & 7.1.3)",
                 doorTitle: "🚪 PINTU ARAS 2 TERBUKA!",
-                doorDesc: "Hebat! Anda menguasai rumus jarak dua titik. Buka Pintu Aras 3 untuk menyelesaikan masalah jarak.",
+                doorDesc: "Hebat! Anda telah menyelesaikan 5 soalan Aras 2 menggunakan rumus jarak dua titik. Buka Pintu Aras 3.",
                 btnText: "MASUK KE ARAS 3 →",
                 questions: [
                     {
                         text: "Hitung jarak lurus antara titik A(1,2) dan titik B(4,6) pada satah Cartes. (d = √[(x₂-x₁)² + (y₂-y₁)²])",
                         ans: ["5", "5unit"],
-                        clue: "Beza x ialah 3 dan beza y ialah 4. Kira √(3² + 4²).",
+                        clue: "Beza x = 3 dan beza y = 4. Kira √(3² + 4²).",
                         err: "Gunakan rumus √[(4-1)² + (6-2)²] = √(9 + 16).",
                         explain: "Jarak AB = √[(4 - 1)² + (6 - 2)²] = √(3² + 4²) = √25 = <strong>5 unit</strong>.",
                         pos: [4, 6]
@@ -649,15 +667,31 @@
                         err: "Jumlahkan 6² + 8² sebelum punca kuasa dua.",
                         explain: "Jarak = √[(6 - 0)² + (8 - 0)²] = √(36 + 64) = √100 = <strong>10 unit</strong>.",
                         pos: [6, 8]
+                    },
+                    {
+                        text: "Hitung jarak antara titik M(3,1) dan titik N(11,7).",
+                        ans: ["10", "10unit"],
+                        clue: "Beza x = 11 - 3 = 8; beza y = 7 - 1 = 6. Kira √(8² + 6²).",
+                        err: "Kira √[(11-3)² + (7-1)²] = √(64 + 36).",
+                        explain: "Jarak MN = √[(11 - 3)² + (7 - 1)²] = √(8² + 6²) = √100 = <strong>10 unit</strong>.",
+                        pos: [11, 7]
+                    },
+                    {
+                        text: "Titik R berada di (5,4) dan titik S berada di (8,8). Berapakah jarak lurus RS?",
+                        ans: ["5", "5unit"],
+                        clue: "Beza x = 8 - 5 = 3; beza y = 8 - 4 = 4.",
+                        err: "Kira √[(8-5)² + (8-4)²] = √(9 + 16).",
+                        explain: "Jarak RS = √[(8 - 5)² + (8 - 4)²] = √(3² + 4²) = √25 = <strong>5 unit</strong>.",
+                        pos: [8, 8]
                     }
                 ]
             },
             {
                 id: 3,
                 name: "ARAS 3",
-                tag: "ARAS 3 • PENYELESAIAN MASALAH JARAK (SP 7.1.4)",
+                tag: "ARAS 3 (5 SOALAN) • PENYELESAIAN MASALAH JARAK (SP 7.1.4)",
                 doorTitle: "🏆 PINTU KELUAR UTAMA TERBUKA!",
-                doorDesc: "Semua misi jarak telah berjaya diselesaikan!",
+                doorDesc: "Tahniah! Semua 5 soalan Aras 3 dan keseluruhan misi telah berjaya diselesaikan!",
                 btnText: "LIHAT LAPORAN TAMAT →",
                 questions: [
                     {
@@ -675,6 +709,22 @@
                         err: "Tambahkan jarak mencancang (5) dan jarak mengufuk (8).",
                         explain: "Jarak mencancang = 5 unit; jarak mengufuk = 8 unit. Jumlah = 5 + 8 = <strong>13 unit</strong>.",
                         pos: [10, 6]
+                    },
+                    {
+                        text: "Sebuah dron terbang lurus dari (1,3) ke (4,7) dan seterusnya ke (7,11). Berapakah jumlah jarak lurus yang dilalui dron?",
+                        ans: ["10", "10unit"],
+                        clue: "Jarak dari (1,3) ke (4,7) ialah 5 unit, dan dari (4,7) ke (7,11) juga 5 unit.",
+                        err: "Kira jarak setiap segmen: √(3²+4²) + √(3²+4²) = 5 + 5.",
+                        explain: "Setiap segmen berjarak √(3² + 4²) = 5 unit. Jumlah jarak = 5 + 5 = <strong>10 unit</strong>.",
+                        pos: [7, 11]
+                    },
+                    {
+                        text: "Hitung jarak lurus antara (3,4) dengan (15,9).",
+                        ans: ["13", "13unit"],
+                        clue: "Beza x = 15 - 3 = 12; beza y = 9 - 4 = 5. Kira √(12² + 5²).",
+                        err: "Kira √[(15-3)² + (9-4)²] = √(144 + 25).",
+                        explain: "Jarak = √[(15 - 3)² + (9 - 4)²] = √(12² + 5²) = √169 = <strong>13 unit</strong>.",
+                        pos: [15, 9]
                     },
                     {
                         text: "Misi terakhir ke Pintu Keluar (12,12) dari (12,6). Berapakah jarak mencancang yang perlu dilalui?",
@@ -761,10 +811,10 @@
         resizeCanvas();
 
         function getBaseIsoMetrics() {
-            const tileW = Math.min(canvas.width / 26, 36);
-            const tileH = tileW * 0.52;
+            const tileW = Math.min(canvas.width / 25, 38);
+            const tileH = tileW * 0.54;
             const originX = canvas.width * 0.36;
-            const originY = canvas.height * 0.80;
+            const originY = canvas.height * 0.81;
             return { tileW, tileH, originX, originY };
         }
 
@@ -800,9 +850,9 @@
             const centerX = canvas.width * 0.42;
             const centerY = canvas.height * 0.54;
 
-            camera.targetZoom = 1.55;
-            camera.targetPanX = (centerX - rawX) * 1.55;
-            camera.targetPanY = (centerY - rawY) * 1.55;
+            camera.targetZoom = 1.5;
+            camera.targetPanX = (centerX - rawX) * 1.5;
+            camera.targetPanY = (centerY - rawY) * 1.5;
             document.getElementById('cam-status').innerText = `KAMERA: ZOOM PERGERAKAN (${Math.round(gx)},${Math.round(gy)})`;
         }
 
@@ -813,8 +863,35 @@
             document.getElementById('cam-status').innerText = "KAMERA: PANDANGAN PENUH SATAH";
         }
 
+        // Papan Satah 3D berketebalan sisi ungu gelap & pencahayaan jubin
         function drawIsoFloor() {
             const maxGrid = 15;
+            const slabDepth = 16 * camera.zoom;
+
+            const pOrigin = toIso(0, 0);
+            const pRight = toIso(maxGrid, 0);
+            const pTop = toIso(maxGrid, maxGrid);
+            const pLeft = toIso(0, maxGrid);
+
+            // Sisi tebal 3D papan satah (kiri & kanan bawah)
+            ctx.beginPath();
+            ctx.moveTo(pLeft.x, pLeft.y);
+            ctx.lineTo(pOrigin.x, pOrigin.y);
+            ctx.lineTo(pOrigin.x, pOrigin.y + slabDepth);
+            ctx.lineTo(pLeft.x, pLeft.y + slabDepth);
+            ctx.closePath();
+            ctx.fillStyle = "#2e1065";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(pOrigin.x, pOrigin.y);
+            ctx.lineTo(pRight.x, pRight.y);
+            ctx.lineTo(pRight.x, pRight.y + slabDepth);
+            ctx.lineTo(pOrigin.x, pOrigin.y + slabDepth);
+            ctx.closePath();
+            ctx.fillStyle = "#3b0764";
+            ctx.fill();
+
             for (let gx = 0; gx < maxGrid; gx++) {
                 for (let gy = 0; gy < maxGrid; gy++) {
                     const p1 = toIso(gx, gy);
@@ -830,141 +907,199 @@
                     ctx.closePath();
 
                     if (currentLevelIdx === 0) {
-                        ctx.fillStyle = "rgba(16, 185, 129, 0.14)";
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(168, 85, 247, 0.22)" : "rgba(126, 34, 206, 0.15)";
                     } else if (currentLevelIdx === 1) {
-                        ctx.fillStyle = "rgba(59, 130, 246, 0.15)";
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(192, 132, 252, 0.24)" : "rgba(107, 33, 168, 0.17)";
                     } else {
-                        ctx.fillStyle = "rgba(168, 85, 247, 0.15)";
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? "rgba(217, 70, 239, 0.24)" : "rgba(88, 28, 135, 0.18)";
                     }
                     ctx.fill();
 
-                    ctx.strokeStyle = "rgba(0, 240, 255, 0.25)";
+                    ctx.strokeStyle = "rgba(216, 180, 254, 0.28)";
                     ctx.lineWidth = 1;
                     ctx.stroke();
                 }
             }
 
-            const origin = toIso(0, 0);
+            // Bingkai luar papan satah ungu bercahaya
+            ctx.beginPath();
+            ctx.moveTo(pOrigin.x, pOrigin.y);
+            ctx.lineTo(pRight.x, pRight.y);
+            ctx.lineTo(pTop.x, pTop.y);
+            ctx.lineTo(pLeft.x, pLeft.y);
+            ctx.closePath();
+            ctx.strokeStyle = "#d8b4fe";
+            ctx.lineWidth = 2.2 * camera.zoom;
+            ctx.stroke();
+
+            // Paksi X & Paksi Y
             const xEnd = toIso(maxGrid + 0.6, 0);
             const yEnd = toIso(0, maxGrid + 0.6);
 
-            ctx.lineWidth = 3 * camera.zoom;
-            ctx.strokeStyle = "#00f0ff";
+            ctx.lineWidth = 3.2 * camera.zoom;
+            ctx.strokeStyle = "#e879f9";
             ctx.beginPath();
-            ctx.moveTo(origin.x, origin.y);
+            ctx.moveTo(pOrigin.x, pOrigin.y);
             ctx.lineTo(xEnd.x, xEnd.y);
             ctx.stroke();
 
-            ctx.strokeStyle = "#38bdf8";
+            ctx.strokeStyle = "#c084fc";
             ctx.beginPath();
-            ctx.moveTo(origin.x, origin.y);
+            ctx.moveTo(pOrigin.x, pOrigin.y);
             ctx.lineTo(yEnd.x, yEnd.y);
             ctx.stroke();
 
-            ctx.font = `bold ${Math.round(14 * camera.zoom)}px Orbitron`;
-            ctx.fillStyle = "#00f0ff";
+            ctx.font = `bold ${Math.round(15 * camera.zoom)}px Orbitron`;
+            ctx.fillStyle = "#f0abfc";
             ctx.fillText("X", xEnd.x + 8, xEnd.y + 4);
-            ctx.fillText("Y", yEnd.x - 14, yEnd.y - 4);
+            ctx.fillText("Y", yEnd.x - 16, yEnd.y - 4);
 
-            ctx.font = `bold ${Math.round(10.5 * camera.zoom)}px Orbitron`;
-            ctx.fillStyle = "#94a3b8";
+            ctx.font = `bold ${Math.round(11 * camera.zoom)}px Orbitron`;
+            ctx.fillStyle = "#e9d5ff";
             for (let i = 1; i <= maxGrid; i++) {
                 const px = toIso(i, 0);
-                ctx.fillText(i, px.x - 4, px.y + 14 * camera.zoom);
+                ctx.fillText(i, px.x - 4, px.y + 15 * camera.zoom);
                 const py = toIso(0, i);
-                ctx.fillText(i, py.x - 16 * camera.zoom, py.y + 4);
+                ctx.fillText(i, py.x - 17 * camera.zoom, py.y + 4);
             }
         }
 
+        // Objek 3D lebih besar & realistik dengan shading sisi + bumbung/struktur
         function draw3DLandmarkModel(lm) {
             const p = toIso(lm.x, lm.y);
-            const s = camera.zoom;
-            const pulse = Math.sin(Date.now() / 250) * 3 * s;
+            const s = camera.zoom * 1.42;
+            const pulse = Math.sin(Date.now() / 250) * 3.5 * s;
+
+            // Bayang-bayang isometrik
+            ctx.beginPath();
+            ctx.ellipse(p.x + 3 * s, p.y + 2 * s, (18 * s) + pulse, (9 * s) + pulse * 0.5, 0, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(10, 4, 24, 0.6)";
+            ctx.fill();
 
             ctx.beginPath();
-            ctx.ellipse(p.x, p.y, (16 * s) + pulse, (8 * s) + pulse * 0.5, 0, 0, Math.PI * 2);
-            ctx.fillStyle = lm.type === "exit" ? "rgba(16,185,129,0.35)" : "rgba(0,240,255,0.18)";
+            ctx.ellipse(p.x, p.y, 17 * s, 8.5 * s, 0, 0, Math.PI * 2);
+            ctx.fillStyle = lm.type === "exit" ? "rgba(192,132,252,0.35)" : "rgba(168,85,247,0.22)";
             ctx.fill();
-            ctx.strokeStyle = lm.type === "exit" ? "#10b981" : "#38bdf8";
-            ctx.lineWidth = 1.5 * s;
+            ctx.strokeStyle = "#e879f9";
+            ctx.lineWidth = 1.6 * s;
             ctx.stroke();
 
             if (lm.type === "bus_stop") {
-                ctx.fillStyle = "#1e293b";
-                ctx.fillRect(p.x - 11 * s, p.y - 24 * s, 3 * s, 24 * s);
-                ctx.fillRect(p.x + 8 * s, p.y - 24 * s, 3 * s, 24 * s);
-                ctx.fillStyle = "#f59e0b";
+                // Pondok bas 3D dengan bumbung cerun & bangku
+                ctx.fillStyle = "#3b0764";
+                ctx.fillRect(p.x - 13 * s, p.y - 26 * s, 4 * s, 26 * s);
+                ctx.fillRect(p.x + 9 * s, p.y - 26 * s, 4 * s, 26 * s);
+                ctx.fillStyle = "#9333ea";
+                ctx.fillRect(p.x - 9 * s, p.y - 8 * s, 18 * s, 4 * s);
+                // Bumbung 3D
+                ctx.fillStyle = "#c084fc";
                 ctx.beginPath();
-                ctx.moveTo(p.x - 15 * s, p.y - 24 * s);
-                ctx.lineTo(p.x + 15 * s, p.y - 24 * s);
-                ctx.lineTo(p.x + 11 * s, p.y - 30 * s);
-                ctx.lineTo(p.x - 11 * s, p.y - 30 * s);
+                ctx.moveTo(p.x - 17 * s, p.y - 25 * s);
+                ctx.lineTo(p.x + 17 * s, p.y - 25 * s);
+                ctx.lineTo(p.x + 13 * s, p.y - 33 * s);
+                ctx.lineTo(p.x - 13 * s, p.y - 33 * s);
                 ctx.closePath();
                 ctx.fill();
             } else if (lm.type === "shop") {
-                ctx.fillStyle = "#334155";
-                ctx.fillRect(p.x - 13 * s, p.y - 22 * s, 26 * s, 22 * s);
-                ctx.fillStyle = "#fb923c";
-                ctx.fillRect(p.x - 14 * s, p.y - 27 * s, 28 * s, 6 * s);
-                ctx.fillStyle = "#fde047";
-                ctx.fillRect(p.x - 8 * s, p.y - 12 * s, 7 * s, 8 * s);
-                ctx.fillRect(p.x + 2 * s, p.y - 12 * s, 7 * s, 8 * s);
-            } else if (lm.type === "house") {
-                ctx.fillStyle = "#475569";
-                ctx.fillRect(p.x - 11 * s, p.y - 19 * s, 22 * s, 19 * s);
-                ctx.fillStyle = "#a855f7";
+                // Kedai runcit 3D dua sisi pencahayaan + bumbung rata
+                ctx.fillStyle = "#4c1d95";
+                ctx.fillRect(p.x - 15 * s, p.y - 24 * s, 15 * s, 24 * s);
+                ctx.fillStyle = "#6d28d9";
+                ctx.fillRect(p.x, p.y - 24 * s, 15 * s, 24 * s);
+                ctx.fillStyle = "#d8b4fe";
                 ctx.beginPath();
-                ctx.moveTo(p.x - 15 * s, p.y - 19 * s);
+                ctx.moveTo(p.x - 17 * s, p.y - 24 * s);
                 ctx.lineTo(p.x, p.y - 31 * s);
-                ctx.lineTo(p.x + 15 * s, p.y - 19 * s);
+                ctx.lineTo(p.x + 17 * s, p.y - 24 * s);
+                ctx.lineTo(p.x, p.y - 18 * s);
                 ctx.closePath();
                 ctx.fill();
-            } else if (lm.type === "park") {
-                ctx.fillStyle = "#78350f";
-                ctx.fillRect(p.x - 2 * s, p.y - 14 * s, 4 * s, 14 * s);
-                ctx.fillStyle = "#22c55e";
+                // Tingkap bercahaya
+                ctx.fillStyle = "#fde047";
+                ctx.fillRect(p.x - 11 * s, p.y - 13 * s, 7 * s, 8 * s);
+                ctx.fillRect(p.x + 4 * s, p.y - 13 * s, 7 * s, 8 * s);
+            } else if (lm.type === "house") {
+                // Rumah 3D dengan dinding 2 tona & bumbung piramid/prisma
+                ctx.fillStyle = "#581c87";
+                ctx.fillRect(p.x - 13 * s, p.y - 20 * s, 13 * s, 20 * s);
+                ctx.fillStyle = "#7e22ce";
+                ctx.fillRect(p.x, p.y - 20 * s, 13 * s, 20 * s);
+                ctx.fillStyle = "#c084fc";
                 ctx.beginPath();
-                ctx.arc(p.x, p.y - 21 * s, 10 * s, 0, Math.PI * 2);
+                ctx.moveTo(p.x - 17 * s, p.y - 20 * s);
+                ctx.lineTo(p.x, p.y - 34 * s);
+                ctx.lineTo(p.x + 17 * s, p.y - 20 * s);
+                ctx.closePath();
+                ctx.fill();
+                ctx.fillStyle = "#f5d0fe";
+                ctx.fillRect(p.x - 3 * s, p.y - 10 * s, 6 * s, 10 * s);
+            } else if (lm.type === "park") {
+                // Taman dengan batang & sfera kanopi 3D
+                ctx.fillStyle = "#451a03";
+                ctx.fillRect(p.x - 2.5 * s, p.y - 16 * s, 5 * s, 16 * s);
+                ctx.fillStyle = "#7e22ce";
+                ctx.beginPath();
+                ctx.arc(p.x - 3 * s, p.y - 23 * s, 10 * s, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = "#c084fc";
+                ctx.beginPath();
+                ctx.arc(p.x + 3 * s, p.y - 26 * s, 9 * s, 0, Math.PI * 2);
                 ctx.fill();
             } else if (lm.type === "school") {
-                ctx.fillStyle = "#1e3a8a";
-                ctx.fillRect(p.x - 15 * s, p.y - 25 * s, 30 * s, 25 * s);
-                ctx.fillStyle = "#60a5fa";
-                ctx.fillRect(p.x - 11 * s, p.y - 20 * s, 6 * s, 6 * s);
-                ctx.fillRect(p.x - 2 * s, p.y - 20 * s, 6 * s, 6 * s);
-                ctx.fillRect(p.x + 7 * s, p.y - 20 * s, 6 * s, 6 * s);
-                ctx.strokeStyle = "#f8fafc";
-                ctx.lineWidth = 1.5 * s;
+                // Bangunan sekolah 3D bertingkat + bumbung & tiang bendera
+                ctx.fillStyle = "#3b0764";
+                ctx.fillRect(p.x - 17 * s, p.y - 28 * s, 17 * s, 28 * s);
+                ctx.fillStyle = "#6b21a8";
+                ctx.fillRect(p.x, p.y - 28 * s, 17 * s, 28 * s);
+                ctx.fillStyle = "#e879f9";
+                ctx.fillRect(p.x - 18 * s, p.y - 32 * s, 36 * s, 5 * s);
+
+                ctx.fillStyle = "#fae8ff";
+                ctx.fillRect(p.x - 12 * s, p.y - 21 * s, 6 * s, 6 * s);
+                ctx.fillRect(p.x + 2 * s, p.y - 21 * s, 6 * s, 6 * s);
+                ctx.fillRect(p.x + 10 * s, p.y - 21 * s, 5 * s, 6 * s);
+
+                ctx.strokeStyle = "#faf5ff";
+                ctx.lineWidth = 1.6 * s;
                 ctx.beginPath();
-                ctx.moveTo(p.x + 16 * s, p.y);
-                ctx.lineTo(p.x + 16 * s, p.y - 34 * s);
+                ctx.moveTo(p.x + 19 * s, p.y);
+                ctx.lineTo(p.x + 19 * s, p.y - 40 * s);
                 ctx.stroke();
-                ctx.fillStyle = "#ef4444";
-                ctx.fillRect(p.x + 16 * s, p.y - 34 * s, 8 * s, 5 * s);
+                ctx.fillStyle = "#f0abfc";
+                ctx.fillRect(p.x + 19 * s, p.y - 40 * s, 9 * s, 6 * s);
             } else if (lm.type === "exit") {
-                const w = 26 * s, h = 44 * s;
-                ctx.fillStyle = "#0f172a";
-                ctx.strokeStyle = "#00f0ff";
-                ctx.lineWidth = 2.2 * s;
+                // Gerbang Pintu Keluar 3D bercahaya ungu & emas
+                const w = 30 * s, h = 48 * s;
+                ctx.fillStyle = "#2e1065";
+                ctx.strokeStyle = "#e879f9";
+                ctx.lineWidth = 2.4 * s;
                 ctx.fillRect(p.x - w / 2, p.y - h, w, h);
                 ctx.strokeRect(p.x - w / 2, p.y - h, w, h);
 
                 const grad = ctx.createLinearGradient(0, p.y - h, 0, p.y);
-                grad.addColorStop(0, "rgba(0, 240, 255, 0.85)");
-                grad.addColorStop(1, "rgba(16, 185, 129, 0.45)");
+                grad.addColorStop(0, "rgba(232, 121, 249, 0.88)");
+                grad.addColorStop(1, "rgba(126, 34, 206, 0.45)");
                 ctx.fillStyle = grad;
-                ctx.fillRect(p.x - w / 2 + 3 * s, p.y - h + 3 * s, w - 6 * s, h - 3 * s);
+                ctx.fillRect(p.x - w / 2 + 4 * s, p.y - h + 4 * s, w - 8 * s, h - 4 * s);
             } else {
-                ctx.fillStyle = "#0284c7";
+                // Menara pusat (0,0) 3D
+                ctx.fillStyle = "#7e22ce";
                 ctx.beginPath();
-                ctx.arc(p.x, p.y - 8 * s, 7 * s, 0, Math.PI * 2);
+                ctx.moveTo(p.x - 10 * s, p.y);
+                ctx.lineTo(p.x, p.y - 20 * s);
+                ctx.lineTo(p.x + 10 * s, p.y);
+                ctx.closePath();
+                ctx.fill();
+                ctx.fillStyle = "#e879f9";
+                ctx.beginPath();
+                ctx.arc(p.x, p.y - 22 * s, 5 * s, 0, Math.PI * 2);
                 ctx.fill();
             }
 
-            ctx.font = `bold ${Math.round(10.5 * s)}px Rajdhani`;
-            ctx.fillStyle = lm.type === "exit" ? "#34d399" : "#f1f5f9";
-            const labelOffsetY = lm.type === "exit" ? -48 * s : -36 * s;
-            ctx.fillText(`${lm.label} (${lm.x},${lm.y})`, p.x - 26 * s, p.y + labelOffsetY);
+            ctx.font = `bold ${Math.round(11 * s)}px Rajdhani`;
+            ctx.fillStyle = "#fae8ff";
+            const labelOffsetY = lm.type === "exit" ? -52 * s : -39 * s;
+            ctx.fillText(`${lm.label} (${lm.x},${lm.y})`, p.x - 28 * s, p.y + labelOffsetY);
         }
 
         function drawLandmarksAndPath() {
@@ -978,8 +1113,8 @@
                 const currP = toIso(playerPos.x, playerPos.y);
                 ctx.lineTo(currP.x, currP.y);
 
-                ctx.strokeStyle = "#f59e0b";
-                ctx.lineWidth = 3.5 * camera.zoom;
+                ctx.strokeStyle = "#f0abfc";
+                ctx.lineWidth = 3.8 * camera.zoom;
                 ctx.setLineDash([7 * camera.zoom, 4 * camera.zoom]);
                 ctx.stroke();
                 ctx.setLineDash([]);
@@ -988,9 +1123,10 @@
             landmarks.forEach(lm => draw3DLandmarkModel(lm));
         }
 
+        // Watak Pegawai Navigasi 3D bersaiz besar bertema ungu
         function drawCharacter(gx, gy) {
             const p = toIso(gx, gy);
-            const s = camera.zoom * 1.28;
+            const s = camera.zoom * 1.55;
             const bounce = isWalking ? Math.abs(Math.sin(walkCycle)) * 7 * s : Math.sin(Date.now() / 280) * 2.5 * s;
             const legSwing = isWalking ? Math.sin(walkCycle) * 6 * s : 0;
 
@@ -998,50 +1134,52 @@
             const cy = p.y - bounce;
 
             ctx.beginPath();
-            ctx.ellipse(p.x, p.y, 13 * s, 6.5 * s, 0, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
+            ctx.ellipse(p.x, p.y, 14 * s, 7 * s, 0, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(10, 4, 24, 0.65)";
             ctx.fill();
 
-            ctx.strokeStyle = "#0f172a";
-            ctx.lineWidth = 4.5 * s;
+            ctx.strokeStyle = "#1e1b4b";
+            ctx.lineWidth = 4.8 * s;
             ctx.lineCap = "round";
             ctx.beginPath();
-            ctx.moveTo(cx - 3.5 * s, cy - 13 * s);
-            ctx.lineTo(cx - 4.5 * s - legSwing, cy - 1 * s);
-            ctx.moveTo(cx + 3.5 * s, cy - 13 * s);
-            ctx.lineTo(cx + 4.5 * s + legSwing, cy - 1 * s);
+            ctx.moveTo(cx - 4 * s, cy - 13 * s);
+            ctx.lineTo(cx - 5 * s - legSwing, cy - 1 * s);
+            ctx.moveTo(cx + 4 * s, cy - 13 * s);
+            ctx.lineTo(cx + 5 * s + legSwing, cy - 1 * s);
             ctx.stroke();
 
-            ctx.fillStyle = "#0284c7";
+            // Badan jaket ungu neon
+            ctx.fillStyle = "#7e22ce";
             ctx.beginPath();
-            ctx.roundRect(cx - 8 * s, cy - 28 * s, 16 * s, 16 * s, 4 * s);
+            ctx.roundRect(cx - 8.5 * s, cy - 29 * s, 17 * s, 17 * s, 4 * s);
             ctx.fill();
-            ctx.strokeStyle = "#38bdf8";
-            ctx.lineWidth = 1.4 * s;
+            ctx.strokeStyle = "#e879f9";
+            ctx.lineWidth = 1.5 * s;
             ctx.stroke();
 
+            // Kepala & visor ungu
             ctx.fillStyle = "#fed7aa";
             ctx.beginPath();
-            ctx.arc(cx, cy - 36 * s, 7.2 * s, 0, Math.PI * 2);
+            ctx.arc(cx, cy - 37 * s, 7.5 * s, 0, Math.PI * 2);
             ctx.fill();
 
-            ctx.fillStyle = "#1e1b4b";
+            ctx.fillStyle = "#3b0764";
             ctx.beginPath();
-            ctx.arc(cx, cy - 38 * s, 7.2 * s, Math.PI, Math.PI * 2);
+            ctx.arc(cx, cy - 39 * s, 7.5 * s, Math.PI, Math.PI * 2);
             ctx.fill();
 
-            ctx.fillStyle = "#00f0ff";
-            ctx.fillRect(cx - 5 * s, cy - 37 * s, 10 * s, 2.5 * s);
+            ctx.fillStyle = "#f0abfc";
+            ctx.fillRect(cx - 5 * s, cy - 38 * s, 10 * s, 2.6 * s);
 
             if (!isWalking) {
                 const bx = cx + 14 * s;
-                const by = cy - 52 * s;
-                ctx.fillStyle = "#ffffff";
+                const by = cy - 54 * s;
+                ctx.fillStyle = "#faf5ff";
                 ctx.beginPath();
                 ctx.roundRect(bx - 9 * s, by - 11 * s, 18 * s, 17 * s, 4 * s);
                 ctx.fill();
 
-                ctx.fillStyle = "#0f172a";
+                ctx.fillStyle = "#3b0764";
                 ctx.font = `bold ${Math.round(13 * s)}px Orbitron`;
                 ctx.fillText("?", bx - 4.5 * s, by + 2 * s);
             }
