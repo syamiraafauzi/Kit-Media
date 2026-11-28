@@ -6,7 +6,7 @@
     <title>Escape Room : Misi Menyelamatkan Diri — Bab 7 - Koordinat (Tingkatan 2)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Pemboleh ubah warna tema ungu neon & gaya dossier/cutout taktil */
+        /* Pemboleh ubah warna tema ungu neon & gaya dossier taktil */
         :root {
             --font-display: 'Orbitron', 'Trebuchet MS', 'Segoe UI', sans-serif;
             --font-body: 'Rajdhani', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -16,7 +16,6 @@
             --violet-glow: #d8b4fe;
             --amber-neon: #f59e0b;
             --parchment: #e7dec8;
-            --parchment-dark: #d2c4a5;
             --ink-dark: #1b1429;
         }
 
@@ -39,7 +38,7 @@
             font-family: var(--font-display);
         }
 
-        /* Lapisan skrin penuh (Halaman 1, Halaman 2, Halaman 3) */
+        /* Lapisan skrin penuh untuk navigasi pelbagai halaman */
         .screen-layer {
             position: fixed;
             inset: 0;
@@ -57,10 +56,9 @@
             z-index: 100;
         }
 
-        /* Kertas dossier / papan misi bertema ungu */
         .mission-card {
             width: 100%;
-            max-width: 880px;
+            max-width: 900px;
             background: rgba(21, 10, 42, 0.96);
             border: 2px solid var(--purple-neon);
             border-radius: 22px;
@@ -69,7 +67,6 @@
             pointer-events: auto;
         }
 
-        /* Gaya potongan kertas / label taktil inspirasi tangkapan skrin */
         .cutout-label {
             display: inline-block;
             font-family: var(--font-display);
@@ -123,7 +120,7 @@
             background: linear-gradient(135deg, #9333ea, #6b21a8);
             color: #ffffff;
             font-family: var(--font-display);
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0.6px;
             cursor: pointer;
@@ -154,7 +151,7 @@
             background: rgba(46, 20, 89, 0.82);
             color: #f3e8ff;
             font-family: var(--font-display);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 700;
             cursor: pointer;
             transition: transform 0.14s ease, background 0.2s ease;
@@ -166,7 +163,7 @@
             background: rgba(88, 28, 135, 0.92);
         }
 
-        /* Nod aras interaktif pada Peta Keseluruhan (Halaman 2) */
+        /* Nod aras interaktif pada Peta Keseluruhan */
         .map-stage-node {
             position: absolute;
             transform: translate(-50%, -50%);
@@ -218,14 +215,14 @@
         }
 
         /* Susun atur arena permainan aktif */
-        #gameplay-arena {
+        #game-stage {
             display: none;
             flex-direction: column;
             width: 100%;
             height: 100%;
         }
 
-        #gameplay-arena.is-active {
+        #game-stage.is-active {
             display: flex;
         }
 
@@ -394,7 +391,7 @@
             border: 2px solid var(--purple-neon);
             border-radius: 18px;
             padding: 24px;
-            max-width: 500px;
+            max-width: 520px;
             width: 100%;
             box-shadow: 0 0 40px rgba(168, 85, 247, 0.42);
             text-align: center;
@@ -404,15 +401,15 @@
 </head>
 <body>
 
-    <!-- HALAMAN 1: MUKA HADAPAN (WELCOME / ENTRY SCREEN) -->
-    <section id="page-1-welcome" class="screen-layer is-active" aria-label="Halaman 1 Mula Misi">
+    <!-- 1. HALAMAN MUKA HADAPAN (WELCOME SCREEN) -->
+    <section id="welcome-screen" class="screen-layer is-active" aria-label="Halaman Mula Misi">
         <div class="mission-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <span class="cutout-label">BAB 7 - KOORDINAT (TINGKATAN 2)</span>
                 <span class="purple-pill">SP 7.1 JARAK • ESCAPE ROOM</span>
             </div>
 
-            <!-- Ilustrasi SVG misi menyelamatkan diri: hutan, sungai, anjing liar, lokasi selamat -->
+            <!-- Ilustrasi SVG misi menyelamatkan diri -->
             <div class="rounded-2xl overflow-hidden border border-purple-400/40 bg-[#0d061f] p-3 mb-4">
                 <svg viewBox="0 0 720 165" class="w-full h-36 sm:h-40 block" role="img" aria-label="Ilustrasi Hutan, Sungai, Zon Anjing Liar dan Lokasi Selamat">
                     <defs>
@@ -427,7 +424,7 @@
                         </linearGradient>
                     </defs>
                     <rect width="720" height="165" rx="14" fill="url(#bgSky)"/>
-                    <g stroke="rgba(216,180,254,0.15)" stroke-width="1">
+                    <g stroke="rgba(216,180,254,0.12)" stroke-width="1">
                         <line x1="0" y1="41" x2="720" y2="41"/>
                         <line x1="0" y1="82" x2="720" y2="82"/>
                         <line x1="0" y1="123" x2="720" y2="123"/>
@@ -497,8 +494,64 @@
         </div>
     </section>
 
-    <!-- HALAMAN 2: PETA KESELURUHAN & PEMILIHAN ARAS (MAP / STAGES) -->
-    <section id="page-2-map" class="screen-layer" aria-label="Halaman 2 Peta Keseluruhan dan Pemilihan Aras">
+    <!-- 2. HALAMAN CARA BERMAIN (HOW TO PLAY SCREEN) -->
+    <section id="howto-screen" class="screen-layer" aria-label="Halaman Cara Bermain">
+        <div class="mission-card">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="cutout-label">CARA BERMAIN & PANDUAN PETUNJUK</span>
+                <span class="purple-pill">👤 <span id="howto-player-name">Peserta</span> (<span id="howto-player-class">Kelas</span>)</span>
+            </div>
+
+            <h2 class="font-display text-xl sm:text-2xl font-black text-white mb-1">
+                Panduan Menyelamatkan Diri di Peta Koordinat
+            </h2>
+            <p class="text-purple-200 text-sm sm:text-base mb-4">
+                Baca langkah bermain serta fungsi <strong>Hints (Petunjuk)</strong> dan maklum balas <strong>Try again!</strong> sebelum memilih aras pada peta.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                <div class="rounded-2xl bg-purple-950/85 border border-purple-400/50 p-3.5">
+                    <div class="font-display text-xs text-fuchsia-300 mb-1">1. PILIH ARAS DI PETA</div>
+                    <p class="text-sm text-purple-100 leading-snug">
+                        Mulakan dengan <strong>Aras 1 (7×7)</strong>, seterusnya <strong>Aras 2 (14×14)</strong> dan <strong>Aras 3 (20×20)</strong> setelah setiap aras selesai.
+                    </p>
+                </div>
+
+                <div class="rounded-2xl bg-purple-950/85 border border-purple-400/50 p-3.5">
+                    <div class="font-display text-xs text-fuchsia-300 mb-1">2. KIRA JARAK SP 7.1</div>
+                    <p class="text-sm text-purple-100 leading-snug">
+                        Hitung jarak mengufuk, jarak mencancang, atau jarak antara dua titik berdasarkan situasi pada peta dan masukkan nilai jawapannya.
+                    </p>
+                </div>
+
+                <div class="rounded-2xl bg-purple-950/85 border border-purple-400/50 p-3.5">
+                    <div class="font-display text-xs text-fuchsia-300 mb-1">3. FUNGSI HINTS</div>
+                    <p class="text-sm text-purple-100 leading-snug">
+                        Tekan butang <strong>💡 Hints</strong> pada bar atas apabila memerlukan pembayang formula atau koordinat yang terlibat tanpa mendedahkan jawapan akhir.
+                    </p>
+                </div>
+
+                <div class="rounded-2xl bg-purple-950/85 border border-purple-400/50 p-3.5">
+                    <div class="font-display text-xs text-fuchsia-300 mb-1">4. TRY AGAIN & PENERANGAN</div>
+                    <p class="text-sm text-purple-100 leading-snug">
+                        Jika jawapan kurang tepat, tetingkap <strong>Try again!</strong> akan memaparkan langkah penyelesaian supaya anda boleh mencuba semula dengan yakin.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between gap-3">
+                <button type="button" id="btn-howto-back" class="ghost-btn">
+                    ← KEMBALI
+                </button>
+                <button type="button" id="btn-howto-to-map" class="action-btn">
+                    TERUSKAN KE PETA ARAS →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. HALAMAN PETA KESELURUHAN & PEMILIHAN ARAS (MAP SCREEN) -->
+    <section id="map-screen" class="screen-layer" aria-label="Halaman Peta Keseluruhan dan Pemilihan Aras">
         <div class="mission-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <div class="flex flex-wrap items-center gap-2">
@@ -516,7 +569,7 @@
             <div class="relative rounded-2xl overflow-hidden border-2 border-purple-400/50 bg-[#0d061d] mb-4">
                 <svg viewBox="0 0 740 270" class="w-full h-56 sm:h-64 block" role="img" aria-label="Peta Keseluruhan Misi dengan Aras 1, Aras 2 dan Aras 3">
                     <rect width="740" height="270" fill="#120826"/>
-                    <g stroke="rgba(216,180,254,0.14)" stroke-width="1">
+                    <g stroke="rgba(216,180,254,0.12)" stroke-width="1">
                         <line x1="0" y1="54" x2="740" y2="54"/>
                         <line x1="0" y1="108" x2="740" y2="108"/>
                         <line x1="0" y1="162" x2="740" y2="162"/>
@@ -568,8 +621,8 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-between gap-3">
-                <button type="button" id="btn-p2-back" class="ghost-btn">
-                    ← HALAMAN 1
+                <button type="button" id="btn-p2-back-howto" class="ghost-btn">
+                    ← CARA BERMAIN
                 </button>
                 <div id="p2-guide-text" class="text-sm font-semibold text-purple-200">
                     Tekan nod <strong>ARAS 1 (RENDAH)</strong> pada peta untuk membuka nota formula.
@@ -578,8 +631,8 @@
         </div>
     </section>
 
-    <!-- HALAMAN 3: NOTA RINGKAS & FORMULA SP 7.1 (SEBELUM MASUK SOALAN ARAS) -->
-    <section id="page-3-notes" class="screen-layer" aria-label="Halaman 3 Nota Ringkas dan Formula SP 7.1">
+    <!-- 4. HALAMAN NOTA RINGKAS & FORMULA SP 7.1 (FORMULA SCREEN) -->
+    <section id="formula-screen" class="screen-layer" aria-label="Halaman Nota Ringkas dan Formula SP 7.1">
         <div class="mission-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <span class="cutout-label" id="p3-stage-badge">NOTA FORMULA • ARAS 1 (RENDAH)</span>
@@ -590,7 +643,7 @@
                 Nota Ringkas & Formula Jarak (SP 7.1)
             </h2>
             <p id="p3-subtitle" class="text-purple-200 text-sm sm:text-base mb-4">
-                Ulang kaji formula penting SP 7.1 sebelum memulakan soalan pada satah koordinat.
+                Ulang kaji formula penting SP 7.1 sebelum memulakan soalan pada peta koordinat.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
@@ -632,8 +685,8 @@
         </div>
     </section>
 
-    <!-- ARENA PERMAINAN AKTIF -->
-    <div id="gameplay-arena">
+    <!-- 5. ARENA PERMAINAN AKTIF (GAME STAGE) -->
+    <div id="game-stage">
         <header class="top-hud">
             <div class="flex flex-wrap items-center gap-2">
                 <div class="hud-chip user-chip">👤 <span id="hud-name">Peserta</span> (<span id="hud-class">Kelas</span>)</div>
@@ -660,7 +713,7 @@
 
             <div class="canvas-status-strip">
                 <div id="cam-status-pill" class="status-badge">KAMERA: PANDANGAN PENUH (7×7)</div>
-                <div id="coord-status-pill" class="status-badge">KOORDINAT: (0.0, 0.0)</div>
+                <div id="coord-status-pill" class="status-badge">RUJUKAN KOORDINAT SAMAR: (0.0, 0.0)</div>
             </div>
 
             <aside class="question-panel" aria-label="Panel Soalan Jarak SP 7.1">
@@ -681,10 +734,9 @@
                 </p>
 
                 <div id="panel-hint-box" class="hidden mb-2.5 px-3 py-2 rounded-lg bg-purple-600/25 border-l-4 border-fuchsia-400 text-purple-100 text-sm"></div>
-                <div id="panel-err-box" class="hidden mb-2.5 px-3 py-2 rounded-lg bg-red-500/25 border-l-4 border-red-400 text-red-100 text-sm"></div>
 
                 <div class="flex gap-2 mb-2.5">
-                    <input type="text" id="answer-field" class="input-control !py-2.5 !text-base font-display" placeholder="Masukkan jawapan...">
+                    <input type="text" id="answer-field" class="input-control !py-2.5 !text-base font-display" placeholder="Masukkan nilai jarak...">
                     <button type="button" id="btn-verify-answer" class="action-btn !py-2.5 !px-3.5 !text-xs">
                         SAHKAN
                     </button>
@@ -712,7 +764,21 @@
         </main>
     </div>
 
-    <!-- MODAL PENERANGAN RINGKAS JAWAPAN BETUL -->
+    <!-- MODAL TRY AGAIN! (JAWAPAN SALAH + LANGKAH PENYELESAIAN) -->
+    <div id="popup-try-again" class="popup-backdrop" role="dialog" aria-modal="true">
+        <div class="popup-box" style="border-color:#f87171;">
+            <h2 class="font-display text-xl font-black text-red-300 mb-1">🔄 Try again!</h2>
+            <p class="text-sm font-semibold text-red-100 mb-3">
+                Jawapan anda belum tepat. Teliti langkah penyelesaian di bawah dan cuba semula:
+            </p>
+            <div id="try-again-steps" class="bg-purple-950/90 border border-red-400/50 rounded-xl p-3.5 text-left text-purple-50 text-sm sm:text-base leading-relaxed mb-4"></div>
+            <button type="button" id="btn-try-again-close" class="action-btn w-full">
+                CUBA SEMULA →
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL TAHNIAH (JAWAPAN BETUL + PENERANGAN RINGKAS SP 7.1) -->
     <div id="popup-correct" class="popup-backdrop" role="dialog" aria-modal="true">
         <div class="popup-box">
             <h2 class="font-display text-xl font-black text-fuchsia-300 mb-1">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
@@ -724,7 +790,7 @@
         </div>
     </div>
 
-    <!-- MODAL TAMAT ARAS -> KEMBALI KE PETA (HALAMAN 2) -->
+    <!-- MODAL TAMAT ARAS -> KEMBALI KE PETA -->
     <div id="popup-stage-done" class="popup-backdrop" role="dialog" aria-modal="true">
         <div class="popup-box">
             <div class="text-4xl mb-2">🗺️✨</div>
@@ -763,7 +829,7 @@
         <div class="popup-box">
             <h2 class="font-display text-xl font-black text-fuchsia-300 mb-2">🏆 MISI MENYELAMATKAN DIRI BERJAYA!</h2>
             <p class="text-purple-100 text-base mb-3">
-                Tahniah <strong id="win-student-name" class="text-white">Peserta</strong> (<strong id="win-student-class" class="text-purple-200">Kelas</strong>)! Anda telah berjaya tiba di Lokasi Selamat <strong>(18,18)</strong> pada satah skala <strong>20×20</strong> dan menyelesaikan semua 15 soalan SP 7.1.
+                Tahniah <strong id="win-student-name" class="text-white">Peserta</strong> (<strong id="win-student-class" class="text-purple-200">Kelas</strong>)! Anda telah berjaya tiba di Lokasi Selamat <strong>(18,18)</strong> pada peta skala <strong>20×20</strong> dan menyelesaikan semua 15 soalan SP 7.1.
             </p>
             <div class="p-3 rounded-xl bg-purple-950/90 border border-purple-400/60 mb-4 text-sm text-purple-100">
                 <div><strong>REKOD MASA TAMAT:</strong> <span id="win-clock" class="font-display text-amber-300">00:00</span></div>
@@ -793,7 +859,7 @@
                         this.startAmbient();
                     }
                 } catch (e) {
-                    // Abaikan sekatan audio pelayar sebelum interaksi
+                    // Tangani sekatan audio sebelum interaksi pengguna
                 }
             },
 
@@ -947,15 +1013,15 @@
                 title: "ARAS 1 (RENDAH)",
                 gridSize: 7,
                 tag: "ARAS 1 • SKALA 7×7 • JARAK MENGUFUK & MENCANCANG",
-                focusNote: "Fokus Aras 1: Satah bermula pada skala 7×7. Kenal pasti koordinat yang sama (x sama atau y sama) untuk mengira jarak mengufuk |x₂ − x₁| atau jarak mencancang |y₂ − y₁|.",
+                focusNote: "Fokus Aras 1: Peta bermula pada skala 7×7. Kenal pasti koordinat yang sama (x sama atau y sama) untuk mengira jarak mengufuk |x₂ − x₁| atau jarak mencancang |y₂ − y₁|.",
                 doneTitle: "✅ ARAS 1 (RENDAH) SELESAI!",
-                doneDesc: "Tahniah! Anda berjaya menyelesaikan 5 soalan Aras 1 pada peta 7×7. Kembali ke Peta Aras dan tekan nod ARAS 2 (SEDERHANA) untuk membuka satah 14×14.",
+                doneDesc: "Tahniah! Anda berjaya menyelesaikan 5 soalan Aras 1 pada peta 7×7. Kembali ke Peta Aras dan tekan nod ARAS 2 (SEDERHANA) untuk membuka peta 14×14.",
                 questions: [
                     {
-                        text: "Dari pondok permulaan (0,0), anda menyusuri jalan lurus ke simpang (3,0). Berapakah jarak mengufuk yang telah dilalui?",
+                        text: "Dari pondok permulaan (0,0), anda menyusuri jalan lurus ke simpang (3,0). Berapakah jarak mengufuk yang dilalui?",
                         ans: ["3", "3unit"],
                         clue: "Jarak mengufuk = |x₂ − x₁| apabila nilai y = 0 sama.",
-                        err: "Tolakkan nilai x: |3 − 0|.",
+                        solutionSteps: "1. Kenal pasti dua titik: (0,0) dan (3,0) — nilai y = 0 sama.<br>2. Guna formula jarak mengufuk: |x₂ − x₁| = |3 − 0|.<br>3. Jawapan tepat ialah <strong>3 unit</strong>.",
                         explain: "Jarak mengufuk = |3 − 0| = <strong>3 unit</strong> sepanjang jalan selari paksi-x.",
                         pos: [3, 0]
                     },
@@ -963,7 +1029,7 @@
                         text: "Dari simpang (3,0), anda bergerak ke arah utara di pinggir hutan ke (3,4). Berapakah jarak mencancang perjalanan tersebut?",
                         ans: ["4", "4unit"],
                         clue: "Jarak mencancang = |y₂ − y₁| apabila koordinat x = 3 tetap.",
-                        err: "Kira beza koordinat y: |4 − 0|.",
+                        solutionSteps: "1. Kenal pasti koordinat x = 3 adalah tetap antara (3,0) dan (3,4).<br>2. Guna formula jarak mencancang: |y₂ − y₁| = |4 − 0|.<br>3. Jawapan tepat ialah <strong>4 unit</strong>.",
                         explain: "Oleh sebab x = 3 sama, jarak mencancang = |4 − 0| = <strong>4 unit</strong>.",
                         pos: [3, 4]
                     },
@@ -971,7 +1037,7 @@
                         text: "Dari (3,4), anda menyusuri denai hutan ke arah barat ke (1,4). Berapakah jarak mengufuknya?",
                         ans: ["2", "2unit"],
                         clue: "Jarak sentiasa positif. Kira |1 − 3|.",
-                        err: "Kira |1 − 3| = 2.",
+                        solutionSteps: "1. Nilai y = 4 sama antara (3,4) dan (1,4).<br>2. Kira |x₂ − x₁| = |1 − 3| = |-2|.<br>3. Jarak sentiasa positif, jadi jawapannya ialah <strong>2 unit</strong>.",
                         explain: "Jarak mengufuk = |1 − 3| = |-2| = <strong>2 unit</strong>.",
                         pos: [1, 4]
                     },
@@ -979,7 +1045,7 @@
                         text: "Dari (1,4), anda menuruni cerun kecil ke (1,1). Berapakah jarak mencancang yang anda turuni?",
                         ans: ["3", "3unit"],
                         clue: "Kira perbezaan nilai y: |1 − 4|.",
-                        err: "Tolakkan nilai y: |1 − 4| = 3.",
+                        solutionSteps: "1. Koordinat x = 1 sama antara (1,4) dan (1,1).<br>2. Kira |y₂ − y₁| = |1 − 4| = |-3|.<br>3. Jawapan tepat ialah <strong>3 unit</strong>.",
                         explain: "Jarak mencancang = |1 − 4| = |-3| = <strong>3 unit</strong>.",
                         pos: [1, 1]
                     },
@@ -987,7 +1053,7 @@
                         text: "Dari (1,1), anda bergerak mengufuk ke pos kawalan (6,1) bagi menamatkan Aras 1. Berapakah jarak mengufuknya?",
                         ans: ["5", "5unit"],
                         clue: "Kira |6 − 1| pada garis y = 1.",
-                        err: "Tolakkan koordinat x: |6 − 1|.",
+                        solutionSteps: "1. Nilai y = 1 sama antara (1,1) dan (6,1).<br>2. Kira jarak mengufuk: |6 − 1| = 5.<br>3. Jawapan tepat ialah <strong>5 unit</strong>.",
                         explain: "Jarak mengufuk = |6 − 1| = <strong>5 unit</strong> ke pos kawalan Aras 1.",
                         pos: [6, 1]
                     }
@@ -999,15 +1065,15 @@
                 title: "ARAS 2 (SEDERHANA)",
                 gridSize: 14,
                 tag: "ARAS 2 • SKALA 14×14 • SUNGAI & ANJING LIAR",
-                focusNote: "Fokus Aras 2: Satah membesar ke skala 14×14. Gunakan d = √[(x₂ − x₁)² + (y₂ − y₁)²] untuk mengira jarak lurus merentasi sungai dan kawasan berhampiran anjing liar.",
+                focusNote: "Fokus Aras 2: Peta membesar ke skala 14×14. Gunakan d = √[(x₂ − x₁)² + (y₂ − y₁)²] untuk mengira jarak lurus merentasi sungai dan kawasan berhampiran anjing liar.",
                 doneTitle: "✅ ARAS 2 (SEDERHANA) SELESAI!",
-                doneDesc: "Hebat! Anda berjaya melintasi laluan sungai dan anjing liar di peta 14×14. Kembali ke Peta Aras dan tekan nod ARAS 3 (TINGGI) untuk membuka satah 20×20.",
+                doneDesc: "Hebat! Anda berjaya melintasi laluan sungai dan anjing liar di peta 14×14. Kembali ke Peta Aras dan tekan nod ARAS 3 (TINGGI) untuk membuka peta 20×20.",
                 questions: [
                     {
                         text: "Kelompok anjing liar berkeliaran di laluan lurus dari (2,1) ke (8,5). Hitung jarak lurus antara dua titik tersebut (1 tempat perpuluhan).",
                         ans: ["7.2", "7.2unit"],
                         clue: "Beza x = 6 dan beza y = 4. Kira √(6² + 4²) = √52.",
-                        err: "Gunakan d = √[(8−2)² + (5−1)²] = √52 ≈ 7.2.",
+                        solutionSteps: "1. Beza x = 8 − 2 = 6; beza y = 5 − 1 = 4.<br>2. Guna rumus: d = √(6² + 4²) = √(36 + 16) = √52.<br>3. Bundarkan kepada 1 tempat perpuluhan: <strong>7.2</strong>.",
                         explain: "d = √[(8 − 2)² + (5 − 1)²] = √(36 + 16) = √52 ≈ <strong>7.2 unit</strong>.",
                         pos: [8, 5]
                     },
@@ -1015,7 +1081,7 @@
                         text: "Untuk melintas tebing sungai secara pepenjuru dari (8,5) ke batu pijakan (13,2), berapakah jarak lurusnya (1 tempat perpuluhan)?",
                         ans: ["5.8", "5.8unit"],
                         clue: "Beza x = 5 dan beza y = 3. Kira √(5² + 3²) = √34.",
-                        err: "Kira √[(13−8)² + (2−5)²] = √34 ≈ 5.8.",
+                        solutionSteps: "1. Beza x = 13 − 8 = 5; beza y = 2 − 5 = -3.<br>2. Kira d = √(5² + (-3)²) = √(25 + 9) = √34.<br>3. Bundarkan kepada 1 tempat perpuluhan: <strong>5.8</strong>.",
                         explain: "d = √[(13 − 8)² + (2 − 5)²] = √(25 + 9) = √34 ≈ <strong>5.8 unit</strong>.",
                         pos: [13, 2]
                     },
@@ -1023,7 +1089,7 @@
                         text: "Seekor anjing liar berada di (11,5). Jika anda berada di (8,5), berapakah jarak mengufuk anda daripada anjing liar tersebut?",
                         ans: ["3", "3unit"],
                         clue: "Kedua-dua titik mempunyai y = 5. Kira |11 − 8|.",
-                        err: "Tolakkan nilai x: |11 − 8|.",
+                        solutionSteps: "1. Kedua-dua titik berada pada garis y = 5 yang sama.<br>2. Kira jarak mengufuk: |11 − 8| = 3.<br>3. Jawapan tepat ialah <strong>3 unit</strong>.",
                         explain: "Oleh sebab y = 5 sama, jarak mengufuk = |11 − 8| = <strong>3 unit</strong>.",
                         pos: [11, 5]
                     },
@@ -1031,7 +1097,7 @@
                         text: "Dari (11,5), anda mendaki tanah tinggi ke (9,11) bagi memantau arus sungai. Hitung jarak lurusnya (1 tempat perpuluhan).",
                         ans: ["6.3", "6.3unit"],
                         clue: "Beza x = 2 dan beza y = 6. Kira √(2² + 6²) = √40.",
-                        err: "Kira √[(9−11)² + (11−5)²] = √40 ≈ 6.3.",
+                        solutionSteps: "1. Beza x = 9 − 11 = -2; beza y = 11 − 5 = 6.<br>2. Kira d = √((-2)² + 6²) = √(4 + 36) = √40.<br>3. Bundarkan kepada 1 tempat perpuluhan: <strong>6.3</strong>.",
                         explain: "d = √[(9 − 11)² + (11 − 5)²] = √(4 + 36) = √40 ≈ <strong>6.3 unit</strong>.",
                         pos: [9, 11]
                     },
@@ -1039,7 +1105,7 @@
                         text: "Dari (9,11), anda bergerak lurus merentasi kawasan berbatu ke (13,8) untuk menamatkan Aras 2. Berapakah jarak lurusnya?",
                         ans: ["5", "5unit"],
                         clue: "Beza x = 4 dan beza y = 3. Kira √(4² + 3²).",
-                        err: "Kira √[(13−9)² + (8−11)²] = √(16 + 9).",
+                        solutionSteps: "1. Beza x = 13 − 9 = 4; beza y = 8 − 11 = -3.<br>2. Kira d = √(4² + (-3)²) = √(16 + 9) = √25.<br>3. Punca kuasa dua bagi 25 ialah <strong>5</strong>.",
                         explain: "d = √[(13 − 9)² + (8 − 11)²] = √(16 + 9) = √25 = <strong>5 unit</strong>.",
                         pos: [13, 8]
                     }
@@ -1051,7 +1117,7 @@
                 title: "ARAS 3 (TINGGI)",
                 gridSize: 20,
                 tag: "ARAS 3 • SKALA 20×20 • PENYELESAIAN MASALAH JARAK",
-                focusNote: "Fokus Aras 3: Satah membesar ke skala penuh 20×20. Baca situasi tidak langsung dengan teliti untuk menggabungkan jarak mengufuk, mencancang, dan jarak lurus.",
+                focusNote: "Fokus Aras 3: Peta membesar ke skala penuh 20×20. Baca situasi tidak langsung dengan teliti untuk menggabungkan jarak mengufuk, mencancang, dan jarak lurus.",
                 doneTitle: "🏆 SEMUA ARAS SELESAI!",
                 doneDesc: "Tahniah! Semua cabaran pada peta 20×20 telah berjaya diselesaikan.",
                 questions: [
@@ -1059,7 +1125,7 @@
                         text: "Anda bermula di (13,8), berjalan selari paksi-x ke x = 19, kemudian selari paksi-y ke (19,12) bagi mengelak anjing liar. Berapakah jumlah jarak perjalanan anda?",
                         ans: ["10", "10unit"],
                         clue: "Jarak mengufuk = |19 − 13| = 6 unit; jarak mencancang = |12 − 8| = 4 unit. Jumlahkan kedua-duanya.",
-                        err: "Tambahkan jarak mengufuk (6) dan jarak mencancang (4).",
+                        solutionSteps: "1. Jarak mengufuk = |19 − 13| = 6 unit.<br>2. Jarak mencancang = |12 − 8| = 4 unit.<br>3. Jumlah jarak = 6 + 4 = <strong>10 unit</strong>.",
                         explain: "Jarak mengufuk = 6 unit dan jarak mencancang = 4 unit. Jumlah jarak = 6 + 4 = <strong>10 unit</strong>.",
                         pos: [19, 12]
                     },
@@ -1067,7 +1133,7 @@
                         text: "Menara isyarat terletak di (11,6) manakala pos anda di (19,12). Berapakah jarak lurus dari pos anda ke menara isyarat?",
                         ans: ["10", "10unit"],
                         clue: "Beza x = 8 dan beza y = 6. Kira √(8² + 6²).",
-                        err: "Kira √[(19−11)² + (12−6)²] = √(64 + 36).",
+                        solutionSteps: "1. Beza x = 19 − 11 = 8; beza y = 12 − 6 = 6.<br>2. Kira d = √(8² + 6²) = √(64 + 36) = √100.<br>3. Punca kuasa dua bagi 100 ialah <strong>10</strong>.",
                         explain: "d = √[(19 − 11)² + (12 − 6)²] = √(64 + 36) = √100 = <strong>10 unit</strong>.",
                         pos: [11, 6]
                     },
@@ -1075,7 +1141,7 @@
                         text: "Untuk melintasi jambatan kayu dari (11,6) ke (14,10), berapakah jarak lurus jambatan tersebut?",
                         ans: ["5", "5unit"],
                         clue: "Beza x = 3 dan beza y = 4. Kira √(3² + 4²).",
-                        err: "Kira √[(14−11)² + (10−6)²] = √(9 + 16).",
+                        solutionSteps: "1. Beza x = 14 − 11 = 3; beza y = 10 − 6 = 4.<br>2. Kira d = √(3² + 4²) = √(9 + 16) = √25.<br>3. Jawapan tepat ialah <strong>5 unit</strong>.",
                         explain: "d = √[(14 − 11)² + (10 − 6)²] = √(9 + 16) = √25 = <strong>5 unit</strong>.",
                         pos: [14, 10]
                     },
@@ -1083,7 +1149,7 @@
                         text: "Dari (14,10), anda berlari lurus menuju titik (18,14) bagi menjauhi kelompok anjing liar (1 tempat perpuluhan).",
                         ans: ["5.7", "5.7unit"],
                         clue: "Beza x = 4 dan beza y = 4. Kira √(4² + 4²) = √32.",
-                        err: "Kira √[(18−14)² + (14−10)²] = √32 ≈ 5.7.",
+                        solutionSteps: "1. Beza x = 18 − 14 = 4; beza y = 14 − 10 = 4.<br>2. Kira d = √(4² + 4²) = √(16 + 16) = √32.<br>3. Bundarkan kepada 1 tempat perpuluhan: <strong>5.7</strong>.",
                         explain: "d = √[(18 − 14)² + (14 − 10)²] = √(16 + 16) = √32 ≈ <strong>5.7 unit</strong>.",
                         pos: [18, 14]
                     },
@@ -1091,7 +1157,7 @@
                         text: "Lokasi Selamat berada di (18,18) manakala anda kini di (18,14). Berapakah jarak mencancang terakhir untuk menyelamatkan diri?",
                         ans: ["4", "4unit"],
                         clue: "Kedua-dua titik berada pada garis x = 18. Kira |18 − 14|.",
-                        err: "Tolakkan koordinat y: |18 − 14|.",
+                        solutionSteps: "1. Kedua-dua titik mempunyai x = 18 yang sama.<br>2. Kira jarak mencancang: |18 − 14| = 4.<br>3. Jawapan tepat ialah <strong>4 unit</strong>.",
                         explain: "Oleh sebab x = 18 adalah sama, jarak mencancang = |18 − 14| = <strong>4 unit</strong> ke lokasi selamat (18,18).",
                         pos: [18, 18]
                     }
@@ -1099,7 +1165,7 @@
             }
         ];
 
-        /* ================= KEADAAN PERMAINAN & KANVAS ISOMETRIK 3D ================= */
+        /* ================= KEADAAN PERMAINAN & PETA SURVIVAL KANVAS ================= */
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -1163,13 +1229,13 @@
         }
 
         function goToScreen(targetId) {
-            ['page-1-welcome', 'page-2-map', 'page-3-notes'].forEach((id) => {
+            ['welcome-screen', 'howto-screen', 'map-screen', 'formula-screen'].forEach((id) => {
                 document.getElementById(id).classList.remove('is-active');
             });
-            document.getElementById('gameplay-arena').classList.remove('is-active');
+            document.getElementById('game-stage').classList.remove('is-active');
 
-            if (targetId === 'gameplay-arena') {
-                document.getElementById('gameplay-arena').classList.add('is-active');
+            if (targetId === 'game-stage') {
+                document.getElementById('game-stage').classList.add('is-active');
                 fitCanvas();
             } else {
                 const el = document.getElementById(targetId);
@@ -1225,7 +1291,7 @@
             }
         }
 
-        function startFromPage1() {
+        function startFromWelcome() {
             AudioEngine.init();
             AudioEngine.click(740);
 
@@ -1247,14 +1313,22 @@
             errEl.classList.add('hidden');
             playerData = { nama, kelas };
 
+            document.getElementById('howto-player-name').textContent = nama;
+            document.getElementById('howto-player-class').textContent = kelas;
             document.getElementById('p2-player-name').textContent = nama;
             document.getElementById('p2-player-class').textContent = kelas;
             document.getElementById('hud-name').textContent = nama;
             document.getElementById('hud-class').textContent = kelas;
 
             clockRunning = true;
+            goToScreen('howto-screen');
+        }
+
+        function proceedFromHowToToMap() {
+            AudioEngine.init();
+            AudioEngine.click(760);
             syncMapNodes();
-            goToScreen('page-2-map');
+            goToScreen('map-screen');
         }
 
         function selectStageOnMap(stageIdx) {
@@ -1272,14 +1346,14 @@
             document.getElementById('p3-stage-note').innerHTML = `<strong>📌 Panduan Aras:</strong> ${stg.focusNote}`;
             document.getElementById('btn-p3-enter-game').textContent = `TERUSKAN KE SOALAN ${stg.code} →`;
 
-            goToScreen('page-3-notes');
+            goToScreen('formula-screen');
         }
 
-        function enterGameplayFromNotes() {
+        function enterGameplayFromFormula() {
             AudioEngine.init();
             AudioEngine.click(820);
 
-            goToScreen('gameplay-arena');
+            goToScreen('game-stage');
             renderQuestionUI();
         }
 
@@ -1296,7 +1370,6 @@
             document.getElementById('panel-target-coord').textContent = `(${q.pos[0]},${q.pos[1]})`;
 
             document.getElementById('panel-hint-box').classList.add('hidden');
-            document.getElementById('panel-err-box').classList.add('hidden');
 
             const field = document.getElementById('answer-field');
             field.value = '';
@@ -1320,11 +1393,9 @@
 
             const raw = document.getElementById('answer-field').value.trim().replace(/\s+/g, '').toLowerCase();
             const q = activeQuestion();
-            const errEl = document.getElementById('panel-err-box');
 
             if (q.ans.includes(raw)) {
                 AudioEngine.tingg();
-                errEl.classList.add('hidden');
                 pathHistory.push([q.pos[0], q.pos[1]]);
                 actorTarget = { x: q.pos[0], y: q.pos[1] };
                 isMoving = true;
@@ -1333,9 +1404,16 @@
                 focusCamOnPoint(actorTarget.x, actorTarget.y);
             } else {
                 AudioEngine.tet();
-                errEl.textContent = '⚠️ JAWAPAN BELUM TEPAT: ' + q.err;
-                errEl.classList.remove('hidden');
+                document.getElementById('try-again-steps').innerHTML = q.solutionSteps;
+                showPopup('popup-try-again');
             }
+        }
+
+        function closeTryAgainModal() {
+            AudioEngine.init();
+            AudioEngine.click(660);
+            hidePopup('popup-try-again');
+            document.getElementById('answer-field').focus();
         }
 
         function continueAfterCorrectPopup() {
@@ -1374,7 +1452,7 @@
             AudioEngine.click(720);
             hidePopup('popup-stage-done');
             syncMapNodes();
-            goToScreen('page-2-map');
+            goToScreen('map-screen');
         }
 
         function toggleCamMode() {
@@ -1391,7 +1469,7 @@
             }
         }
 
-        /* ================= LUKISAN KANVAS ISOMETRIK 3D ================= */
+        /* ================= LUKISAN PETA SURVIVAL ISOMETRIK 3D ================= */
         function fitCanvas() {
             const wrap = canvas.parentElement;
             if (!wrap) return;
@@ -1482,7 +1560,7 @@
             const pT = gridToIso(liveGridScale, liveGridScale);
             const pL = gridToIso(0, liveGridScale);
 
-            // Ketebalan sisi 3D papan satah
+            // Ketebalan sisi 3D papan peta
             ctx.beginPath();
             ctx.moveTo(pL.x, pL.y);
             ctx.lineTo(p0.x, p0.y);
@@ -1520,17 +1598,18 @@
 
                     if (biome === 'river') {
                         const ripple = Math.sin(now * 0.004 + gx * 0.7 + gy * 0.5) * 0.12;
-                        ctx.fillStyle = `rgba(56, 189, 248, ${0.42 + ripple})`;
+                        ctx.fillStyle = `rgba(56, 189, 248, ${0.44 + ripple})`;
                     } else if (biome === 'road') {
-                        ctx.fillStyle = 'rgba(88, 68, 124, 0.75)';
+                        ctx.fillStyle = 'rgba(91, 74, 130, 0.78)';
                     } else if (biome === 'forest') {
-                        ctx.fillStyle = (gx + gy) % 2 === 0 ? 'rgba(22, 101, 52, 0.42)' : 'rgba(20, 83, 45, 0.35)';
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? 'rgba(22, 101, 52, 0.45)' : 'rgba(20, 83, 45, 0.36)';
                     } else {
-                        ctx.fillStyle = (gx + gy) % 2 === 0 ? 'rgba(126, 34, 206, 0.24)' : 'rgba(88, 28, 135, 0.17)';
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? 'rgba(126, 34, 206, 0.22)' : 'rgba(88, 28, 135, 0.15)';
                     }
                     ctx.fill();
 
-                    ctx.strokeStyle = 'rgba(216, 180, 254, 0.24)';
+                    // Garis koordinat samar supaya kelihatan seperti peta nyata dengan panduan halus
+                    ctx.strokeStyle = 'rgba(216, 180, 254, 0.11)';
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
@@ -1580,35 +1659,35 @@
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // Bingkai luar papan & paksi koordinat
+            // Bingkai luar peta & rujukan paksi samar
             ctx.beginPath();
             ctx.moveTo(p0.x, p0.y);
             ctx.lineTo(pR.x, pR.y);
             ctx.lineTo(pT.x, pT.y);
             ctx.lineTo(pL.x, pL.y);
             ctx.closePath();
-            ctx.strokeStyle = '#e879f9';
-            ctx.lineWidth = 2.4 * cam.zoom;
+            ctx.strokeStyle = 'rgba(232, 121, 249, 0.65)';
+            ctx.lineWidth = 2 * cam.zoom;
             ctx.stroke();
 
             const xAxisEnd = gridToIso(liveGridScale + 0.5, 0);
             const yAxisEnd = gridToIso(0, liveGridScale + 0.5);
 
-            ctx.lineWidth = 3 * cam.zoom;
-            ctx.strokeStyle = '#f0abfc';
+            ctx.lineWidth = 2.2 * cam.zoom;
+            ctx.strokeStyle = 'rgba(240, 171, 252, 0.45)';
             ctx.beginPath();
             ctx.moveTo(p0.x, p0.y);
             ctx.lineTo(xAxisEnd.x, xAxisEnd.y);
             ctx.stroke();
 
-            ctx.strokeStyle = '#c084fc';
+            ctx.strokeStyle = 'rgba(192, 132, 252, 0.45)';
             ctx.beginPath();
             ctx.moveTo(p0.x, p0.y);
             ctx.lineTo(yAxisEnd.x, yAxisEnd.y);
             ctx.stroke();
 
-            ctx.font = `bold ${Math.round(13 * cam.zoom)}px Orbitron`;
-            ctx.fillStyle = '#f5d0fe';
+            ctx.font = `bold ${Math.round(12 * cam.zoom)}px Orbitron`;
+            ctx.fillStyle = 'rgba(245, 208, 254, 0.55)';
             ctx.fillText('X', xAxisEnd.x + 8, xAxisEnd.y + 4);
             ctx.fillText('Y', yAxisEnd.x - 16, yAxisEnd.y - 4);
         }
@@ -1781,37 +1860,45 @@
             window.addEventListener('resize', fitCanvas);
 
             // Halaman 1: Mula Misi
-            document.getElementById('btn-mula-misi-1').addEventListener('click', startFromPage1);
+            document.getElementById('btn-mula-misi-1').addEventListener('click', startFromWelcome);
             document.getElementById('input-nama-peserta').addEventListener('keydown', (e) => {
                 AudioEngine.init();
                 AudioEngine.click(580);
-                if (e.key === 'Enter') startFromPage1();
+                if (e.key === 'Enter') startFromWelcome();
             });
             document.getElementById('input-kelas-peserta').addEventListener('keydown', (e) => {
                 AudioEngine.init();
                 AudioEngine.click(620);
-                if (e.key === 'Enter') startFromPage1();
+                if (e.key === 'Enter') startFromWelcome();
             });
 
-            // Halaman 2: Peta Keseluruhan & Nod Aras
-            document.getElementById('btn-p2-back').addEventListener('click', () => {
+            // Halaman 2: Cara Bermain
+            document.getElementById('btn-howto-back').addEventListener('click', () => {
                 AudioEngine.init();
                 AudioEngine.click(540);
-                goToScreen('page-1-welcome');
+                goToScreen('welcome-screen');
+            });
+            document.getElementById('btn-howto-to-map').addEventListener('click', proceedFromHowToToMap);
+
+            // Halaman 3: Peta Keseluruhan & Nod Aras
+            document.getElementById('btn-p2-back-howto').addEventListener('click', () => {
+                AudioEngine.init();
+                AudioEngine.click(540);
+                goToScreen('howto-screen');
             });
             document.getElementById('btn-p2-audio').addEventListener('click', () => AudioEngine.toggle());
             document.getElementById('map-node-1').addEventListener('click', () => selectStageOnMap(0));
             document.getElementById('map-node-2').addEventListener('click', () => selectStageOnMap(1));
             document.getElementById('map-node-3').addEventListener('click', () => selectStageOnMap(2));
 
-            // Halaman 3: Nota Ringkas & Formula Sebelum Soalan Aras
+            // Halaman 4: Nota Ringkas & Formula Sebelum Soalan Aras
             document.getElementById('btn-p3-back-map').addEventListener('click', () => {
                 AudioEngine.init();
                 AudioEngine.click(560);
                 syncMapNodes();
-                goToScreen('page-2-map');
+                goToScreen('map-screen');
             });
-            document.getElementById('btn-p3-enter-game').addEventListener('click', enterGameplayFromNotes);
+            document.getElementById('btn-p3-enter-game').addEventListener('click', enterGameplayFromFormula);
 
             // Arena Permainan HUD & Pad Kekunci
             document.getElementById('btn-hud-audio').addEventListener('click', () => AudioEngine.toggle());
@@ -1827,6 +1914,7 @@
             });
             document.getElementById('btn-hud-hint').addEventListener('click', openHintBox);
             document.getElementById('btn-verify-answer').addEventListener('click', verifyPlayerAnswer);
+            document.getElementById('btn-try-again-close').addEventListener('click', closeTryAgainModal);
 
             const ansInput = document.getElementById('answer-field');
             ansInput.addEventListener('keydown', (e) => {
@@ -1866,14 +1954,14 @@
                 window.location.reload();
             });
 
-            // Pemeriksaan koordinat hover & klik atas kanvas
+            // Pemeriksaan koordinat samar apabila gerakkan tetikus atau klik atas peta
             canvas.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 const { gx, gy } = isoToGrid(e.clientX - rect.left, e.clientY - rect.top);
                 const maxG = activeStage().gridSize;
                 const rx = Math.max(0, Math.min(maxG, Math.round(gx * 10) / 10));
                 const ry = Math.max(0, Math.min(maxG, Math.round(gy * 10) / 10));
-                document.getElementById('coord-status-pill').textContent = `KOORDINAT: (${rx.toFixed(1)}, ${ry.toFixed(1)})`;
+                document.getElementById('coord-status-pill').textContent = `RUJUKAN KOORDINAT SAMAR: (${rx.toFixed(1)}, ${ry.toFixed(1)})`;
             });
 
             canvas.addEventListener('click', (e) => {
