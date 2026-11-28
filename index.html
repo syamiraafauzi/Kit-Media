@@ -6,22 +6,24 @@
     <title>Escape Room : Misi Menyelamatkan Diri — Bab 7 - Koordinat (Tingkatan 2)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Gaya Buku Cerita Kartun 2D & Peta Ilustrasi Kelas Hangat (Tanpa Neon/Sci-Fi) */
+        /* =====================================================================
+           TEMA DETEKTIF ANIME (ANIME DETECTIVE MYSTERY AESTHETIC)
+           Palet senja indigo-ungu misteri, aksen fail kes detektif, dan
+           ilustrasi watak detektif anime dengan kanta pembesar.
+           ===================================================================== */
         :root {
-            --font-display: 'Fredoka', 'Comic Sans MS', 'Trebuchet MS', sans-serif;
-            --font-body: 'Nunito', 'Trebuchet MS', 'Segoe UI', sans-serif;
-            --cream-bg: #fdf6e7;
-            --cream-soft: #f5ebd6;
-            --paper-card: #fffdf8;
-            --ink-brown: #3b2618;
-            --ink-soft: #6b4c35;
-            --sky-pastel: #cfe9f7;
-            --meadow-green: #b8e29b;
-            --road-grey: #c8cfd6;
-            --river-blue: #7ec8e3;
-            --amber-warm: #f6b94d;
-            --coral-warm: #f27c63;
-            --mint-leaf: #57b887;
+            --font-display: 'Orbitron', 'Trebuchet MS', sans-serif;
+            --font-body: 'Rajdhani', 'Nunito', 'Segoe UI', sans-serif;
+            --ink-dark: #0e0a1f;
+            --case-paper: #17112e;
+            --case-panel: #1f173d;
+            --case-border: #8b5cf6;
+            --case-gold: #f5b942;
+            --case-cyan: #67e8f9;
+            --case-rose: #fb7185;
+            --case-mint: #34d399;
+            --text-bright: #f5f3ff;
+            --text-muted: #c4b5fd;
         }
 
         * {
@@ -33,17 +35,20 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, #dff1fa 0%, #f8efd9 58%, #e4f2cf 100%);
-            color: var(--ink-brown);
+            background:
+                radial-gradient(circle at 18% 15%, rgba(139, 92, 246, 0.24) 0%, transparent 42%),
+                radial-gradient(circle at 82% 80%, rgba(56, 189, 248, 0.14) 0%, transparent 45%),
+                linear-gradient(180deg, #0c071c 0%, #140d2b 58%, #0b0718 100%);
+            color: var(--text-bright);
             font-family: var(--font-body);
             overflow: hidden;
         }
 
-        .font-cartoon {
+        .font-anime-title {
             font-family: var(--font-display);
         }
 
-        /* Lapisan halaman penuh dengan gaya buku cerita */
+        /* Lapisan skrin bertema Fail Kes Detektif Anime */
         .screen-layer {
             position: fixed;
             inset: 0;
@@ -52,9 +57,9 @@
             align-items: center;
             padding: 16px;
             background:
-                radial-gradient(circle at 12% 15%, rgba(167, 219, 242, 0.55) 0%, transparent 40%),
-                radial-gradient(circle at 88% 82%, rgba(196, 232, 168, 0.55) 0%, transparent 45%),
-                linear-gradient(180deg, #e5f3fa 0%, #fbf3e1 65%, #e8f4d4 100%);
+                radial-gradient(circle at 15% 18%, rgba(167, 139, 250, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 85% 82%, rgba(103, 232, 249, 0.14) 0%, transparent 42%),
+                linear-gradient(180deg, #0d0820 0%, #170f33 60%, #0b0718 100%);
             overflow-y: auto;
             pointer-events: auto;
         }
@@ -64,135 +69,137 @@
             z-index: 100;
         }
 
-        .storybook-card {
+        .detective-card {
             width: 100%;
-            max-width: 920px;
-            background: var(--paper-card);
-            border: 3px solid var(--ink-brown);
-            border-radius: 26px;
+            max-width: 940px;
+            background: linear-gradient(160deg, rgba(28, 20, 56, 0.97) 0%, rgba(18, 13, 38, 0.98) 100%);
+            border: 2px solid var(--case-border);
+            border-radius: 22px;
             padding: 22px 24px;
-            box-shadow: 0 8px 0 var(--ink-brown), 0 18px 34px rgba(59, 38, 24, 0.16);
+            box-shadow:
+                0 0 0 1px rgba(245, 185, 66, 0.25),
+                0 18px 42px rgba(4, 2, 12, 0.72);
             pointer-events: auto;
         }
 
-        .tag-sticker {
+        .dossier-chip {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             font-family: var(--font-display);
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 5px 13px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 5px 12px;
             border-radius: 999px;
-            background: #ffeaad;
-            color: var(--ink-brown);
-            border: 2px solid var(--ink-brown);
-            box-shadow: 0 3px 0 var(--ink-brown);
+            background: rgba(139, 92, 246, 0.2);
+            color: #ede9fe;
+            border: 1.5px solid #a78bfa;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.22);
         }
 
-        .tag-sky {
-            background: #d7effc;
-            color: #1f4d6b;
-            border: 2px solid var(--ink-brown);
-            box-shadow: 0 3px 0 var(--ink-brown);
+        .dossier-chip-gold {
+            background: rgba(245, 185, 66, 0.16);
+            color: #fde68a;
+            border: 1.5px solid var(--case-gold);
         }
 
-        .cartoon-input {
+        .detective-input {
             width: 100%;
             padding: 11px 14px;
-            border-radius: 14px;
-            border: 2.5px solid var(--ink-brown);
-            background: #fff9ec;
-            color: var(--ink-brown);
+            border-radius: 12px;
+            border: 1.5px solid #7c3aed;
+            background: #0d081f;
+            color: #ffffff;
             font-family: var(--font-body);
-            font-size: 1.05rem;
+            font-size: 1.06rem;
             font-weight: 700;
             outline: none;
-            box-shadow: inset 0 2px 4px rgba(59, 38, 24, 0.08);
-            transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.15s ease;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .cartoon-input:focus {
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(246, 185, 77, 0.55);
+        .detective-input:focus {
+            border-color: var(--case-gold);
+            box-shadow: 0 0 0 3px rgba(245, 185, 66, 0.25);
         }
 
-        .cartoon-btn {
+        .detective-btn {
             padding: 11px 20px;
-            border-radius: 15px;
-            border: 2.5px solid var(--ink-brown);
-            background: linear-gradient(180deg, #ffd166 0%, #f4a236 100%);
-            color: var(--ink-brown);
+            border-radius: 12px;
+            border: 1.5px solid #fde68a;
+            background: linear-gradient(135deg, #8b5cf6 0%, #5b21b6 100%);
+            color: #ffffff;
             font-family: var(--font-display);
-            font-size: 0.88rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.6px;
             cursor: pointer;
-            box-shadow: 0 4px 0 var(--ink-brown);
-            transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.15s ease;
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.42);
+            transition: transform 0.12s ease, filter 0.15s ease, box-shadow 0.15s ease;
             pointer-events: auto;
         }
 
-        .cartoon-btn:hover:not(:disabled) {
+        .detective-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 0 var(--ink-brown);
-            filter: brightness(1.03);
+            filter: brightness(1.08);
+            box-shadow: 0 8px 22px rgba(167, 139, 250, 0.5);
         }
 
-        .cartoon-btn:active:not(:disabled) {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 var(--ink-brown);
+        .detective-btn:active:not(:disabled) {
+            transform: translateY(1px);
         }
 
-        .cartoon-btn:disabled {
-            opacity: 0.48;
+        .detective-btn:disabled {
+            opacity: 0.45;
             cursor: not-allowed;
         }
 
-        .cartoon-btn-mint {
-            background: linear-gradient(180deg, #8ce0b3 0%, #52b788 100%);
-            color: #163324;
+        .detective-btn-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #140b24;
+            border-color: #fef3c7;
+            box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
         }
 
-        .cartoon-btn-coral {
-            background: linear-gradient(180deg, #ff9e88 0%, #ef6f53 100%);
+        .detective-btn-mint {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
             color: #ffffff;
-            text-shadow: 0 1px 0 var(--ink-brown);
+            border-color: #a7f3d0;
         }
 
-        .cartoon-subbtn {
+        .detective-btn-rose {
+            background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+            color: #ffffff;
+            border-color: #fecdd3;
+        }
+
+        .detective-subbtn {
             padding: 10px 16px;
-            border-radius: 14px;
-            border: 2.5px solid var(--ink-brown);
-            background: #f5ebd6;
-            color: var(--ink-brown);
+            border-radius: 12px;
+            border: 1.5px solid #8b5cf6;
+            background: rgba(36, 25, 71, 0.92);
+            color: #ede9fe;
             font-family: var(--font-display);
-            font-size: 0.82rem;
-            font-weight: 600;
+            font-size: 0.76rem;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 0 var(--ink-brown);
             transition: transform 0.12s ease, background 0.15s ease;
             pointer-events: auto;
         }
 
-        .cartoon-subbtn:hover {
-            transform: translateY(-2px);
-            background: #ffefd0;
+        .detective-subbtn:hover {
+            transform: translateY(-1px);
+            background: rgba(58, 40, 110, 0.95);
         }
 
-        .cartoon-subbtn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 var(--ink-brown);
-        }
-
-        /* Nod aras interaktif pada Peta Keseluruhan Kartun */
-        .map-node-pin {
+        /* Pin aras interaktif pada Peta Keseluruhan Detektif Anime */
+        .case-pin {
             position: absolute;
             transform: translate(-50%, -50%);
             padding: 8px 13px;
-            border-radius: 14px;
+            border-radius: 12px;
             font-family: var(--font-display);
-            font-size: 0.76rem;
+            font-size: 0.72rem;
             font-weight: 700;
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -201,36 +208,35 @@
             z-index: 15;
         }
 
-        .map-node-pin.is-unlocked {
-            background: linear-gradient(180deg, #ffd166 0%, #f4a236 100%);
-            color: var(--ink-brown);
-            border: 2.5px solid var(--ink-brown);
-            box-shadow: 0 4px 0 var(--ink-brown), 0 0 0 4px rgba(255, 255, 255, 0.7);
-            animation: bouncePin 1.7s infinite ease-in-out;
+        .case-pin.is-unlocked {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #140b24;
+            border: 2px solid #fef3c7;
+            box-shadow: 0 0 18px rgba(245, 185, 66, 0.65);
+            animation: pulsePin 1.8s infinite ease-in-out;
         }
 
-        .map-node-pin.is-unlocked:hover {
+        .case-pin.is-unlocked:hover {
             transform: translate(-50%, -56%) scale(1.05);
         }
 
-        .map-node-pin.is-completed {
-            background: #d8f5e3;
-            color: #164a30;
-            border: 2.5px solid #2b6e4c;
-            box-shadow: 0 4px 0 #2b6e4c;
+        .case-pin.is-completed {
+            background: rgba(16, 185, 129, 0.25);
+            color: #a7f3d0;
+            border: 2px solid #34d399;
+            box-shadow: 0 0 12px rgba(52, 211, 153, 0.35);
         }
 
-        .map-node-pin.is-locked {
-            background: #e9e2d2;
-            color: #7c6b5d;
-            border: 2px dashed #8c7765;
-            box-shadow: 0 2px 0 #8c7765;
+        .case-pin.is-locked {
+            background: rgba(20, 14, 41, 0.85);
+            color: #7c6f9e;
+            border: 1.5px dashed #5b4c82;
             cursor: not-allowed;
         }
 
-        @keyframes bouncePin {
+        @keyframes pulsePin {
             0%, 100% { transform: translate(-50%, -50%); }
-            50% { transform: translate(-50%, -57%); }
+            50% { transform: translate(-50%, -56%); }
         }
 
         /* Susun atur arena permainan aktif */
@@ -245,62 +251,61 @@
             display: flex;
         }
 
-        .cartoon-hud {
+        .detective-hud {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 8px 16px;
-            background: #fff8e7;
-            border-bottom: 3px solid var(--ink-brown);
-            box-shadow: 0 3px 0 rgba(59, 38, 24, 0.14);
+            background: rgba(15, 10, 34, 0.96);
+            border-bottom: 1.5px solid rgba(167, 139, 250, 0.45);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
             gap: 8px;
             flex-wrap: wrap;
             z-index: 20;
         }
 
-        .hud-badge {
-            background: #ffffff;
-            border: 2px solid var(--ink-brown);
-            border-radius: 12px;
+        .hud-tag {
+            background: rgba(34, 23, 72, 0.92);
+            border: 1.5px solid #8b5cf6;
+            border-radius: 10px;
             padding: 4px 11px;
             display: inline-flex;
             align-items: center;
             gap: 5px;
             font-family: var(--font-display);
-            font-size: 0.76rem;
-            color: var(--ink-brown);
-            box-shadow: 0 2px 0 var(--ink-brown);
+            font-size: 0.72rem;
+            color: #f5f3ff;
         }
 
-        .hud-badge.clock-badge {
-            background: #fff0c2;
+        .hud-tag.clock-tag {
+            border-color: var(--case-gold);
+            color: #fde68a;
         }
 
-        .hud-badge.student-badge {
-            background: #e8f5ff;
+        .hud-tag.agent-tag {
+            border-color: #67e8f9;
             font-family: var(--font-body);
             font-size: 0.92rem;
             font-weight: 800;
         }
 
-        .hud-action {
+        .hud-btn {
             font-family: var(--font-display);
-            font-size: 0.74rem;
+            font-size: 0.7rem;
             font-weight: 700;
             padding: 6px 11px;
-            border-radius: 11px;
-            border: 2px solid var(--ink-brown);
-            background: #ffdf8e;
-            color: var(--ink-brown);
+            border-radius: 10px;
+            border: 1.5px solid #a78bfa;
+            background: rgba(76, 29, 149, 0.65);
+            color: #ffffff;
             cursor: pointer;
-            box-shadow: 0 3px 0 var(--ink-brown);
             transition: transform 0.12s ease, background 0.15s ease;
             pointer-events: auto;
         }
 
-        .hud-action:hover {
+        .hud-btn:hover {
             transform: translateY(-1px);
-            background: #ffd166;
+            background: rgba(109, 40, 217, 0.85);
         }
 
         .stage-canvas-wrap {
@@ -318,17 +323,18 @@
             cursor: crosshair;
         }
 
-        /* Dialog Fikiran Murid (Student Thought Pop-up) di bawah kiri */
-        .student-thought-box {
+        /* Dialog Fikiran Detektif Anime di bawah kiri */
+        .detective-thought-box {
             position: absolute;
             bottom: 14px;
             left: 16px;
-            max-width: 440px;
-            background: #fffdf7;
-            border: 2.5px solid var(--ink-brown);
-            border-radius: 18px;
+            max-width: 450px;
+            background: rgba(23, 16, 48, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid var(--case-gold);
+            border-radius: 16px;
             padding: 11px 14px;
-            box-shadow: 0 5px 0 var(--ink-brown);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
             z-index: 22;
             pointer-events: auto;
         }
@@ -344,19 +350,18 @@
             pointer-events: auto;
         }
 
-        .mini-pill {
-            background: rgba(255, 253, 247, 0.95);
-            border: 2px solid var(--ink-brown);
-            color: var(--ink-brown);
+        .mini-badge {
+            background: rgba(20, 14, 42, 0.9);
+            border: 1px solid rgba(167, 139, 250, 0.55);
+            color: #e9d5ff;
             padding: 5px 11px;
-            border-radius: 11px;
+            border-radius: 10px;
             font-family: var(--font-display);
-            font-size: 0.7rem;
-            box-shadow: 0 3px 0 rgba(59, 38, 24, 0.22);
+            font-size: 0.68rem;
         }
 
-        /* Panel Soalan & Kawalan Arah Kartun */
-        .storybook-panel {
+        /* Panel Kes & Kawalan Arah Detektif Anime */
+        .case-panel {
             position: absolute;
             top: 12px;
             right: 16px;
@@ -364,11 +369,12 @@
             max-width: calc(100vw - 32px);
             max-height: calc(100% - 24px);
             overflow-y: auto;
-            background: #fffdf7;
-            border: 2.5px solid var(--ink-brown);
-            border-radius: 20px;
+            background: rgba(22, 15, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid var(--case-border);
+            border-radius: 18px;
             padding: 15px;
-            box-shadow: 0 6px 0 var(--ink-brown), 0 14px 28px rgba(59, 38, 24, 0.18);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
             z-index: 25;
             pointer-events: auto;
         }
@@ -382,26 +388,28 @@
 
         .dir-btn {
             padding: 6px 8px;
-            border-radius: 10px;
-            border: 2px solid var(--ink-brown);
-            background: #eef7fc;
-            color: var(--ink-brown);
+            border-radius: 9px;
+            border: 1px solid rgba(167, 139, 250, 0.45);
+            background: rgba(42, 29, 86, 0.85);
+            color: #ede9fe;
             font-family: var(--font-display);
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 2.5px 0 var(--ink-brown);
-            transition: transform 0.1s ease, background 0.15s ease;
+            transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
             pointer-events: auto;
         }
 
         .dir-btn:hover {
-            background: #d4ecfa;
+            background: rgba(109, 40, 217, 0.7);
+            border-color: #c4b5fd;
             transform: translateY(-1px);
         }
 
         .dir-btn.is-selected {
-            background: #ffd166;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #140b24;
+            border-color: #fef3c7;
         }
 
         .keypad-grid {
@@ -411,40 +419,40 @@
         }
 
         .num-key {
-            background: #f9f0dc;
-            border: 2px solid var(--ink-brown);
-            color: var(--ink-brown);
+            background: rgba(39, 27, 82, 0.92);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            color: #f5f3ff;
             font-family: var(--font-display);
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             font-weight: 700;
             padding: 7px 0;
-            border-radius: 9px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 2.5px 0 var(--ink-brown);
             transition: transform 0.1s ease, background 0.12s ease;
             pointer-events: auto;
         }
 
         .num-key:hover {
-            background: #ffe5a3;
+            background: rgba(124, 58, 237, 0.55);
+            border-color: #c4b5fd;
         }
 
         .num-key:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 var(--ink-brown);
+            transform: scale(0.97);
         }
 
         .num-key.erase-key {
-            background: #ffd6cc;
-            color: #7c2414;
+            background: rgba(244, 63, 94, 0.22);
+            border-color: #fb7185;
+            color: #fecdd3;
         }
 
-        /* Modal Kartun */
+        /* Modal Detektif Anime */
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(59, 38, 24, 0.55);
-            backdrop-filter: blur(2px);
+            background: rgba(6, 3, 15, 0.8);
+            backdrop-filter: blur(4px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -458,169 +466,218 @@
         }
 
         .modal-card {
-            background: #fffdf7;
-            border: 3px solid var(--ink-brown);
-            border-radius: 22px;
+            background: linear-gradient(160deg, #211744 0%, #140d2b 100%);
+            border: 2px solid var(--case-border);
+            border-radius: 20px;
             padding: 22px 24px;
             max-width: 520px;
             width: 100%;
-            box-shadow: 0 8px 0 var(--ink-brown), 0 18px 36px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75);
             text-align: center;
-            color: var(--ink-brown);
+            color: var(--text-bright);
             pointer-events: auto;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. HALAMAN MUKA HADAPAN (WELCOME SCREEN — GAYA KARTUN BUKU CERITA) -->
+    <!-- 1. HALAMAN MUKA HADAPAN (WELCOME SCREEN — TEMA DETEKTIF ANIME) -->
     <section id="welcome-screen" class="screen-layer is-active" aria-label="Halaman Mula Misi">
-        <div class="storybook-card">
+        <div class="detective-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                <span class="tag-sticker">📚 BAB 7 - KOORDINAT (TINGKATAN 2)</span>
-                <span class="tag-sky tag-sticker">SP 7.1 JARAK • MISI KARTUN</span>
+                <span class="dossier-chip">🕵️ BAB 7 - KOORDINAT (TINGKATAN 2)</span>
+                <span class="dossier-chip dossier-chip-gold">SP 7.1 JARAK • FAIL KES ANIME</span>
             </div>
 
-            <!-- Ilustrasi SVG Kartun Buku Cerita: Sekolah, Sungai & Jambatan Patah, Anjing Liar, Rumah Selamat -->
-            <div class="rounded-2xl overflow-hidden border-2 border-[#3b2618] bg-[#e9f5fc] p-2.5 mb-4">
-                <svg viewBox="0 0 740 168" class="w-full h-36 sm:h-40 block" role="img" aria-label="Ilustrasi Kartun Peta Sekolah, Sungai, Anjing Liar dan Rumah Selamat">
-                    <rect width="740" height="168" rx="14" fill="#dff2fa"/>
-                    <rect x="0" y="72" width="740" height="96" fill="#c7e8a4"/>
+            <!-- Ilustrasi SVG Detektif Anime dengan Kanta Pembesar, Peta Koordinat Malam, Sungai & Zon Bahaya -->
+            <div class="rounded-2xl overflow-hidden border border-[#8b5cf6] bg-[#110b26] p-2.5 mb-4">
+                <svg viewBox="0 0 760 174" class="w-full h-36 sm:h-40 block" role="img" aria-label="Ilustrasi Detektif Anime dengan Kanta Pembesar dan Peta Misi">
+                    <defs>
+                        <linearGradient id="animeSky" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1b103b"/>
+                            <stop offset="55%" stop-color="#2e1863"/>
+                            <stop offset="100%" stop-color="#120c29"/>
+                        </linearGradient>
+                        <linearGradient id="lensGlow" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.45"/>
+                            <stop offset="100%" stop-color="#c084fc" stop-opacity="0.18"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="760" height="174" rx="14" fill="url(#animeSky)"/>
 
-                    <!-- Garis grid samar -->
-                    <g stroke="rgba(59,38,24,0.12)" stroke-width="1">
-                        <line x1="0" y1="42" x2="740" y2="42"/>
-                        <line x1="0" y1="84" x2="740" y2="84"/>
-                        <line x1="0" y1="126" x2="740" y2="126"/>
-                        <line x1="148" y1="0" x2="148" y2="168"/>
-                        <line x1="296" y1="0" x2="296" y2="168"/>
-                        <line x1="444" y1="0" x2="444" y2="168"/>
-                        <line x1="592" y1="0" x2="592" y2="168"/>
+                    <!-- Bintang & garis grid koordinat samar di latar belakang -->
+                    <circle cx="240" cy="28" r="2" fill="#fde68a"/>
+                    <circle cx="380" cy="20" r="1.5" fill="#c4b5fd"/>
+                    <circle cx="530" cy="34" r="2" fill="#67e8f9"/>
+                    <g stroke="rgba(196,181,253,0.12)" stroke-width="1">
+                        <line x1="180" y1="44" x2="740" y2="44"/>
+                        <line x1="180" y1="88" x2="740" y2="88"/>
+                        <line x1="180" y1="132" x2="740" y2="132"/>
+                        <line x1="280" y1="12" x2="280" y2="162"/>
+                        <line x1="400" y1="12" x2="400" y2="162"/>
+                        <line x1="520" y1="12" x2="520" y2="162"/>
+                        <line x1="640" y1="12" x2="640" y2="162"/>
                     </g>
 
-                    <!-- Sekolah kartun di kiri atas -->
-                    <g transform="translate(46, 26)">
-                        <rect x="6" y="24" width="78" height="46" rx="6" fill="#fff4d6" stroke="#3b2618" stroke-width="2.5"/>
-                        <polygon points="0,26 45,2 90,26" fill="#ef6f53" stroke="#3b2618" stroke-width="2.5" stroke-linejoin="round"/>
-                        <rect x="36" y="42" width="18" height="28" rx="3" fill="#b87d4b" stroke="#3b2618" stroke-width="2"/>
-                        <rect x="14" y="34" width="14" height="12" rx="2" fill="#9ed8f5" stroke="#3b2618" stroke-width="2"/>
-                        <rect x="62" y="34" width="14" height="12" rx="2" fill="#9ed8f5" stroke="#3b2618" stroke-width="2"/>
-                        <text x="14" y="85" fill="#3b2618" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">SEKOLAH (0,0)</text>
+                    <!-- Watak Detektif Anime bergaya kot & kanta pembesar di kiri -->
+                    <g transform="translate(88, 22)">
+                        <!-- Cahaya aura belakang watak -->
+                        <circle cx="0" cy="68" r="54" fill="rgba(139,92,246,0.22)"/>
+                        <!-- Rambut anime ungu gelap berjuntai -->
+                        <path d="M-24,34 Q-26,6 0,4 Q26,6 24,34 L27,54 L-27,54 Z" fill="#23164a" stroke="#c4b5fd" stroke-width="2"/>
+                        <!-- Wajah anime -->
+                        <path d="M-17,26 Q-17,48 0,52 Q17,48 17,26 Z" fill="#fde2cc" stroke="#1e1b4b" stroke-width="2"/>
+                        <!-- Mata anime tajam & ekspresif -->
+                        <ellipse cx="-7" cy="36" rx="3.5" ry="4.5" fill="#311069"/>
+                        <circle cx="-6" cy="34.5" r="1.4" fill="#ffffff"/>
+                        <ellipse cx="7" cy="36" rx="3.5" ry="4.5" fill="#311069"/>
+                        <circle cx="8" cy="34.5" r="1.4" fill="#ffffff"/>
+                        <!-- Topi detektif / ikatan kolar -->
+                        <path d="M-22,22 L0,10 L22,22 L28,26 L-28,26 Z" fill="#4c1d95" stroke="#f5b942" stroke-width="2"/>
+                        <!-- Kot detektif -->
+                        <path d="M-26,54 L26,54 L34,126 L-34,126 Z" fill="#2e195e" stroke="#a78bfa" stroke-width="2"/>
+                        <polygon points="0,54 -9,76 0,92 9,76" fill="#f5b942"/>
+                        <!-- Kanta pembesar detektif -->
+                        <circle cx="34" cy="76" r="16" fill="url(#lensGlow)" stroke="#67e8f9" stroke-width="3"/>
+                        <line x1="46" y1="88" x2="62" y2="104" stroke="#f5b942" stroke-width="5" stroke-linecap="round"/>
+                        <text x="-48" y="144" fill="#fde68a" font-size="11" font-weight="bold" font-family="Orbitron, sans-serif">DETEKTIF SP 7.1</text>
                     </g>
 
-                    <!-- Sungai & jambatan patah -->
-                    <path d="M275,70 Q255,112 288,168 L345,168 Q318,112 336,70 Z" fill="#7ec8e3" stroke="#3b2618" stroke-width="2"/>
-                    <line x1="252" y1="106" x2="292" y2="106" stroke="#9c6234" stroke-width="6" stroke-linecap="round"/>
-                    <line x1="316" y1="106" x2="356" y2="106" stroke="#9c6234" stroke-width="6" stroke-linecap="round"/>
-                    <text x="242" y="54" fill="#1e5370" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">SUNGAI & JAMBATAN</text>
+                    <!-- Peta Kes di sebelah kanan: Laluan, Sungai & Rumah Selamat -->
+                    <g transform="translate(205, 24)">
+                        <rect x="0" y="0" width="530" height="126" rx="12" fill="rgba(26,17,56,0.85)" stroke="#8b5cf6" stroke-width="1.5"/>
+                        <!-- Sungai bercahaya sian/biru malam -->
+                        <path d="M235,0 Q218,62 245,126 L292,126 Q268,62 284,0 Z" fill="rgba(56,189,248,0.34)" stroke="#67e8f9" stroke-width="1.5"/>
+                        <text x="220" y="114" fill="#bae6fd" font-size="10" font-weight="bold" font-family="Orbitron, sans-serif">SUNGAI</text>
 
-                    <!-- Semak & anjing liar -->
-                    <g transform="translate(432, 86)">
-                        <ellipse cx="38" cy="36" rx="44" ry="18" fill="#77b85a" stroke="#3b2618" stroke-width="2.5"/>
-                        <ellipse cx="38" cy="28" rx="26" ry="13" fill="#94cf76" stroke="#3b2618" stroke-width="2"/>
-                        <!-- Anjing kartun -->
-                        <ellipse cx="52" cy="24" rx="10" ry="6" fill="#c98249" stroke="#3b2618" stroke-width="2"/>
-                        <circle cx="62" cy="20" r="5" fill="#c98249" stroke="#3b2618" stroke-width="2"/>
-                        <text x="-4" y="68" fill="#8f2d1e" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">AWAS: ANJING LIAR</text>
+                        <!-- Zon anjing liar -->
+                        <ellipse cx="382" cy="88" rx="52" ry="22" fill="rgba(244,63,94,0.2)" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4 3"/>
+                        <text x="342" y="92" fill="#fecdd3" font-size="10" font-weight="bold" font-family="Orbitron, sans-serif">ANJING LIAR</text>
+
+                        <!-- Destinasi Rumah Selamat -->
+                        <rect x="448" y="22" width="64" height="44" rx="6" fill="rgba(16,185,129,0.22)" stroke="#34d399" stroke-width="1.8"/>
+                        <text x="454" y="48" fill="#a7f3d0" font-size="10" font-weight="bold" font-family="Orbitron, sans-serif">SELAMAT</text>
+
+                        <!-- Garis jarak lurus putus-putus -->
+                        <line x1="48" y1="74" x2="258" y2="56" stroke="#f5b942" stroke-width="2" stroke-dasharray="5 4"/>
+                        <line x1="268" y1="56" x2="468" y2="44" stroke="#c084fc" stroke-width="2" stroke-dasharray="5 4"/>
+                        <circle cx="48" cy="74" r="5" fill="#f5b942"/>
+                        <circle cx="468" cy="44" r="5" fill="#34d399"/>
+                        <text x="22" y="96" fill="#fde68a" font-size="10" font-weight="bold" font-family="Orbitron, sans-serif">MULA (0,0)</text>
                     </g>
-
-                    <!-- Rumah selamat di kanan -->
-                    <g transform="translate(596, 30)">
-                        <rect x="8" y="24" width="76" height="44" rx="6" fill="#ffe8b8" stroke="#3b2618" stroke-width="2.5"/>
-                        <polygon points="2,26 46,4 90,26" fill="#52b788" stroke="#3b2618" stroke-width="2.5" stroke-linejoin="round"/>
-                        <rect x="38" y="42" width="16" height="26" rx="2" fill="#a4683a" stroke="#3b2618" stroke-width="2"/>
-                        <text x="4" y="84" fill="#1d5c3e" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">RUMAH SELAMAT</text>
-                    </g>
-
-                    <!-- Laluan putus-putus kartun -->
-                    <path d="M136,84 L265,106 M346,106 L445,112 L598,74" fill="none" stroke="#3b2618" stroke-width="2.5" stroke-dasharray="6 6"/>
                 </svg>
             </div>
 
-            <h1 class="font-cartoon text-2xl sm:text-3xl font-bold text-[#3b2618] mb-1">
+            <h1 class="font-anime-title text-xl sm:text-3xl font-black text-white mb-1 tracking-wide">
                 Escape Room : Misi Menyelamatkan Diri
             </h1>
-            <p class="text-[#6b4c35] font-bold text-base mb-4">
+            <p class="text-[#c4b5fd] font-bold text-base mb-4">
                 Bab 7 - Koordinat (Tingkatan 2) • SP 7.1 Jarak dalam Sistem Koordinat Cartes
             </p>
 
-            <div id="welcome-err-banner" class="hidden mb-3 px-4 py-2.5 rounded-xl bg-[#ffe0d9] border-2 border-[#c9432a] text-[#7c1d0e] text-sm font-bold">
-                Ops! Sila isikan Nama Peserta dan Kelas anda dahulu sebelum menekan MULA MISI.
+            <div id="welcome-err-banner" class="hidden mb-3 px-4 py-2.5 rounded-xl bg-rose-950/85 border border-rose-400 text-rose-200 text-sm font-bold">
+                Akses ditolak! Sila isikan Nama Peserta dan Kelas anda sebelum menekan MULA MISI.
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
                 <div>
-                    <label for="input-nama-peserta" class="block font-cartoon text-xs text-[#3b2618] mb-1.5 tracking-wide">
-                        NAMA PESERTA
+                    <label for="input-nama-peserta" class="block font-anime-title text-xs text-[#fde68a] mb-1.5 tracking-wider">
+                        NAMA PESERTA / DETEKTIF
                     </label>
-                    <input type="text" id="input-nama-peserta" class="cartoon-input" placeholder="Contoh: Aisyah Humaira">
+                    <input type="text" id="input-nama-peserta" class="detective-input" placeholder="Contoh: Aisyah Humaira">
                 </div>
                 <div>
-                    <label for="input-kelas-peserta" class="block font-cartoon text-xs text-[#3b2618] mb-1.5 tracking-wide">
+                    <label for="input-kelas-peserta" class="block font-anime-title text-xs text-[#fde68a] mb-1.5 tracking-wider">
                         KELAS
                     </label>
-                    <input type="text" id="input-kelas-peserta" class="cartoon-input" placeholder="Contoh: 2 Bestari">
+                    <input type="text" id="input-kelas-peserta" class="detective-input" placeholder="Contoh: 2 Bestari">
                 </div>
             </div>
 
             <div class="flex justify-end">
-                <button type="button" id="btn-mula-misi-1" class="cartoon-btn w-full sm:w-auto">
+                <button type="button" id="btn-mula-misi-1" class="detective-btn detective-btn-gold w-full sm:w-auto">
                     MULA MISI →
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- 2. HALAMAN CARA BERMAIN (HOW TO PLAY SCREEN) -->
+    <!-- 2. HALAMAN CARA BERMAIN & PANDUAN PETUNJUK (MINIMALIS EMOJI + SVG + BADGE) -->
     <section id="howto-screen" class="screen-layer" aria-label="Halaman Cara Bermain">
-        <div class="storybook-card">
+        <div class="detective-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                <span class="tag-sticker">📖 CARA BERMAIN & PANDUAN PETUNJUK</span>
-                <span class="tag-sky tag-sticker">🎒 <span id="howto-player-name">Peserta</span> (<span id="howto-player-class">Kelas</span>)</span>
+                <span class="dossier-chip">🕵️ CARA BERMAIN • PANDUAN VISUAL</span>
+                <span class="dossier-chip dossier-chip-gold">🪪 <span id="howto-player-name">Peserta</span> (<span id="howto-player-class">Kelas</span>)</span>
             </div>
 
-            <h2 class="font-cartoon text-xl sm:text-2xl font-bold text-[#3b2618] mb-1">
-                Cara Menyelamatkan Diri di Peta Buku Cerita
+            <h2 class="font-anime-title text-lg sm:text-2xl font-bold text-white mb-3">
+                Panduan Ringkas Misi
             </h2>
-            <p class="text-[#6b4c35] font-semibold text-sm sm:text-base mb-4">
-                Kenali langkah perjalanan, fungsi <strong>💡 Hints (Petunjuk)</strong>, dan tetingkap <strong>Try again!</strong> sebelum memilih aras pada peta.
-            </p>
 
+            <!-- Kad visual minimalis berasaskan emoji, simbol SVG & badge -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-                <div class="rounded-2xl bg-[#fff7e2] border-2 border-[#3b2618] p-3.5 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#b85d19] mb-1">1. PILIH ARAS DI PETA</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Mulakan di <strong>Aras 1 (7×7)</strong>, kemudian ke <strong>Aras 2 (14×14)</strong> dan <strong>Aras 3 (20×20)</strong> setelah menamatkan setiap aras.
-                    </p>
+                <!-- Kad 1: Peta & Skala Aras -->
+                <div class="rounded-2xl bg-[#16102e] border border-[#8b5cf6] p-3.5 text-center">
+                    <div class="text-3xl mb-1.5" aria-hidden="true">🗺️</div>
+                    <div class="font-anime-title text-xs text-[#fde68a] mb-2">1. PILIH ARAS</div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                        <span class="px-2 py-0.5 rounded-md bg-violet-900/80 border border-violet-400 font-anime-title text-[11px] text-white">7×7</span>
+                        <span class="px-2 py-0.5 rounded-md bg-violet-900/80 border border-violet-400 font-anime-title text-[11px] text-white">14×14</span>
+                        <span class="px-2 py-0.5 rounded-md bg-violet-900/80 border border-violet-400 font-anime-title text-[11px] text-white">20×20</span>
+                    </div>
                 </div>
 
-                <div class="rounded-2xl bg-[#eef8fc] border-2 border-[#3b2618] p-3.5 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#1c5d7a] mb-1">2. KIRA JARAK SP 7.1</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Kira jarak mengufuk, jarak mencancang, atau jarak antara dua titik berdasarkan situasi sebenar dan pilih arah pergerakan yang sesuai.
-                    </p>
+                <!-- Kad 2: Kira Jarak & Arah -->
+                <div class="rounded-2xl bg-[#16102e] border border-[#8b5cf6] p-3.5 text-center">
+                    <div class="flex justify-center items-center gap-2 text-2xl mb-1.5" aria-hidden="true">
+                        <span>🔍</span><span>🧭</span>
+                    </div>
+                    <div class="font-anime-title text-xs text-[#67e8f9] mb-2">2. JARAK & ARAH</div>
+                    <div class="flex flex-wrap justify-center gap-1.5">
+                        <span class="px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400 font-anime-title text-[11px] text-cyan-200">|x₂−x₁|</span>
+                        <span class="px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400 font-anime-title text-[11px] text-cyan-200">|y₂−y₁|</span>
+                        <span class="px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400 font-anime-title text-[11px] text-cyan-200">√(Δx²+Δy²)</span>
+                    </div>
                 </div>
 
-                <div class="rounded-2xl bg-[#fff4d4] border-2 border-[#3b2618] p-3.5 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#9c4215] mb-1">3. FUNGSI HINTS</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Tekan <strong>💡 Hints</strong> pada bar atas untuk melihat pembayang formula atau beza koordinat tanpa membocorkan jawapan terus.
-                    </p>
+                <!-- Kad 3: Fungsi Hints (Simbol Mentol & Kanta SVG) -->
+                <div class="rounded-2xl bg-[#16102e] border border-[#f5b942] p-3.5 text-center">
+                    <div class="flex justify-center items-center gap-2 mb-1.5">
+                        <span class="text-3xl" aria-hidden="true">💡</span>
+                        <svg viewBox="0 0 28 28" class="w-7 h-7" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8" fill="rgba(245,185,66,0.22)" stroke="#fde68a" stroke-width="2.5"/>
+                            <line x1="18" y1="18" x2="25" y2="25" stroke="#f5b942" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="font-anime-title text-xs text-[#fde68a] mb-2">3. HINTS</div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-400 text-xs font-bold text-amber-200">
+                        <span>💡</span><span>Petunjuk Formula</span>
+                    </div>
                 </div>
 
-                <div class="rounded-2xl bg-[#ffeae4] border-2 border-[#3b2618] p-3.5 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#9e2a1c] mb-1">4. TRY AGAIN & LANGKAH</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Jika jawapan kurang tepat, pop-up <strong>Try again!</strong> akan menunjukkan langkah penyelesaian langkah demi langkah sebelum anda mencuba lagi.
-                    </p>
+                <!-- Kad 4: Try Again & Langkah Penyelesaian -->
+                <div class="rounded-2xl bg-[#16102e] border border-[#fb7185] p-3.5 text-center">
+                    <div class="flex justify-center items-center gap-2 mb-1.5">
+                        <span class="text-3xl" aria-hidden="true">🔄</span>
+                        <svg viewBox="0 0 28 28" class="w-7 h-7" aria-hidden="true">
+                            <rect x="4" y="4" width="20" height="20" rx="5" fill="rgba(251,113,133,0.18)" stroke="#fb7185" stroke-width="2"/>
+                            <line x1="9" y1="10" x2="19" y2="10" stroke="#fecdd3" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="9" y1="14" x2="17" y2="14" stroke="#fecdd3" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="9" y1="18" x2="14" y2="18" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="font-anime-title text-xs text-[#fda4af] mb-2">4. TRY AGAIN</div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-500/20 border border-rose-400 text-xs font-bold text-rose-200">
+                        <span>📋</span><span>Langkah 1 → 2 → 3</span>
+                    </div>
                 </div>
             </div>
 
             <div class="flex flex-col sm:flex-row justify-between gap-3">
-                <button type="button" id="btn-howto-back" class="cartoon-subbtn">
+                <button type="button" id="btn-howto-back" class="detective-subbtn">
                     ← KEMBALI
                 </button>
-                <button type="button" id="btn-howto-to-map" class="cartoon-btn">
+                <button type="button" id="btn-howto-to-map" class="detective-btn detective-btn-gold">
                     TERUSKAN KE PETA ARAS →
                 </button>
             </div>
@@ -629,27 +686,27 @@
 
     <!-- 3. HALAMAN PETA KESELURUHAN & PEMILIHAN ARAS (MAP SCREEN) -->
     <section id="map-screen" class="screen-layer" aria-label="Halaman Peta Keseluruhan dan Pemilihan Aras">
-        <div class="storybook-card">
+        <div class="detective-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <div class="flex flex-wrap items-center gap-2">
-                    <span class="tag-sticker">🗺️ PETA KESELURUHAN • PILIH ARAS</span>
-                    <span class="tag-sky tag-sticker">🎒 <span id="p2-player-name">Peserta</span> (<span id="p2-player-class">Kelas</span>)</span>
+                    <span class="dossier-chip">🗺️ PETA KESELURUHAN • PILIH ARAS</span>
+                    <span class="dossier-chip dossier-chip-gold">🪪 <span id="p2-player-name">Peserta</span> (<span id="p2-player-class">Kelas</span>)</span>
                 </div>
-                <button type="button" id="btn-p2-audio" class="hud-action">🔊 Audio: ON</button>
+                <button type="button" id="btn-p2-audio" class="hud-btn">🔊 Audio: ON</button>
             </div>
 
-            <p class="text-[#3b2618] font-semibold text-sm sm:text-base mb-3">
-                Peta keseluruhan memaparkan laluan <strong>jalan raya</strong>, <strong>hutan</strong>, <strong>sungai</strong>, <strong>zon anjing liar</strong>, dan <strong>rumah selamat</strong>. Tekan nod aras yang terbuka pada peta untuk membuka nota formula sebelum menjawab soalan:
+            <p class="text-[#ddd6fe] font-semibold text-sm sm:text-base mb-3">
+                Peta kes menunjukkan laluan <strong class="text-white">jalan raya</strong>, <strong class="text-emerald-300">hutan</strong>, <strong class="text-sky-300">sungai</strong>, <strong class="text-rose-300">zon anjing liar</strong>, dan <strong class="text-amber-300">lokasi selamat</strong>. Tekan nod aras yang aktif pada peta untuk membuka nota formula sebelum menjawab soalan:
             </p>
 
-            <!-- Peta Keseluruhan Interaktif Kartun dengan 3 Nod Aras -->
-            <div class="relative rounded-2xl overflow-hidden border-2 border-[#3b2618] bg-[#e9f5fc] mb-4">
-                <svg viewBox="0 0 740 265" class="w-full h-56 sm:h-64 block" role="img" aria-label="Peta Keseluruhan Kartun dengan Aras 1, Aras 2 dan Aras 3">
-                    <rect width="740" height="265" fill="#dff2fa"/>
-                    <rect x="0" y="64" width="740" height="201" fill="#c7e8a4"/>
+            <!-- Peta Keseluruhan Interaktif Tema Detektif Anime dengan 3 Nod Aras -->
+            <div class="relative rounded-2xl overflow-hidden border border-[#8b5cf6] bg-[#110b26] mb-4">
+                <svg viewBox="0 0 740 265" class="w-full h-56 sm:h-64 block" role="img" aria-label="Peta Keseluruhan Detektif Anime dengan Aras 1, Aras 2 dan Aras 3">
+                    <rect width="740" height="265" fill="#130c2b"/>
+                    <rect x="0" y="54" width="740" height="211" fill="#181c2e"/>
 
                     <!-- Grid koordinat samar -->
-                    <g stroke="rgba(59,38,24,0.11)" stroke-width="1">
+                    <g stroke="rgba(196,181,253,0.12)" stroke-width="1">
                         <line x1="0" y1="53" x2="740" y2="53"/>
                         <line x1="0" y1="106" x2="740" y2="106"/>
                         <line x1="0" y1="159" x2="740" y2="159"/>
@@ -661,49 +718,48 @@
                         <line x1="615" y1="0" x2="615" y2="265"/>
                     </g>
 
-                    <!-- Kawasan hutan kartun -->
-                    <rect x="22" y="74" width="185" height="168" rx="18" fill="#a8d982" stroke="#3b2618" stroke-width="2"/>
-                    <g fill="#4ea854" stroke="#3b2618" stroke-width="2">
-                        <circle cx="64" cy="112" r="15"/>
-                        <circle cx="84" cy="118" r="12"/>
-                        <circle cx="145" cy="198" r="16"/>
-                        <circle cx="164" cy="204" r="13"/>
+                    <!-- Kawasan hutan malam -->
+                    <rect x="22" y="74" width="185" height="168" rx="18" fill="rgba(16,185,129,0.14)" stroke="#34d399" stroke-width="1.5"/>
+                    <g fill="#10b981" stroke="#6ee7b7" stroke-width="1.5">
+                        <circle cx="64" cy="112" r="14"/>
+                        <circle cx="84" cy="118" r="11"/>
+                        <circle cx="145" cy="198" r="15"/>
+                        <circle cx="164" cy="204" r="12"/>
                     </g>
-                    <text x="36" y="94" fill="#234d20" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">HUTAN</text>
+                    <text x="36" y="94" fill="#a7f3d0" font-size="11" font-weight="bold" font-family="Orbitron, sans-serif">HUTAN</text>
 
-                    <!-- Sungai kartun -->
-                    <path d="M325,60 Q290,130 340,192 T312,265 L382,265 Q412,195 362,130 T398,60 Z" fill="#7ec8e3" stroke="#3b2618" stroke-width="2"/>
-                    <text x="312" y="252" fill="#184e6b" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">SUNGAI</text>
+                    <!-- Sungai malam -->
+                    <path d="M325,60 Q290,130 340,192 T312,265 L382,265 Q412,195 362,130 T398,60 Z" fill="rgba(56,189,248,0.28)" stroke="#67e8f9" stroke-width="1.5"/>
+                    <text x="312" y="252" fill="#bae6fd" font-size="11" font-weight="bold" font-family="Orbitron, sans-serif">SUNGAI</text>
 
-                    <!-- Zon anjing liar kartun -->
-                    <ellipse cx="520" cy="202" rx="84" ry="38" fill="#f7b7a3" stroke="#b83b28" stroke-width="2" stroke-dasharray="5 4"/>
-                    <text x="462" y="226" fill="#8f2d1e" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">ZON ANJING LIAR</text>
+                    <!-- Zon anjing liar -->
+                    <ellipse cx="520" cy="202" rx="84" ry="38" fill="rgba(244,63,94,0.18)" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="5 4"/>
+                    <text x="454" y="226" fill="#fecdd3" font-size="10.5" font-weight="bold" font-family="Orbitron, sans-serif">ZON ANJING LIAR</text>
 
-                    <!-- Jalan raya kartun -->
-                    <path d="M72,205 L248,205 L352,132 L500,132 L624,62" fill="none" stroke="#3b2618" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M72,205 L248,205 L352,132 L500,132 L624,62" fill="none" stroke="#d5dce2" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M72,205 L248,205 L352,132 L500,132 L624,62" fill="none" stroke="#fffdf7" stroke-width="2" stroke-dasharray="8 8"/>
-                    <text x="148" y="190" fill="#3b2618" font-size="11" font-weight="bold" font-family="Fredoka, sans-serif">JALAN RAYA</text>
+                    <!-- Jalan raya -->
+                    <path d="M72,205 L248,205 L352,132 L500,132 L624,62" fill="none" stroke="#8b5cf6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M72,205 L248,205 L352,132 L500,132 L624,62" fill="none" stroke="#fde68a" stroke-width="2" stroke-dasharray="8 8"/>
+                    <text x="140" y="190" fill="#ede9fe" font-size="11" font-weight="bold" font-family="Orbitron, sans-serif">JALAN RAYA</text>
                 </svg>
 
                 <!-- 3 Nod Aras Interaktif pada Peta -->
-                <button type="button" id="map-node-1" class="map-node-pin is-unlocked" style="left: 17%; top: 74%;">
-                    📍 ARAS 1 (RENDAH • 7×7)
+                <button type="button" id="map-node-1" class="case-pin is-unlocked" style="left: 17%; top: 74%;">
+                    🕵️ ARAS 1 (RENDAH • 7×7)
                 </button>
-                <button type="button" id="map-node-2" class="map-node-pin is-locked" style="left: 49%; top: 49%;" disabled>
+                <button type="button" id="map-node-2" class="case-pin is-locked" style="left: 49%; top: 49%;" disabled>
                     🔒 ARAS 2 (SEDERHANA • 14×14)
                 </button>
-                <button type="button" id="map-node-3" class="map-node-pin is-locked" style="left: 81%; top: 23%;" disabled>
+                <button type="button" id="map-node-3" class="case-pin is-locked" style="left: 81%; top: 23%;" disabled>
                     🔒 ARAS 3 (TINGGI • 20×20)
                 </button>
             </div>
 
             <div class="flex flex-wrap items-center justify-between gap-3">
-                <button type="button" id="btn-p2-back-howto" class="cartoon-subbtn">
+                <button type="button" id="btn-p2-back-howto" class="detective-subbtn">
                     ← CARA BERMAIN
                 </button>
-                <div id="p2-guide-text" class="text-sm font-bold text-[#3b2618]">
-                    Tekan nod <strong>ARAS 1 (RENDAH)</strong> pada peta untuk membuka nota formula.
+                <div id="p2-guide-text" class="text-sm font-bold text-[#fde68a]">
+                    Tekan nod <strong class="text-white">ARAS 1 (RENDAH)</strong> pada peta untuk membuka nota formula.
                 </div>
             </div>
         </div>
@@ -711,78 +767,78 @@
 
     <!-- 4. HALAMAN NOTA RINGKAS & FORMULA SP 7.1 (FORMULA SCREEN) -->
     <section id="formula-screen" class="screen-layer" aria-label="Halaman Nota Ringkas dan Formula SP 7.1">
-        <div class="storybook-card">
+        <div class="detective-card">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                <span class="tag-sticker" id="p3-stage-badge">📝 NOTA FORMULA • ARAS 1 (RENDAH)</span>
-                <span class="tag-sky tag-sticker">BAB 7 - KOORDINAT (TINGKATAN 2) • SP 7.1</span>
+                <span class="dossier-chip dossier-chip-gold" id="p3-stage-badge">📋 NOTA FORMULA • ARAS 1 (RENDAH)</span>
+                <span class="dossier-chip">BAB 7 - KOORDINAT (TINGKATAN 2) • SP 7.1</span>
             </div>
 
-            <h2 id="p3-title" class="font-cartoon text-xl sm:text-2xl font-bold text-[#3b2618] mb-1">
+            <h2 id="p3-title" class="font-anime-title text-lg sm:text-2xl font-bold text-white mb-1">
                 Nota Ringkas & Formula Jarak (SP 7.1)
             </h2>
-            <p id="p3-subtitle" class="text-[#6b4c35] font-semibold text-sm sm:text-base mb-4">
-                Ulang kaji formula jarak dalam sistem koordinat Cartes sebelum memulakan perjalanan pada peta.
+            <p id="p3-subtitle" class="text-[#c4b5fd] font-semibold text-sm sm:text-base mb-4">
+                Ulang kaji formula jarak dalam sistem koordinat Cartes sebelum memulakan siasatan laluan.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-                <div class="rounded-2xl bg-[#fff8e6] border-2 border-[#3b2618] p-4 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#b85d19] mb-1">1. JARAK MENGUFUK</div>
-                    <div class="font-cartoon text-base font-bold text-[#3b2618] mb-1.5">|x₂ − x₁| unit</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Selari <strong>paksi-x</strong> apabila nilai <em>y</em> sama. Contoh: dari (0,0) ke (3,0) → |3 − 0| = <strong>3 unit</strong>.
+                <div class="rounded-2xl bg-[#16102e] border border-[#8b5cf6] p-4">
+                    <div class="font-anime-title text-xs text-[#fde68a] mb-1">1. JARAK MENGUFUK</div>
+                    <div class="font-anime-title text-base font-bold text-white mb-1.5">|x₂ − x₁| unit</div>
+                    <p class="text-sm text-[#ddd6fe] font-semibold leading-snug">
+                        Selari <strong class="text-white">paksi-x</strong> apabila nilai <em>y</em> sama. Contoh: dari (0,0) ke (3,0) → |3 − 0| = <strong class="text-[#fde68a]">3 unit</strong>.
                     </p>
                 </div>
 
-                <div class="rounded-2xl bg-[#eef8fc] border-2 border-[#3b2618] p-4 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#1c5d7a] mb-1">2. JARAK MENCANCANG</div>
-                    <div class="font-cartoon text-base font-bold text-[#3b2618] mb-1.5">|y₂ − y₁| unit</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Selari <strong>paksi-y</strong> apabila nilai <em>x</em> sama. Contoh: dari (3,0) ke (3,4) → |4 − 0| = <strong>4 unit</strong>.
+                <div class="rounded-2xl bg-[#16102e] border border-[#67e8f9] p-4">
+                    <div class="font-anime-title text-xs text-[#67e8f9] mb-1">2. JARAK MENCANCANG</div>
+                    <div class="font-anime-title text-base font-bold text-white mb-1.5">|y₂ − y₁| unit</div>
+                    <p class="text-sm text-[#ddd6fe] font-semibold leading-snug">
+                        Selari <strong class="text-white">paksi-y</strong> apabila nilai <em>x</em> sama. Contoh: dari (3,0) ke (3,4) → |4 − 0| = <strong class="text-[#67e8f9]">4 unit</strong>.
                     </p>
                 </div>
 
-                <div class="rounded-2xl bg-[#e9f8ef] border-2 border-[#3b2618] p-4 shadow-[0_3px_0_#3b2618]">
-                    <div class="font-cartoon text-xs text-[#1d6642] mb-1">3. JARAK DUA TITIK</div>
-                    <div class="font-cartoon text-sm font-bold text-[#3b2618] mb-1.5">d = √[(x₂−x₁)² + (y₂−y₁)²]</div>
-                    <p class="text-sm text-[#3b2618] font-semibold leading-snug">
-                        Jarak lurus mengikut <strong>Teorem Pythagoras</strong> antara dua titik pada satah Cartes.
+                <div class="rounded-2xl bg-[#16102e] border border-[#34d399] p-4">
+                    <div class="font-anime-title text-xs text-[#6ee7b7] mb-1">3. JARAK DUA TITIK</div>
+                    <div class="font-anime-title text-sm font-bold text-white mb-1.5">d = √[(x₂−x₁)² + (y₂−y₁)²]</div>
+                    <p class="text-sm text-[#ddd6fe] font-semibold leading-snug">
+                        Jarak lurus mengikut <strong class="text-white">Teorem Pythagoras</strong> antara dua titik pada satah Cartes.
                     </p>
                 </div>
             </div>
 
-            <div id="p3-stage-note" class="rounded-xl bg-[#fff2cc] border-2 border-[#3b2618] px-4 py-3 text-sm font-semibold text-[#3b2618] mb-5"></div>
+            <div id="p3-stage-note" class="rounded-xl bg-[#271b52] border border-[#f5b942] px-4 py-3 text-sm font-semibold text-[#fef3c7] mb-5"></div>
 
             <div class="flex flex-col sm:flex-row justify-between gap-3">
-                <button type="button" id="btn-p3-back-map" class="cartoon-subbtn">
+                <button type="button" id="btn-p3-back-map" class="detective-subbtn">
                     ← KEMBALI KE PETA
                 </button>
-                <button type="button" id="btn-p3-enter-game" class="cartoon-btn">
+                <button type="button" id="btn-p3-enter-game" class="detective-btn detective-btn-gold">
                     TERUSKAN KE SOALAN ARAS 1 →
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- 5. ARENA PERMAINAN AKTIF (GAME STAGE — GAYA KARTUN 2D) -->
+    <!-- 5. ARENA PERMAINAN AKTIF (GAME STAGE — TEMA DETEKTIF ANIME) -->
     <div id="game-stage">
-        <header class="cartoon-hud">
+        <header class="detective-hud">
             <div class="flex flex-wrap items-center gap-2">
-                <div class="hud-badge student-badge">🎒 <span id="hud-name">Peserta</span> (<span id="hud-class">Kelas</span>)</div>
-                <div class="hud-badge">🚪 <strong id="hud-stage" class="text-[#b85d19]">ARAS 1</strong></div>
-                <div class="hud-badge">📐 SKALA: <strong id="hud-scale" class="text-[#1c5d7a]">7×7</strong></div>
-                <div class="hud-badge">🔑 SOALAN: <strong id="hud-qprogress" class="text-[#1d6642]">1 / 5</strong></div>
-                <div class="hud-badge clock-badge">⏱️ MASA: <strong id="hud-timer" class="text-[#9e2a1c]">15:00</strong></div>
+                <div class="hud-tag agent-tag">🕵️ <span id="hud-name">Peserta</span> (<span id="hud-class">Kelas</span>)</div>
+                <div class="hud-tag">🚪 <strong id="hud-stage" class="text-[#fde68a]">ARAS 1</strong></div>
+                <div class="hud-tag">📐 SKALA: <strong id="hud-scale" class="text-[#67e8f9]">7×7</strong></div>
+                <div class="hud-tag">🔑 SOALAN: <strong id="hud-qprogress" class="text-[#6ee7b7]">1 / 5</strong></div>
+                <div class="hud-tag clock-tag">⏱️ MASA: <strong id="hud-timer">15:00</strong></div>
             </div>
 
-            <div class="font-cartoon font-bold text-xs sm:text-sm text-[#3b2618]">
+            <div class="font-anime-title font-bold text-xs sm:text-sm text-[#fde68a]">
                 Escape Room : Misi Menyelamatkan Diri
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
-                <button type="button" id="btn-hud-audio" class="hud-action">🔊 Audio: ON</button>
-                <button type="button" id="btn-hud-cam" class="hud-action">🔍 Pandangan Penuh</button>
-                <button type="button" id="btn-hud-formula" class="hud-action">📘 Formula SP 7.1</button>
-                <button type="button" id="btn-hud-hint" class="hud-action">💡 Hints</button>
+                <button type="button" id="btn-hud-audio" class="hud-btn">🔊 Audio: ON</button>
+                <button type="button" id="btn-hud-cam" class="hud-btn">🔍 Pandangan Penuh</button>
+                <button type="button" id="btn-hud-formula" class="hud-btn">📘 Formula SP 7.1</button>
+                <button type="button" id="btn-hud-hint" class="hud-btn">💡 Hints</button>
             </div>
         </header>
 
@@ -790,45 +846,45 @@
             <canvas id="gameCanvas"></canvas>
 
             <div class="status-strip-mini">
-                <div id="cam-status-pill" class="mini-pill">KAMERA: FOKUS PERJALANAN (7×7)</div>
-                <div id="coord-status-pill" class="mini-pill">KOORDINAT SAMAR: (0.0, 0.0)</div>
+                <div id="cam-status-pill" class="mini-badge">KAMERA: FOKUS SIASATAN (7×7)</div>
+                <div id="coord-status-pill" class="mini-badge">KOORDINAT SAMAR: (0.0, 0.0)</div>
             </div>
 
-            <!-- Dialog Fikiran Murid (Pop-up Cerita Situasi) -->
-            <div class="student-thought-box" role="region" aria-label="Dialog Fikiran Murid">
+            <!-- Dialog Fikiran Detektif Anime -->
+            <div class="detective-thought-box" role="region" aria-label="Dialog Fikiran Detektif">
                 <div class="flex items-start gap-2.5">
-                    <div class="w-9 h-9 rounded-full bg-[#ffe08a] border-2 border-[#3b2618] flex items-center justify-center text-lg shrink-0">
-                        🧒
+                    <div class="w-9 h-9 rounded-full bg-[#2e195e] border border-[#f5b942] flex items-center justify-center text-lg shrink-0">
+                        🕵️
                     </div>
                     <div>
-                        <div class="font-cartoon text-xs text-[#9c4215] mb-0.5">FIKIRAN MURID:</div>
-                        <p id="student-thought-text" class="text-sm font-bold text-[#3b2618] leading-snug m-0">
-                            "Alamak, saya mesti kira jarak mengufuk dari pondok permulaan (0,0) ke simpang (3,0) supaya dapat teruskan perjalanan dengan selamat!"
+                        <div class="font-anime-title text-[11px] text-[#fde68a] mb-0.5">FIKIRAN DETEKTIF:</div>
+                        <p id="student-thought-text" class="text-sm font-bold text-[#f5f3ff] leading-snug m-0">
+                            "Hmm... saya mesti kira jarak mengufuk dari titik mula (0,0) ke simpang (3,0) supaya laluan terus terbuka!"
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Panel Soalan & Kawalan Arah -->
-            <aside class="storybook-panel" aria-label="Panel Soalan Jarak SP 7.1">
+            <!-- Panel Kes & Kawalan Arah -->
+            <aside class="case-panel" aria-label="Panel Soalan Jarak SP 7.1">
                 <div class="flex items-center justify-between gap-2 mb-2">
-                    <span id="panel-stage-badge" class="inline-block font-cartoon text-[11px] px-2.5 py-1 rounded-full bg-[#ffeaad] border-2 border-[#3b2618] text-[#3b2618]">
+                    <span id="panel-stage-badge" class="inline-block font-anime-title text-[10px] px-2.5 py-1 rounded-full bg-violet-900/80 border border-violet-400 text-[#fde68a]">
                         ARAS 1 • SKALA 7×7
                     </span>
-                    <span class="text-xs font-extrabold text-[#6b4c35]">BAB 7 - KOORDINAT (T2)</span>
+                    <span class="text-xs font-extrabold text-[#c4b5fd]">BAB 7 - KOORDINAT (T2)</span>
                 </div>
 
-                <div class="flex justify-between items-center bg-[#f6efe0] border-2 border-[#3b2618] rounded-xl px-3 py-1.5 mb-2 text-xs sm:text-sm font-bold text-[#3b2618]">
-                    <span>Lokasi: <strong id="panel-curr-coord" class="font-cartoon text-[#9c4215]">(0,0)</strong></span>
-                    <span>Destinasi: <strong id="panel-target-coord" class="font-cartoon text-[#1d6642]">(3,0)</strong></span>
+                <div class="flex justify-between items-center bg-[#130d29] border border-[#7c3aed] rounded-xl px-3 py-1.5 mb-2 text-xs sm:text-sm font-bold text-[#ede9fe]">
+                    <span>Lokasi: <strong id="panel-curr-coord" class="font-anime-title text-[#fde68a]">(0,0)</strong></span>
+                    <span>Destinasi: <strong id="panel-target-coord" class="font-anime-title text-[#6ee7b7]">(3,0)</strong></span>
                 </div>
 
-                <p id="panel-question-text" class="text-sm sm:text-[15px] font-bold leading-snug text-[#3b2618] mb-2">
+                <p id="panel-question-text" class="text-sm sm:text-[15px] font-bold leading-snug text-white mb-2">
                     Memuatkan soalan...
                 </p>
 
-                <!-- Butang Arah Kartun (Depan / Belakang / Kiri / Kanan / Pusat) -->
-                <div class="text-[11px] font-cartoon text-[#6b4c35] mb-1">PILIH ARAH PERGERAKAN:</div>
+                <!-- Butang Arah (Depan / Belakang / Kiri / Kanan / Pusat) -->
+                <div class="text-[10px] font-anime-title text-[#c4b5fd] mb-1">PILIH ARAH PERGERAKAN:</div>
                 <div class="dir-grid">
                     <button type="button" class="dir-btn" data-dir="Depan">⬆️ Depan</button>
                     <button type="button" class="dir-btn" data-dir="Belakang">⬇️ Belakang</button>
@@ -837,11 +893,11 @@
                     <button type="button" class="dir-btn col-span-2" data-dir="Pusat">🎯 Pusat / Terus</button>
                 </div>
 
-                <div id="panel-hint-box" class="hidden mb-2 px-3 py-2 rounded-xl bg-[#fff3c4] border-2 border-[#3b2618] text-[#3b2618] text-xs sm:text-sm font-bold"></div>
+                <div id="panel-hint-box" class="hidden mb-2 px-3 py-2 rounded-xl bg-amber-950/85 border border-amber-400 text-amber-100 text-xs sm:text-sm font-bold"></div>
 
                 <div class="flex gap-2 mb-2">
-                    <input type="text" id="answer-field" class="cartoon-input !py-2 !text-sm font-cartoon" placeholder="Nilai jarak (cth: 3 atau 7.2)">
-                    <button type="button" id="btn-verify-answer" class="cartoon-btn !py-2 !px-3 !text-xs">
+                    <input type="text" id="answer-field" class="detective-input !py-2 !text-sm font-anime-title" placeholder="Nilai jarak (cth: 3 atau 7.2)">
+                    <button type="button" id="btn-verify-answer" class="detective-btn detective-btn-gold !py-2 !px-3 !text-xs">
                         SAHKAN
                     </button>
                 </div>
@@ -870,13 +926,13 @@
 
     <!-- MODAL TRY AGAIN! (JAWAPAN SALAH + LANGKAH PENYELESAIAN) -->
     <div id="popup-try-again" class="modal-backdrop" role="dialog" aria-modal="true">
-        <div class="modal-card" style="background:#fff6f3;">
-            <h2 class="font-cartoon text-xl font-bold text-[#b8321c] mb-1">🔄 Try again!</h2>
-            <p class="text-sm font-bold text-[#6b4c35] mb-3">
-                Jawapan anda belum tepat. Lihat langkah penyelesaian di bawah dan cuba semula:
+        <div class="modal-card" style="border-color:#fb7185;">
+            <h2 class="font-anime-title text-lg font-bold text-[#fda4af] mb-1">🔄 Try again!</h2>
+            <p class="text-sm font-bold text-[#e9d5ff] mb-3">
+                Jawapan anda belum tepat. Semak langkah penyelesaian di bawah sebelum cuba semula:
             </p>
-            <div id="try-again-steps" class="bg-[#fffdf7] border-2 border-[#3b2618] rounded-xl p-3.5 text-left text-[#3b2618] text-sm font-semibold leading-relaxed mb-4"></div>
-            <button type="button" id="btn-try-again-close" class="cartoon-btn cartoon-btn-coral w-full">
+            <div id="try-again-steps" class="bg-[#120c29] border border-[#8b5cf6] rounded-xl p-3.5 text-left text-[#f5f3ff] text-sm font-semibold leading-relaxed mb-4"></div>
+            <button type="button" id="btn-try-again-close" class="detective-btn detective-btn-rose w-full">
                 CUBA SEMULA →
             </button>
         </div>
@@ -884,11 +940,11 @@
 
     <!-- MODAL TAHNIAH (JAWAPAN BETUL + PENERANGAN RINGKAS SP 7.1) -->
     <div id="popup-correct" class="modal-backdrop" role="dialog" aria-modal="true">
-        <div class="modal-card" style="background:#f3fbf6;">
-            <h2 class="font-cartoon text-xl font-bold text-[#1d6642] mb-1">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
-            <p class="text-sm font-bold text-[#6b4c35] mb-3">Penerangan Ringkas (SP 7.1 Jarak):</p>
-            <div id="popup-explain-content" class="bg-[#fffdf7] border-2 border-[#3b2618] rounded-xl p-3.5 text-left text-[#3b2618] text-sm sm:text-base font-semibold leading-relaxed mb-4"></div>
-            <button type="button" id="btn-popup-next" class="cartoon-btn cartoon-btn-mint w-full">
+        <div class="modal-card" style="border-color:#34d399;">
+            <h2 class="font-anime-title text-lg font-bold text-[#6ee7b7] mb-1">🎉 TAHNIAH! JAWAPAN ANDA TEPAT</h2>
+            <p class="text-sm font-bold text-[#c4b5fd] mb-3">Penerangan Ringkas (SP 7.1 Jarak):</p>
+            <div id="popup-explain-content" class="bg-[#120c29] border border-[#34d399] rounded-xl p-3.5 text-left text-[#f5f3ff] text-sm sm:text-base font-semibold leading-relaxed mb-4"></div>
+            <button type="button" id="btn-popup-next" class="detective-btn detective-btn-mint w-full">
                 TERUSKAN →
             </button>
         </div>
@@ -898,9 +954,9 @@
     <div id="popup-stage-done" class="modal-backdrop" role="dialog" aria-modal="true">
         <div class="modal-card">
             <div class="text-4xl mb-2">🗺️✨</div>
-            <h2 id="stage-done-heading" class="font-cartoon text-xl font-bold text-[#3b2618] mb-2">ARAS SELESAI!</h2>
-            <p id="stage-done-message" class="text-[#3b2618] font-semibold text-sm sm:text-base leading-relaxed mb-4"></p>
-            <button type="button" id="btn-back-to-map-page" class="cartoon-btn w-full">
+            <h2 id="stage-done-heading" class="font-anime-title text-lg font-bold text-[#fde68a] mb-2">ARAS SELESAI!</h2>
+            <p id="stage-done-message" class="text-[#ede9fe] font-semibold text-sm sm:text-base leading-relaxed mb-4"></p>
+            <button type="button" id="btn-back-to-map-page" class="detective-btn detective-btn-gold w-full">
                 KEMBALI KE PETA ARAS →
             </button>
         </div>
@@ -909,37 +965,37 @@
     <!-- MODAL RUJUKAN FORMULA PANTAS -->
     <div id="popup-formula" class="modal-backdrop" role="dialog" aria-modal="true">
         <div class="modal-card">
-            <h2 class="font-cartoon text-xl font-bold text-[#3b2618] mb-3">📘 FORMULA SP 7.1: JARAK</h2>
+            <h2 class="font-anime-title text-lg font-bold text-[#fde68a] mb-3">📘 FORMULA SP 7.1: JARAK</h2>
             <div class="space-y-2.5 text-left mb-4">
-                <div class="p-3 rounded-xl bg-[#fff7e2] border-2 border-[#3b2618]">
-                    <div class="font-cartoon text-sm text-[#9c4215]">1. Jarak Mengufuk (Selari Paksi-x)</div>
-                    <div class="text-sm font-bold text-[#3b2618]">Jarak = |x₂ − x₁| unit</div>
+                <div class="p-3 rounded-xl bg-[#130d29] border border-[#8b5cf6]">
+                    <div class="font-anime-title text-xs text-[#fde68a]">1. Jarak Mengufuk (Selari Paksi-x)</div>
+                    <div class="text-sm font-bold text-white">Jarak = |x₂ − x₁| unit</div>
                 </div>
-                <div class="p-3 rounded-xl bg-[#eef8fc] border-2 border-[#3b2618]">
-                    <div class="font-cartoon text-sm text-[#1c5d7a]">2. Jarak Mencancang (Selari Paksi-y)</div>
-                    <div class="text-sm font-bold text-[#3b2618]">Jarak = |y₂ − y₁| unit</div>
+                <div class="p-3 rounded-xl bg-[#130d29] border border-[#67e8f9]">
+                    <div class="font-anime-title text-xs text-[#67e8f9]">2. Jarak Mencancang (Selari Paksi-y)</div>
+                    <div class="text-sm font-bold text-white">Jarak = |y₂ − y₁| unit</div>
                 </div>
-                <div class="p-3 rounded-xl bg-[#e9f8ef] border-2 border-[#3b2618]">
-                    <div class="font-cartoon text-sm text-[#1d6642]">3. Jarak Antara Dua Titik (Teorem Pythagoras)</div>
-                    <div class="text-sm font-bold text-[#3b2618]">d = √[(x₂ − x₁)² + (y₂ − y₁)²] unit</div>
+                <div class="p-3 rounded-xl bg-[#130d29] border border-[#34d399]">
+                    <div class="font-anime-title text-xs text-[#6ee7b7]">3. Jarak Antara Dua Titik (Teorem Pythagoras)</div>
+                    <div class="text-sm font-bold text-white">d = √[(x₂ − x₁)² + (y₂ − y₁)²] unit</div>
                 </div>
             </div>
-            <button type="button" id="btn-close-formula" class="cartoon-btn w-full">TUTUP FORMULA</button>
+            <button type="button" id="btn-close-formula" class="detective-btn w-full">TUTUP FORMULA</button>
         </div>
     </div>
 
     <!-- MODAL TAMAT KESELURUHAN MISI -->
     <div id="popup-mission-win" class="modal-backdrop" role="dialog" aria-modal="true">
-        <div class="modal-card" style="background:#fff9e6;">
-            <h2 class="font-cartoon text-xl font-bold text-[#1d6642] mb-2">🏆 MISI MENYELAMATKAN DIRI BERJAYA!</h2>
-            <p class="text-[#3b2618] font-semibold text-sm sm:text-base mb-3">
-                Tahniah <strong id="win-student-name">Peserta</strong> (<strong id="win-student-class">Kelas</strong>)! Anda telah tiba dengan selamat di <strong>(18,18)</strong> pada peta skala <strong>20×20</strong> dan menamatkan kesemua 15 soalan SP 7.1.
+        <div class="modal-card" style="border-color:#f5b942;">
+            <h2 class="font-anime-title text-lg font-bold text-[#fde68a] mb-2">🏆 MISI MENYELAMATKAN DIRI BERJAYA!</h2>
+            <p class="text-[#f5f3ff] font-semibold text-sm sm:text-base mb-3">
+                Tahniah Detektif <strong id="win-student-name" class="text-[#fde68a]">Peserta</strong> (<strong id="win-student-class" class="text-[#67e8f9]">Kelas</strong>)! Anda telah tiba dengan selamat di <strong class="text-[#6ee7b7]">(18,18)</strong> pada peta skala <strong class="text-[#fde68a]">20×20</strong> dan menamatkan kesemua 15 soalan SP 7.1.
             </p>
-            <div class="p-3 rounded-xl bg-[#fffdf7] border-2 border-[#3b2618] mb-4 text-sm font-bold text-[#3b2618]">
-                <div>REKOD MASA TAMAT: <span id="win-clock" class="font-cartoon text-[#b85d19]">00:00</span></div>
+            <div class="p-3 rounded-xl bg-[#130d29] border border-[#8b5cf6] mb-4 text-sm font-bold text-[#ede9fe]">
+                <div>REKOD MASA TAMAT: <span id="win-clock" class="font-anime-title text-[#fde68a]">00:00</span></div>
                 <div class="mt-1">TOPIK: Bab 7 - Koordinat (Tingkatan 2) • SP 7.1 Jarak</div>
             </div>
-            <button type="button" id="btn-play-again" class="cartoon-btn cartoon-btn-mint w-full">MAIN SEMULA MISI</button>
+            <button type="button" id="btn-play-again" class="detective-btn detective-btn-mint w-full">MAIN SEMULA MISI</button>
         </div>
     </div>
 
@@ -967,7 +1023,7 @@
 
             startAmbient() {
                 if (this.ambientTimer || !this.enabled) return;
-                const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63];
+                const notes = [196.00, 246.94, 293.66, 392.00, 293.66, 246.94];
                 let step = 0;
 
                 this.ambientTimer = setInterval(() => {
@@ -1117,10 +1173,10 @@
                 tag: "ARAS 1 • SKALA 7×7 • JARAK MENGUFUK & MENCANCANG",
                 focusNote: "Fokus Aras 1: Peta bermula pada skala 7×7. Perhatikan nilai koordinat yang sama untuk mengira jarak mengufuk |x₂ − x₁| atau jarak mencancang |y₂ − y₁|.",
                 doneTitle: "✅ ARAS 1 (RENDAH) SELESAI!",
-                doneDesc: "Bagus sekali! Anda telah menyelesaikan 5 soalan Aras 1 pada peta 7×7. Kembali ke Peta Aras dan tekan nod ARAS 2 (SEDERHANA) untuk membuka peta 14×14.",
+                doneDesc: "Bagus sekali Detektif! Anda telah menyelesaikan 5 soalan Aras 1 pada peta 7×7. Kembali ke Peta Aras dan tekan nod ARAS 2 (SEDERHANA) untuk membuka peta 14×14.",
                 questions: [
                     {
-                        thought: "\"Alamak, saya perlu ke simpang (3,0) dahulu untuk ikut jalan rata. Berapakah jarak mengufuk dari (0,0) ke (3,0)?\"",
+                        thought: "\"Hmm... saya perlu ke simpang (3,0) dahulu untuk ikut jalan rata. Berapakah jarak mengufuk dari (0,0) ke (3,0)?\"",
                         text: "Dari pondok permulaan (0,0), anda menyusuri jalan lurus ke simpang (3,0). Berapakah jarak mengufuk yang dilalui?",
                         ans: ["3", "3unit"],
                         clue: "Jarak mengufuk = |x₂ − x₁| apabila nilai y = 0 sama.",
@@ -1270,7 +1326,7 @@
                         pos: [18, 14]
                     },
                     {
-                        thought: "\"Nampak dah Rumah Selamat di (18,18)! Dari (18,14), berapa jarak mencancang terakhir?\"",
+                        thought: "\"Nampak dah Lokasi Selamat di (18,18)! Dari (18,14), berapa jarak mencancang terakhir?\"",
                         text: "Lokasi Selamat berada di (18,18) manakala anda kini di (18,14). Berapakah jarak mencancang terakhir untuk menyelamatkan diri?",
                         ans: ["4", "4unit"],
                         clue: "Kedua-dua titik berada pada garis x = 18. Kira |18 − 14|.",
@@ -1282,7 +1338,7 @@
             }
         ];
 
-        /* ================= KEADAAN PERMAINAN & PETA KARTUN 2D ================= */
+        /* ================= KEADAAN PERMAINAN & PETA DETEKTIF ANIME ================= */
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -1299,14 +1355,14 @@
         let isMoving = false;
         let stepCycle = 0;
 
-        // Kawanan anjing liar kartun
+        // Kawanan anjing liar pada peta
         const strayDogs = [
             { x: 4.5, y: 5.5, cx: 4.5, cy: 5.5, rx: 1.1, ry: 0.7, spd: 0.0018, phase: 0 },
             { x: 10.5, y: 6.5, cx: 10.5, cy: 6.5, rx: 1.3, ry: 0.9, spd: 0.0015, phase: 2.1 },
             { x: 15.5, y: 12.5, cx: 15.5, cy: 12.5, rx: 1.4, ry: 1.0, spd: 0.0017, phase: 4.2 }
         ];
 
-        // Batu & semak hiasan kartun
+        // Batu & halangan rupa bumi
         const rocks = [
             { x: 5.4, y: 2.3 },
             { x: 2.1, y: 6.6 },
@@ -1392,7 +1448,7 @@
                 } else if (idx === unlockedStage) {
                     btn.disabled = false;
                     btn.classList.add('is-unlocked');
-                    btn.textContent = `📍 ${text}`;
+                    btn.textContent = `🕵️ ${text}`;
                 } else {
                     btn.disabled = true;
                     btn.classList.add('is-locked');
@@ -1402,13 +1458,13 @@
 
             const guideEl = document.getElementById('p2-guide-text');
             if (unlockedStage === 0 && !completedStageFlags[0]) {
-                guideEl.innerHTML = 'Tekan nod <strong>ARAS 1 (RENDAH)</strong> pada peta untuk membuka nota formula.';
+                guideEl.innerHTML = 'Tekan nod <strong class="text-white">ARAS 1 (RENDAH)</strong> pada peta untuk membuka nota formula.';
             } else if (unlockedStage === 1 && !completedStageFlags[1]) {
-                guideEl.innerHTML = 'Aras 1 selesai! Tekan nod <strong>ARAS 2 (SEDERHANA)</strong> pada peta.';
+                guideEl.innerHTML = 'Aras 1 selesai! Tekan nod <strong class="text-white">ARAS 2 (SEDERHANA)</strong> pada peta.';
             } else if (unlockedStage === 2 && !completedStageFlags[2]) {
-                guideEl.innerHTML = 'Aras 2 selesai! Tekan nod <strong>ARAS 3 (TINGGI)</strong> pada peta.';
+                guideEl.innerHTML = 'Aras 2 selesai! Tekan nod <strong class="text-white">ARAS 3 (TINGGI)</strong> pada peta.';
             } else {
-                guideEl.innerHTML = 'Semua aras telah berjaya ditamatkan!';
+                guideEl.innerHTML = 'Semua aras kes telah berjaya diselesaikan!';
             }
         }
 
@@ -1461,9 +1517,9 @@
             currentQIdx = 0;
 
             const stg = STAGES[stageIdx];
-            document.getElementById('p3-stage-badge').textContent = `📝 NOTA FORMULA • ${stg.title}`;
+            document.getElementById('p3-stage-badge').textContent = `📋 NOTA FORMULA • ${stg.title}`;
             document.getElementById('p3-title').textContent = `Nota Ringkas & Formula — ${stg.title}`;
-            document.getElementById('p3-subtitle').textContent = `Peta bagi ${stg.title} berskala ${stg.gridSize}×${stg.gridSize}. Teliti formula SP 7.1 sebelum menjawab soalan.`;
+            document.getElementById('p3-subtitle').textContent = `Peta kes bagi ${stg.title} berskala ${stg.gridSize}×${stg.gridSize}. Teliti formula SP 7.1 sebelum menjawab soalan.`;
             document.getElementById('p3-stage-note').innerHTML = `<strong>📌 Panduan Aras:</strong> ${stg.focusNote}`;
             document.getElementById('btn-p3-enter-game').textContent = `TERUSKAN KE SOALAN ${stg.code} →`;
 
@@ -1584,14 +1640,14 @@
             const btn = document.getElementById('btn-hud-cam');
             if (overviewMode) {
                 showFullMapOverview();
-                btn.textContent = '🧭 Fokus Murid';
+                btn.textContent = '🧭 Fokus Detektif';
             } else {
                 focusCamOnActor(actorPos.x, actorPos.y);
                 btn.textContent = '🔍 Pandangan Penuh';
             }
         }
 
-        /* ================= LUKISAN PETA KARTUN 2D DENGAN FOG-OF-WAR ================= */
+        /* ================= LUKISAN PETA RUPA BUMI & FOG-OF-WAR (TEMA ANIME) ================= */
         function fitCanvas() {
             const wrap = canvas.parentElement;
             if (!wrap) return;
@@ -1645,7 +1701,7 @@
             cam.targetZoom = zoomVal;
             cam.targetPanX = (pivotX - rawX) * zoomVal;
             cam.targetPanY = (pivotY - rawY) * zoomVal;
-            document.getElementById('cam-status-pill').textContent = `KAMERA: FOKUS MURID (${Math.round(gx)},${Math.round(gy)})`;
+            document.getElementById('cam-status-pill').textContent = `KAMERA: FOKUS SIASATAN (${Math.round(gx)},${Math.round(gy)})`;
         }
 
         function showFullMapOverview() {
@@ -1664,7 +1720,7 @@
             return 'meadow';
         }
 
-        function stepCartoonWorld(now) {
+        function stepAnimeWorld(now) {
             const targetGrid = activeStage().gridSize;
             liveGridScale += (targetGrid - liveGridScale) * 0.055;
 
@@ -1678,7 +1734,7 @@
             });
         }
 
-        function drawCartoonMap(now) {
+        function drawAnimeTerrainMap(now) {
             const steps = Math.max(2, Math.round(liveGridScale));
             const p00 = gridToScreen(0, 0);
             const pTopRight = gridToScreen(liveGridScale, liveGridScale);
@@ -1690,21 +1746,18 @@
             const boardW = pBottomRight.x - pTopLeft.x;
             const boardH = p00.y - pTopRight.y;
 
-            // Bayang kad peta kartun hangat
-            ctx.fillStyle = 'rgba(59, 38, 24, 0.14)';
+            // Bingkai peta rupa bumi senja anime
+            ctx.fillStyle = 'rgba(10, 6, 24, 0.72)';
             ctx.beginPath();
-            ctx.roundRect(boardLeft - 8, boardTop - 8, boardW + 24, boardH + 28, 18);
+            ctx.roundRect(boardLeft - 10, boardTop - 10, boardW + 20, boardH + 20, 18);
             ctx.fill();
 
-            ctx.fillStyle = '#cbe8a6';
-            ctx.strokeStyle = '#3b2618';
-            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = '#8b5cf6';
+            ctx.lineWidth = 2.2;
             ctx.beginPath();
-            ctx.roundRect(boardLeft - 10, boardTop - 10, boardW + 20, boardH + 20, 16);
-            ctx.fill();
+            ctx.roundRect(boardLeft - 10, boardTop - 10, boardW + 20, boardH + 20, 18);
             ctx.stroke();
 
-            // Radius kawasan yang sudah diterokai (progressive fog-of-war / reveal)
             const revealRadius = Math.max(3.6, activeStage().gridSize * 0.42);
             const treeScale = cam.zoom * Math.min(1.2, 13 / Math.max(7, steps));
 
@@ -1718,76 +1771,69 @@
                     const type = getCellType(gx, gy);
 
                     if (type === 'river') {
-                        const wave = Math.sin(now * 0.004 + gx * 0.6 + gy * 0.4) * 1.5;
-                        ctx.fillStyle = '#7ec8e3';
+                        const wave = Math.sin(now * 0.004 + gx * 0.6 + gy * 0.4) * 1.4;
+                        ctx.fillStyle = 'rgba(56, 189, 248, 0.48)';
                         ctx.fillRect(cx, cy + wave * 0.3, w + 0.5, h + 0.5);
                     } else if (type === 'road') {
-                        ctx.fillStyle = '#d3dae0';
+                        ctx.fillStyle = 'rgba(148, 163, 184, 0.42)';
                         ctx.fillRect(cx, cy, w + 0.5, h + 0.5);
                     } else if (type === 'forest') {
-                        ctx.fillStyle = '#a9d982';
+                        ctx.fillStyle = 'rgba(16, 185, 129, 0.24)';
                         ctx.fillRect(cx, cy, w + 0.5, h + 0.5);
                     } else {
-                        ctx.fillStyle = (gx + gy) % 2 === 0 ? '#cceca8' : '#c2e49b';
+                        ctx.fillStyle = (gx + gy) % 2 === 0 ? 'rgba(46, 31, 86, 0.72)' : 'rgba(35, 23, 68, 0.72)';
                         ctx.fillRect(cx, cy, w + 0.5, h + 0.5);
                     }
 
-                    // Garis koordinat samar pada peta kartun
-                    ctx.strokeStyle = 'rgba(59, 38, 24, 0.14)';
+                    // Garis koordinat samar pada peta
+                    ctx.strokeStyle = 'rgba(196, 181, 253, 0.14)';
                     ctx.lineWidth = 1;
                     ctx.strokeRect(cx, cy, w, h);
 
                     if (type === 'forest' && (gx + gy) % 2 === 0) {
                         const tx = cx + w * 0.5;
                         const ty = cy + h * 0.55;
-                        ctx.fillStyle = '#8f5932';
+                        ctx.fillStyle = '#78350f';
                         ctx.fillRect(tx - 2 * treeScale, ty - 7 * treeScale, 4 * treeScale, 7 * treeScale);
-                        ctx.fillStyle = '#53a852';
-                        ctx.strokeStyle = '#3b2618';
-                        ctx.lineWidth = 1.4;
+                        ctx.fillStyle = '#10b981';
+                        ctx.strokeStyle = '#a7f3d0';
+                        ctx.lineWidth = 1.2;
                         ctx.beginPath();
-                        ctx.arc(tx, ty - 11 * treeScale, 6.5 * treeScale, 0, Math.PI * 2);
+                        ctx.arc(tx, ty - 11 * treeScale, 6.2 * treeScale, 0, Math.PI * 2);
                         ctx.fill();
                         ctx.stroke();
                     }
 
-                    // Kabur/awan lembut untuk kawasan di luar lingkungan jarak murid (fog-of-war)
+                    // Kabus misteri (fog-of-war) di kawasan belum diterokai
                     const distFromActor = Math.hypot((gx + 0.5) - actorPos.x, (gy + 0.5) - actorPos.y);
                     if (!overviewMode && distFromActor > revealRadius) {
-                        const fogAlpha = Math.min(0.76, (distFromActor - revealRadius) * 0.16);
-                        ctx.fillStyle = `rgba(253, 246, 231, ${fogAlpha.toFixed(2)})`;
+                        const fogAlpha = Math.min(0.82, (distFromActor - revealRadius) * 0.17);
+                        ctx.fillStyle = `rgba(11, 7, 24, ${fogAlpha.toFixed(2)})`;
                         ctx.fillRect(cx, cy, w + 0.6, h + 0.6);
                     }
                 }
             }
 
-            // Jambatan kayu kartun merentasi sungai
+            // Jambatan merentasi sungai
             const brA = gridToScreen(11, 6);
             const brB = gridToScreen(14, 10);
-            ctx.strokeStyle = '#3b2618';
-            ctx.lineWidth = 8 * cam.zoom;
+            ctx.strokeStyle = '#fde68a';
+            ctx.lineWidth = 6 * cam.zoom;
             ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(brA.x, brA.y);
             ctx.lineTo(brB.x, brB.y);
             ctx.stroke();
 
-            ctx.strokeStyle = '#b97742';
-            ctx.lineWidth = 4.5 * cam.zoom;
-            ctx.beginPath();
-            ctx.moveTo(brA.x, brA.y);
-            ctx.lineTo(brB.x, brB.y);
-            ctx.stroke();
-
-            // Batu-batan kartun
+            // Batu halangan
             const maxVis = activeStage().gridSize;
             rocks.forEach((rk) => {
                 if (rk.x > maxVis || rk.y > maxVis) return;
                 const rp = gridToScreen(rk.x, rk.y);
                 const rs = cam.zoom * Math.min(1.15, 13 / Math.max(7, maxVis));
-                ctx.fillStyle = '#9aa5b1';
-                ctx.strokeStyle = '#3b2618';
-                ctx.lineWidth = 1.6;
+                ctx.fillStyle = '#475569';
+                ctx.strokeStyle = '#cbd5e1';
+                ctx.lineWidth = 1.4;
                 ctx.beginPath();
                 ctx.ellipse(rp.x, rp.y, 7 * rs, 5 * rs, 0, 0, Math.PI * 2);
                 ctx.fill();
@@ -1798,7 +1844,7 @@
             const xEnd = gridToScreen(liveGridScale + 0.4, 0);
             const yEnd = gridToScreen(0, liveGridScale + 0.4);
 
-            ctx.strokeStyle = 'rgba(59, 38, 24, 0.55)';
+            ctx.strokeStyle = 'rgba(253, 230, 138, 0.65)';
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(p00.x, p00.y);
@@ -1807,14 +1853,14 @@
             ctx.lineTo(yEnd.x, yEnd.y);
             ctx.stroke();
 
-            ctx.font = `bold ${Math.round(11 * cam.zoom)}px Fredoka, sans-serif`;
-            ctx.fillStyle = '#3b2618';
+            ctx.font = `bold ${Math.round(10.5 * cam.zoom)}px Orbitron, sans-serif`;
+            ctx.fillStyle = '#fde68a';
             ctx.fillText('Paksi-x (Mengufuk)', xEnd.x - 42, xEnd.y + 15);
+            ctx.fillStyle = '#67e8f9';
             ctx.fillText('Paksi-y (Mencancang)', yEnd.x + 6, yEnd.y + 10);
 
-            // Label nombor paksi samar
-            ctx.font = `bold ${Math.round(9.5 * cam.zoom)}px Nunito, sans-serif`;
-            ctx.fillStyle = 'rgba(59, 38, 24, 0.65)';
+            ctx.font = `bold ${Math.round(9.5 * cam.zoom)}px Rajdhani, sans-serif`;
+            ctx.fillStyle = 'rgba(221, 214, 254, 0.72)';
             const stepLabel = steps > 14 ? 2 : 1;
             for (let i = stepLabel; i <= steps; i += stepLabel) {
                 const lx = gridToScreen(i, 0);
@@ -1824,11 +1870,11 @@
             }
         }
 
-        function drawStoryElements(now) {
+        function drawCaseMarkers(now) {
             const maxVis = activeStage().gridSize;
             const s = cam.zoom * Math.min(1.25, 13 / Math.max(7, maxVis));
 
-            // Jejak laluan murid
+            // Jejak laluan siasatan
             if (pathHistory.length > 1) {
                 ctx.beginPath();
                 pathHistory.forEach((pt, idx) => {
@@ -1838,35 +1884,35 @@
                 });
                 const cur = gridToScreen(actorPos.x, actorPos.y);
                 ctx.lineTo(cur.x, cur.y);
-                ctx.strokeStyle = '#e06d53';
+                ctx.strokeStyle = '#f5b942';
                 ctx.lineWidth = 3 * cam.zoom;
                 ctx.setLineDash([6 * cam.zoom, 5 * cam.zoom]);
                 ctx.stroke();
                 ctx.setLineDash([]);
             }
 
-            // Penanda titik destinasi soalan semasa
+            // Penanda sasaran soalan semasa
             const goal = activeQuestion().pos;
             const gp = gridToScreen(goal[0], goal[1]);
             const pulse = Math.sin(now * 0.005) * 2.5 * s;
             ctx.beginPath();
             ctx.arc(gp.x, gp.y, (10 * s) + pulse, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(82, 183, 136, 0.25)';
-            ctx.strokeStyle = '#247a52';
-            ctx.lineWidth = 2.2;
+            ctx.fillStyle = 'rgba(52, 211, 153, 0.25)';
+            ctx.strokeStyle = '#34d399';
+            ctx.lineWidth = 2;
             ctx.fill();
             ctx.stroke();
 
-            // Rumah Selamat di (18,18) apabila grid cukup besar
+            // Lokasi Selamat di (18,18)
             if (maxVis >= 18) {
                 const sp = gridToScreen(18, 18);
-                ctx.fillStyle = '#ffe8b8';
-                ctx.strokeStyle = '#3b2618';
+                ctx.fillStyle = 'rgba(16, 185, 129, 0.28)';
+                ctx.strokeStyle = '#34d399';
                 ctx.lineWidth = 2;
                 ctx.fillRect(sp.x - 11 * s, sp.y - 18 * s, 22 * s, 18 * s);
                 ctx.strokeRect(sp.x - 11 * s, sp.y - 18 * s, 22 * s, 18 * s);
 
-                ctx.fillStyle = '#52b788';
+                ctx.fillStyle = '#f5b942';
                 ctx.beginPath();
                 ctx.moveTo(sp.x - 14 * s, sp.y - 18 * s);
                 ctx.lineTo(sp.x, sp.y - 28 * s);
@@ -1875,27 +1921,27 @@
                 ctx.fill();
                 ctx.stroke();
 
-                ctx.font = `bold ${Math.round(9.5 * s)}px Fredoka, sans-serif`;
-                ctx.fillStyle = '#1d5c3e';
-                ctx.fillText('Rumah Selamat (18,18)', sp.x - 36 * s, sp.y - 31 * s);
+                ctx.font = `bold ${Math.round(9.5 * s)}px Orbitron, sans-serif`;
+                ctx.fillStyle = '#a7f3d0';
+                ctx.fillText('SELAMAT (18,18)', sp.x - 34 * s, sp.y - 31 * s);
             }
 
-            // Watak anjing liar kartun comel/waspada
+            // Anjing liar rondaan
             const wag = Math.sin(now * 0.018) * 3 * s;
             strayDogs.forEach((dog) => {
                 if (dog.x > maxVis + 1 || dog.y > maxVis + 1) return;
                 const dp = gridToScreen(dog.x, dog.y);
 
-                ctx.fillStyle = '#c98249';
-                ctx.strokeStyle = '#3b2618';
-                ctx.lineWidth = 1.8;
+                ctx.fillStyle = '#fb7185';
+                ctx.strokeStyle = '#fecdd3';
+                ctx.lineWidth = 1.5;
                 ctx.beginPath();
                 ctx.roundRect(dp.x - 8 * s, dp.y - 10 * s, 16 * s, 9 * s, 4 * s);
                 ctx.fill();
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.arc(dp.x + 7 * s, dp.y - 12 * s, 5 * s, 0, Math.PI * 2);
+                ctx.arc(dp.x + 7 * s, dp.y - 12 * s, 4.8 * s, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.stroke();
 
@@ -1904,13 +1950,13 @@
                 ctx.lineTo(dp.x - 13 * s, dp.y - 12 * s + wag);
                 ctx.stroke();
 
-                ctx.font = `bold ${Math.round(9 * s)}px Nunito, sans-serif`;
-                ctx.fillStyle = '#8f2d1e';
+                ctx.font = `bold ${Math.round(9 * s)}px Rajdhani, sans-serif`;
+                ctx.fillStyle = '#fda4af';
                 ctx.fillText('Anjing Liar', dp.x - 18 * s, dp.y - 20 * s);
             });
         }
 
-        function drawStudentCharacter(gx, gy, now) {
+        function drawAnimeDetectiveSprite(gx, gy, now) {
             const maxVis = activeStage().gridSize;
             const p = gridToScreen(gx, gy);
             const s = cam.zoom * Math.min(1.35, 14 / Math.max(7, maxVis));
@@ -1920,15 +1966,13 @@
             const cx = p.x;
             const cy = p.y - hop;
 
-            // Bayang kaki
             ctx.beginPath();
             ctx.ellipse(p.x, p.y + 1, 9 * s, 4.5 * s, 0, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(59, 38, 24, 0.25)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
             ctx.fill();
 
-            // Kaki
-            ctx.strokeStyle = '#3b2618';
-            ctx.lineWidth = 3.2 * s;
+            ctx.strokeStyle = '#c4b5fd';
+            ctx.lineWidth = 3 * s;
             ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(cx - 3 * s, cy - 8 * s);
@@ -1937,35 +1981,41 @@
             ctx.lineTo(cx + 4 * s + stride, cy);
             ctx.stroke();
 
-            // Baju kartun warna kuning hangat
-            ctx.fillStyle = '#ffd166';
-            ctx.strokeStyle = '#3b2618';
-            ctx.lineWidth = 2 * s;
+            // Kot detektif ungu-emas
+            ctx.fillStyle = '#6d28d9';
+            ctx.strokeStyle = '#fde68a';
+            ctx.lineWidth = 1.8 * s;
             ctx.beginPath();
-            ctx.roundRect(cx - 7 * s, cy - 19 * s, 14 * s, 12 * s, 4 * s);
+            ctx.roundRect(cx - 7.5 * s, cy - 19 * s, 15 * s, 12 * s, 4 * s);
             ctx.fill();
             ctx.stroke();
 
-            // Kepala murid kartun
-            ctx.fillStyle = '#ffd9b3';
+            // Kepala & rambut anime
+            ctx.fillStyle = '#fde2cc';
             ctx.beginPath();
             ctx.arc(cx, cy - 25 * s, 6.5 * s, 0, Math.PI * 2);
             ctx.fill();
             ctx.stroke();
 
-            // Rambut coklat kartun
-            ctx.fillStyle = '#5a3821';
+            ctx.fillStyle = '#2e1065';
             ctx.beginPath();
-            ctx.arc(cx, cy - 27 * s, 6.5 * s, Math.PI, Math.PI * 2);
+            ctx.arc(cx, cy - 27 * s, 6.8 * s, Math.PI, Math.PI * 2);
             ctx.fill();
+
+            // Kanta pembesar bercahaya sian
+            ctx.strokeStyle = '#67e8f9';
+            ctx.lineWidth = 2 * s;
+            ctx.beginPath();
+            ctx.arc(cx + 9 * s, cy - 16 * s, 4 * s, 0, Math.PI * 2);
+            ctx.stroke();
         }
 
         function renderGameLoop(now = 0) {
-            stepCartoonWorld(now);
+            stepAnimeWorld(now);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            drawCartoonMap(now);
-            drawStoryElements(now);
+            drawAnimeTerrainMap(now);
+            drawCaseMarkers(now);
 
             if (isMoving) {
                 const dx = actorTarget.x - actorPos.x;
@@ -2001,7 +2051,7 @@
                 }
             }
 
-            drawStudentCharacter(actorPos.x, actorPos.y, now);
+            drawAnimeDetectiveSprite(actorPos.x, actorPos.y, now);
             requestAnimationFrame(renderGameLoop);
         }
 
@@ -2075,7 +2125,7 @@
                     document.querySelectorAll('.dir-btn').forEach((b) => b.classList.remove('is-selected'));
                     btn.classList.add('is-selected');
                     document.getElementById('student-thought-text').textContent =
-                        `"Saya memilih arah ${selectedDirection} — kini saya kira nilai jarak yang tepat!"`;
+                        `"Saya pilih arah ${selectedDirection} — kini saya kira nilai jarak yang tepat!"`;
                 });
             });
 
@@ -2117,7 +2167,7 @@
                 window.location.reload();
             });
 
-            // Semak koordinat samar atas peta kartun
+            // Semak koordinat samar atas peta
             canvas.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 const { gx, gy } = screenToGrid(e.clientX - rect.left, e.clientY - rect.top);
